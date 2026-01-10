@@ -1,0 +1,345 @@
+---
+import '@/styles/global.css';
+import Logo from '@/components/shared/Logo.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Pixil Web Studio Inc.</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="bg-oatmeal text-charcoal font-sans antialiased selection:bg-black selection:text-white"
+  >
+    <header
+      class="bg-oatmeal/90 border-charcoal/5 fixed top-0 z-50 w-full border-b backdrop-blur-md"
+    >
+      <nav class="container mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+        <div class="flex h-8 w-32 items-center justify-center rounded-full text-gray-900">
+          <Logo />
+        </div>
+        <div
+          class="text-charcoal/60 hidden items-center gap-8 text-sm font-medium tracking-wide md:flex"
+        >
+          <a class="transition-colors hover:text-black" href="#get-in-touch">Get in Touch</a>
+        </div>
+      </nav>
+    </header>
+    <main class="pt-32 pb-20">
+      <section
+        class="mb-24 flex min-h-[85vh] flex-col items-center justify-center px-6 text-center"
+      >
+        <div class="w-full max-w-5xl space-y-8">
+          <h1
+            class="font-display text-charcoal scroll-hidden text-7xl leading-[0.85] font-medium tracking-tighter md:text-9xl"
+          >
+            Digital Excellence.<br />
+            Down to the last <span class="text-charcoal/30">Pixil.</span>
+          </h1>
+          <p
+            class="text-charcoal/60 scroll-hidden mx-auto max-w-xl text-xl leading-relaxed font-light md:text-2xl"
+            style="transition-delay: 0.2s;"
+          >
+            We are a high-performance web agency obsessed with precision. We strip away the
+            unnecessary to reveal the essential.
+          </p>
+          <div class="fade-up-hidden pt-16" style="transition-delay: 0.4s;">
+            <span class="material-symbols-outlined text-charcoal/30 animate-bounce text-7xl"
+              >keyboard_arrow_down</span
+            >
+          </div>
+        </div>
+      </section>
+      <section class="border-t border-black/5 px-6 py-32" id="narrative">
+        <div class="mx-auto max-w-3xl space-y-24">
+          <div class="space-y-8">
+            <span class="text-charcoal/40 text-xs font-bold tracking-widest uppercase"
+              >The Philosophy</span
+            >
+            <p class="font-display text-charcoal scroll-hidden text-4xl leading-tight md:text-5xl">
+              Complexity is easy. <span
+                class="text-charcoal/40 hover:text-charcoal cursor-default transition-colors duration-700"
+                >Simplicity is hard.</span
+              > We believe that the best digital experiences are the ones that feel invisible.
+            </p>
+            <p class="text-charcoal/60 text-xl leading-relaxed">
+              At Pixil, we don't just build websites; we engineer digital clarity. Our methodology
+              is rooted in the belief that every pixel must serve a purpose. If it doesn't add
+              value, it doesn't belong. We merge technical high-performance with aesthetic
+              restraint.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="border-t border-black/5 bg-gray-50/50 px-6 py-32" id="why-us">
+        <div class="mx-auto max-w-5xl">
+          <div class="mb-24 text-center">
+            <span class="text-charcoal/40 text-xs font-bold tracking-widest uppercase"
+              >Why Pixil?</span
+            >
+            <h2 class="font-display mt-4 text-4xl md:text-5xl">The Pixil Standard</h2>
+          </div>
+          <div class="space-y-24 pb-24">
+            <div
+              class="sticky top-28 flex flex-col items-center gap-12 rounded-3xl border border-black/5 bg-white p-8 shadow-[0_-5px_20px_-5px_rgba(0,0,0,0.05)] md:flex-row md:p-16"
+            >
+              <div class="flex-1 space-y-6">
+                <span
+                  class="text-charcoal/50 rounded-full border border-black/10 px-2 py-1 font-mono text-xs"
+                  >01</span
+                >
+                <h3 class="font-display text-3xl font-medium md:text-4xl">Precision Engineering</h3>
+                <p class="text-charcoal/60 text-lg leading-relaxed">
+                  We write clean, semantic code that performs. Our sites are optimized for speed,
+                  accessibility, and SEO from the ground up. No bloat, just performance.
+                </p>
+              </div>
+              <div
+                class="bg-oatmeal group relative aspect-[4/3] w-full overflow-hidden rounded-xl md:w-1/2"
+              >
+                <img
+                  alt="Abstract texture"
+                  class="h-full w-full object-cover opacity-80 mix-blend-multiply grayscale transition-transform duration-1000 group-hover:scale-110"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo1k4tzQe8K50dYyfvclGVDY8J3GP1eQ-1odRDHWMxTLF_F0MP6unIUjU9GLOlypm8CcZNiXXKxFyiqgQ3QplMxAWxdGPUnKUE3viyYyf-bTvHCH8o1DDTiAls9lISuLTfTCX40AO8feockPAs04uaJJfJnyvIRSZvs76-v1QdH2e4HJy6o8LypUcxq0Vq3Qfc3EGRhthwm9Czr55ZikGfuJLaIEomwCfn2ZQ8igEHKWQEzakb5dRWffyYS8MfYi7mHGwSQouG"
+                />
+              </div>
+            </div>
+            <div
+              class="sticky top-32 flex flex-col items-center gap-12 rounded-3xl border border-black/5 bg-white p-8 shadow-[0_-5px_20px_-5px_rgba(0,0,0,0.05)] md:flex-row md:p-16"
+            >
+              <div class="flex-1 space-y-6">
+                <span
+                  class="text-charcoal/50 rounded-full border border-black/10 px-2 py-1 font-mono text-xs"
+                  >02</span
+                >
+                <h3 class="font-display text-3xl font-medium md:text-4xl">Timeless Aesthetics</h3>
+                <p class="text-charcoal/60 text-lg leading-relaxed">
+                  Trends fade. Good design lasts. We focus on typography, whitespace, and grid
+                  systems to create layouts that will still look modern years from now.
+                </p>
+              </div>
+              <div
+                class="bg-oatmeal group relative aspect-[4/3] w-full overflow-hidden rounded-xl md:w-1/2"
+              >
+                <img
+                  alt="Minimal architectural detail"
+                  class="h-full w-full object-cover opacity-80 mix-blend-multiply grayscale transition-transform duration-1000 group-hover:scale-110"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzbN-LW8l3mkAksxQKbseN2RsBSuQ_PpcaiCKRXYHD1aMinNHHxZrHw1Lt56vF_0yN3sRWbPA043SOb3XwtiV7NpxMmMWLpRhCxqo-W8873DS0MistWs3J3aBr28-32vkOgSMZQO2Ssazp97RldvEIjQ2arY0OH50G4FYQuOzRxcS2LADZJQRLvXLlpqZ8kSBf0D1WgUkMDrHpbit0_jkRp2I_4KA8xOv1zjS99Pts4J7G_xk30IJ19UriWxOsfcQI3d_Jm22j"
+                />
+              </div>
+            </div>
+            <div
+              class="sticky top-36 flex flex-col items-center gap-12 rounded-3xl border border-black/5 bg-white p-8 shadow-[0_-5px_20px_-5px_rgba(0,0,0,0.05)] md:flex-row md:p-16"
+            >
+              <div class="flex-1 space-y-6">
+                <span
+                  class="text-charcoal/50 rounded-full border border-black/10 px-2 py-1 font-mono text-xs"
+                  >03</span
+                >
+                <h3 class="font-display text-3xl font-medium md:text-4xl">Strategic Focus</h3>
+                <p class="text-charcoal/60 text-lg leading-relaxed">
+                  We don't start with design; we start with strategy. Understanding your business
+                  goals allows us to build a digital product that actually moves the needle.
+                </p>
+              </div>
+              <div
+                class="bg-oatmeal group relative aspect-[4/3] w-full overflow-hidden rounded-xl md:w-1/2"
+              >
+                <img
+                  alt="Clean workspace"
+                  class="h-full w-full object-cover opacity-80 mix-blend-multiply grayscale transition-transform duration-1000 group-hover:scale-110"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo5lLNc1ZYufiCSNIeQyQX57N8V602OqFX_xpQQSxHp36_Hu5e1Rs5in4XSxYrA31gzA3_PYsvRNrGZXSk2WR6-9jFZ0CCIqzUXGhVB9UewM18oRnJf9roWWE0VfVZu5rBpd2f6uSYQIIIguAli-nfT5s2DW-AnTopGjRxphkGVZ6TbciAp4HL0Kz2fb5xHw8UoRH7qlW4fxDmgeTwMz8CIbvbZJD9YF33j6VKlHdykQWeadwjrUnByzDQn92S1o_dis7v5Xxx"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="overflow-hidden border-t border-black/5 py-32" id="services">
+        <div class="container mx-auto max-w-7xl px-6">
+          <div class="mb-16 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <span class="text-charcoal/40 text-xs font-bold tracking-widest uppercase"
+                >Capabilities</span
+              >
+              <h2 class="font-display mt-4 text-4xl md:text-5xl">Our Expertise</h2>
+            </div>
+            <div class="text-charcoal/40 flex items-center gap-2 text-sm">
+              <span>Scroll to explore</span>
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </div>
+          </div>
+          <div
+            class="hide-scrollbar -mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-12 md:mx-0 md:px-0"
+          >
+            <div
+              class="flex h-[400px] min-w-[85vw] snap-center flex-col justify-between rounded-2xl border border-black/5 bg-white p-10 shadow-sm transition-colors duration-300 hover:border-black/20 md:min-w-[450px]"
+            >
+              <div class="space-y-4">
+                <span class="text-charcoal/30 font-mono text-sm">01</span>
+                <h3 class="font-display text-3xl">Art Direction &amp; Branding</h3>
+              </div>
+              <p class="text-charcoal/60 text-lg leading-relaxed">
+                Crafting distinct visual identities that resonate. We define the visual language
+                that carries your brand's voice across every digital touchpoint.
+              </p>
+            </div>
+            <div
+              class="flex h-[400px] min-w-[85vw] snap-center flex-col justify-between rounded-2xl border border-black/5 bg-white p-10 shadow-sm transition-colors duration-300 hover:border-black/20 md:min-w-[450px]"
+            >
+              <div class="space-y-4">
+                <span class="text-charcoal/30 font-mono text-sm">02</span>
+                <h3 class="font-display text-3xl">UI/UX Design Systems</h3>
+              </div>
+              <p class="text-charcoal/60 text-lg leading-relaxed">
+                Building scalable, atomic design systems that ensure consistency. We design
+                interfaces that are intuitive, accessible, and delightful to use.
+              </p>
+            </div>
+            <div
+              class="flex h-[400px] min-w-[85vw] snap-center flex-col justify-between rounded-2xl border border-black/5 bg-white p-10 shadow-sm transition-colors duration-300 hover:border-black/20 md:min-w-[450px]"
+            >
+              <div class="space-y-4">
+                <span class="text-charcoal/30 font-mono text-sm">03</span>
+                <h3 class="font-display text-3xl">Frontend Engineering</h3>
+              </div>
+              <p class="text-charcoal/60 text-lg leading-relaxed">
+                Pixel-perfect implementation using modern frameworks. We obsess over animation
+                fidelity, load times, and cross-browser compatibility.
+              </p>
+            </div>
+            <div
+              class="flex h-[400px] min-w-[85vw] snap-center flex-col justify-between rounded-2xl border border-black/5 bg-white p-10 shadow-sm transition-colors duration-300 hover:border-black/20 md:min-w-[450px]"
+            >
+              <div class="space-y-4">
+                <span class="text-charcoal/30 font-mono text-sm">04</span>
+                <h3 class="font-display text-3xl">Headless CMS</h3>
+              </div>
+              <p class="text-charcoal/60 text-lg leading-relaxed">
+                Integrating content management that doesn't get in your way. We structure data to be
+                flexible, allowing your team to publish with ease.
+              </p>
+            </div>
+            <div
+              class="flex h-[400px] min-w-[85vw] snap-center flex-col justify-between rounded-2xl border border-black/5 bg-white p-10 shadow-sm transition-colors duration-300 hover:border-black/20 md:min-w-[450px]"
+            >
+              <div class="space-y-4">
+                <span class="text-charcoal/30 font-mono text-sm">05</span>
+                <h3 class="font-display text-3xl">Performance Optimization</h3>
+              </div>
+              <p class="text-charcoal/60 text-lg leading-relaxed">
+                Speed is a feature. We audit and refactor code to ensure your site loads instantly,
+                improving both user retention and search rankings.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12 px-6 py-24 lg:px-20" id="get-in-touch">
+        <div class="container mx-auto max-w-7xl px-6">
+          <div
+            class="bg-charcoal text-oatmeal relative overflow-hidden rounded-[3rem] p-12 text-center lg:p-32"
+          >
+            <div class="relative z-10">
+              <h2 class="mb-8 text-5xl font-medium md:text-7xl">Ready to grow?</h2>
+              <p class="mx-auto mb-12 max-w-2xl text-xl font-light text-white/70 md:text-2xl">
+                Let's build something that resonates. Reach out and tell us about your vision.
+              </p>
+              <div class="flex flex-col justify-center gap-6 sm:flex-row">
+                <a
+                  class="bg-oatmeal text-charcoal rounded-pill transform px-10 py-5 text-lg font-bold transition-all hover:scale-105 hover:bg-white"
+                  href="#"
+                >
+                  Start a Conversation
+                </a>
+                <a
+                  class="rounded-pill border border-white/30 px-10 py-5 text-lg font-medium text-white transition-all hover:bg-white/10"
+                  href="mailto:hello@pixl.ca"
+                >
+                  hello(at)pixl.ca
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="bg-oatmeal px-6 py-12" id="footer">
+        <div
+          class="text-charcoal/40 mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-xs font-medium tracking-wider uppercase md:flex-row"
+        >
+          <p>© Pixil Web Studio Inc.</p>
+          <div class="flex gap-6">
+            <a class="transition-colors hover:text-black" href="#">Privacy Policy</a>
+            <a class="transition-colors hover:text-black" href="#">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      // Scroll animation script
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px',
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          console.log('Element intersecting:', entry.isIntersecting, entry.target.className);
+
+          if (entry.isIntersecting) {
+            if (entry.target.classList.contains('scroll-hidden')) {
+              console.log('Animating scroll-hidden element');
+              entry.target.classList.remove('scroll-hidden');
+              entry.target.classList.add('scroll-visible');
+            }
+            if (entry.target.classList.contains('fade-up-hidden')) {
+              console.log('Animating fade-up-hidden element');
+              entry.target.classList.remove('fade-up-hidden');
+              entry.target.classList.add('fade-up-visible');
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Wait for DOM to be ready, then observe elements
+      document.addEventListener('DOMContentLoaded', function () {
+        const elementsToAnimate = document.querySelectorAll('.scroll-hidden, .fade-up-hidden');
+
+        elementsToAnimate.forEach((el, index) => {
+          observer.observe(el);
+        });
+
+        setTimeout(() => {
+          elementsToAnimate.forEach((el) => {
+            if (el.classList.contains('scroll-hidden')) {
+              el.classList.remove('scroll-hidden');
+              el.classList.add('scroll-visible');
+            }
+            if (el.classList.contains('fade-up-hidden')) {
+              el.classList.remove('fade-up-hidden');
+              el.classList.add('fade-up-visible');
+            }
+          });
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>
