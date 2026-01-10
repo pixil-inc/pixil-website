@@ -2,6 +2,12 @@
   "branches": ["main", "master"],
   "plugins": [
     "@semantic-release/commit-analyzer",
+    {
+      "releaseRules": [
+        { "type": "feat", "release": "minor" },
+        { "type": "fix", "release": "patch" }
+      ]
+    },
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
     [
@@ -18,5 +24,6 @@
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ]
-  ]
+  ],
+  "tagFormat": "v${version}"
 }
