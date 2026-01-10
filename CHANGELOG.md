@@ -1,9 +1,8 @@
 ## [1.0.1](https://github.com/pixil-inc/pixil-website/compare/v1.0.0...v1.0.1) (2026-01-10)
 
-
 ### Bug Fixes
 
-* layout revisions ([32bcc29](https://github.com/pixil-inc/pixil-website/commit/32bcc296fe24cd71f451212e16d33be712132e6d))
+- layout revisions ([32bcc29](https://github.com/pixil-inc/pixil-website/commit/32bcc296fe24cd71f451212e16d33be712132e6d))
 
 # 1.0.0 (2026-01-10)
 
