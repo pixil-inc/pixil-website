@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/pixil-inc/pixil-website/compare/v1.0.1...v1.0.2) (2026-01-10)
+
+
+### Bug Fixes
+
+* CWV attempt ([7fc18ae](https://github.com/pixil-inc/pixil-website/commit/7fc18ae429562154ddd1a69f1c07d8d615332f88))
+* format ([9fae5aa](https://github.com/pixil-inc/pixil-website/commit/9fae5aaa683a38bd9f15a2c560285952e9efa948))
+
 ## [1.0.1](https://github.com/pixil-inc/pixil-website/compare/v1.0.0...v1.0.1) (2026-01-10)
 
 ### Bug Fixes
