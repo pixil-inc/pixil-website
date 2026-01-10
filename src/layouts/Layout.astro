@@ -1,0 +1,151 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/shared/Header.astro';
+import Footer from '@/components/shared/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Pixil Web Studio Inc.',
+  description = 'Digital Excellence. Down to the last Pixil.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="bg-oatmeal text-charcoal font-sans antialiased selection:bg-black selection:text-white"
+  >
+    <Header />
+    <main class="pt-32 pb-20">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Scroll animation script
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px',
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          console.log('Element intersecting:', entry.isIntersecting, entry.target.className);
+
+          if (entry.isIntersecting) {
+            if (entry.target.classList.contains('scroll-hidden')) {
+              console.log('Animating scroll-hidden element');
+              entry.target.classList.remove('scroll-hidden');
+              entry.target.classList.add('scroll-visible');
+            }
+            if (entry.target.classList.contains('fade-up-hidden')) {
+              console.log('Animating fade-up-hidden element');
+              entry.target.classList.remove('fade-up-hidden');
+              entry.target.classList.add('fade-up-visible');
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Wait for DOM to be ready, then observe elements
+      document.addEventListener('DOMContentLoaded', function () {
+        const elementsToAnimate = document.querySelectorAll('.scroll-hidden, .fade-up-hidden');
+
+        elementsToAnimate.forEach((el, index) => {
+          observer.observe(el);
+        });
+
+        // Contact form toggle functionality
+        const showFormBtn = document.getElementById('show-form-btn');
+        const hideFormBtn = document.getElementById('hide-form-btn');
+        const contactButtons = document.getElementById('contact-buttons');
+        const contactForm = document.getElementById('contact-form');
+
+        if (showFormBtn && contactButtons && contactForm) {
+          showFormBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            contactButtons.style.display = 'none';
+            contactForm.classList.remove('hidden');
+            contactForm.style.opacity = '0';
+            contactForm.style.transform = 'translateY(20px)';
+
+            // Animate form in
+            requestAnimationFrame(() => {
+              contactForm.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+              contactForm.style.opacity = '1';
+              contactForm.style.transform = 'translateY(0)';
+            });
+          });
+        }
+
+        if (hideFormBtn && contactButtons && contactForm) {
+          hideFormBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            // Animate form out
+            contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+            contactForm.style.opacity = '0';
+            contactForm.style.transform = 'translateY(-20px)';
+
+            setTimeout(() => {
+              contactForm.classList.add('hidden');
+              contactButtons.style.display = 'flex';
+            }, 300);
+          });
+        }
+
+        // Form submission handling
+        const form = document.querySelector('#contact-form form') as HTMLFormElement;
+        if (form) {
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Here you would typically send the form data to your backend
+            // For now, we'll just show a success message
+            alert("Thank you for your message! We'll get back to you soon.");
+
+            // Reset form and hide it
+            form.reset();
+            if (hideFormBtn) {
+              hideFormBtn.click();
+            }
+          });
+        }
+
+        setTimeout(() => {
+          elementsToAnimate.forEach((el) => {
+            if (el.classList.contains('scroll-hidden')) {
+              el.classList.remove('scroll-hidden');
+              el.classList.add('scroll-visible');
+            }
+            if (el.classList.contains('fade-up-hidden')) {
+              el.classList.remove('fade-up-hidden');
+              el.classList.add('fade-up-visible');
+            }
+          });
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>
