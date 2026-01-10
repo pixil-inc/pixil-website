@@ -1,0 +1,30 @@
+{
+  "services": [
+    {
+      "heading": "Precision Engineering",
+      "description": "We write clean, semantic code that performs. Our sites are optimized for speed, accessibility, and SEO from the ground up. No bloat, just performance.",
+      "image": {
+        "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuDo1k4tzQe8K50dYyfvclGVDY8J3GP1eQ-1odRDHWMxTLF_F0MP6unIUjU9GLOlypm8CcZNiXXKxFyiqgQ3QplMxAWxdGPUnKUE3viyYyf-bTvHCH8o1DDTiAls9lISuLTfTCX40AO8feockPAs04uaJJfJnyvIRSZvs76-v1QdH2e4HJy6o8LypUcxq0Vq3Qfc3EGRhthwm9Czr55ZikGfuJLaIEomwCfn2ZQ8igEHKWQEzakb5dRWffyYS8MfYi7mHGwSQouG",
+        "alt": "Web Development Service"
+      }
+    },
+    {
+      "id": 2,
+      "heading": "Timeless Aesthetics",
+      "description": "Trends fade. Good design lasts. We focus on typography, whitespace, and grid systems to create layouts that will still look modern years from now.",
+      "image": {
+        "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuCzbN-LW8l3mkAksxQKbseN2RsBSuQ_PpcaiCKRXYHD1aMinNHHxZrHw1Lt56vF_0yN3sRWbPA043SOb3XwtiV7NpxMmMWLpRhCxqo-W8873DS0MistWs3J3aBr28-32vkOgSMZQO2Ssazp97RldvEIjQ2arY0OH50G4FYQuOzRxcS2LADZJQRLvXLlpqZ8kSBf0D1WgUkMDrHpbit0_jkRp2I_4KA8xOv1zjS99Pts4J7G_xk30IJ19UriWxOsfcQI3d_Jm22j",
+        "alt": "Graphic Design Service"
+      }
+    },
+    {
+      "id": 3,
+      "heading": "Strategic Focus",
+      "description": "We don't start with design; we start with strategy. Understanding your business goals allows us to build a digital product that actually moves the needle.",
+      "image": {
+        "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuCo5lLNc1ZYufiCSNIeQyQX57N8V602OqFX_xpQQSxHp36_Hu5e1Rs5in4XSxYrA31gzA3_PYsvRNrGZXSk2WR6-9jFZ0CCIqzUXGhVB9UewM18oRnJf9roWWE0VfVZu5rBpd2f6uSYQIIIguAli-nfT5s2DW-AnTopGjRxphkGVZ6TbciAp4HL0Kz2fb5xHw8UoRH7qlW4fxDmgeTwMz8CIbvbZJD9YF33j6VKlHdykQWeadwjrUnByzDQn92S1o_dis7v5Xxx",
+        "alt": "SEO Optimization Service"
+      }
+    }
+  ]
+}

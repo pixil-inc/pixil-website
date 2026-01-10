@@ -7,12 +7,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/layout": ["./src/components/layout"],
-      "@/ui": ["./src/components/ui"],
       "@/components/*": ["./src/components/*"],
-      "@/hooks/*": ["./src/hooks/*"],
       "@/data/*": ["./src/data/*"],
       "@/types/*": ["./src/types/*"],
-      "@/utils/*": ["./src/utils/*"],
       "@/styles/*": ["./src/styles/*"]
     }
   }
