@@ -1,5 +1,5 @@
 {
-  "name": "magenta-main",
+  "name": "pixil-website",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -21,7 +21,7 @@
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
     "prettier": "^3.4.2",
-    "prettier-plugin-astro": "^0.15.1",
+    "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "semantic-release": "^23.0.8",
     "typescript": "^5.7.3"
