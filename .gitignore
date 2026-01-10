@@ -1,5 +1,6 @@
 # build output
 dist/
+build/
 # generated types
 .astro/
 
@@ -16,9 +17,29 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env*.local
 
 # macOS-specific files
 .DS_Store
+*.pem
 
 # jetbrains setting folder
 .idea/
+
+# testing
+/coverage
+
+# misc
+.DS_Store
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
