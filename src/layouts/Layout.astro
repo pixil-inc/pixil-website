@@ -24,19 +24,37 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
 
-    <!-- Preconnect for faster font loading -->
+    <!-- Preload critical local font files -->
+    <link href="/fonts/Inter-400.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+    <link href="/fonts/Inter-500.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+
+    <!-- Preconnect for Material Symbols (still from Google) -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
 
-    <!-- Load fonts with display=swap for better performance -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Load Material Symbols asynchronously -->
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- Simplified font loading detection for local fonts -->
+    <script>
+      // For local fonts, we can immediately apply font styles
+      if ('fonts' in document) {
+        document.fonts.load('400 1em Inter').then(() => {
+          document.documentElement.classList.add('fonts-loaded');
+        });
+      }
+    </script>
   </head>
 
   <body
