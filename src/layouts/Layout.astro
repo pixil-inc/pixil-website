@@ -23,8 +23,12 @@ const {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
+
+    <!-- Preconnect for faster font loading -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    
+    <!-- Load fonts with display=swap for better performance -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap"
       rel="stylesheet"
@@ -33,6 +37,7 @@ const {
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
       rel="stylesheet"
     />
+
   </head>
 
   <body
@@ -45,7 +50,6 @@ const {
     <Footer />
 
     <script>
-      // Scroll animation script
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px',
@@ -53,16 +57,12 @@ const {
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          console.log('Element intersecting:', entry.isIntersecting, entry.target.className);
-
           if (entry.isIntersecting) {
             if (entry.target.classList.contains('scroll-hidden')) {
-              console.log('Animating scroll-hidden element');
               entry.target.classList.remove('scroll-hidden');
               entry.target.classList.add('scroll-visible');
             }
             if (entry.target.classList.contains('fade-up-hidden')) {
-              console.log('Animating fade-up-hidden element');
               entry.target.classList.remove('fade-up-hidden');
               entry.target.classList.add('fade-up-visible');
             }
