@@ -1,3 +1,9 @@
+## [1.0.4](https://github.com/pixil-inc/pixil-website/compare/v1.0.3...v1.0.4) (2026-01-11)
+
+### Bug Fixes
+
+- page contwent ([deca560](https://github.com/pixil-inc/pixil-website/commit/deca56095bc6d6b0a3a3a9d8e6ec759492c602e9))
+
 ## [1.0.3](https://github.com/pixil-inc/pixil-website/compare/v1.0.2...v1.0.3) (2026-01-10)
 
 ### Bug Fixes
