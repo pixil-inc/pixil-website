@@ -12,6 +12,8 @@ const {
   title = 'Pixil Web Studio Inc.',
   description = 'Digital Excellence. Down to the last Pixil.',
 } = Astro.props;
+
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 ---
 
 <!doctype html>
@@ -55,6 +57,7 @@ const {
         });
       }
     </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
 
   <body
@@ -133,23 +136,6 @@ const {
           });
         }
 
-        // Form submission handling
-        const form = document.querySelector('#contact-form form') as HTMLFormElement;
-        if (form) {
-          form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            // Here you would typically send the form data to your backend
-            // For now, we'll just show a success message
-            alert("Thank you for your message! We'll get back to you soon.");
-
-            // Reset form and hide it
-            form.reset();
-            if (hideFormBtn) {
-              hideFormBtn.click();
-            }
-          });
-        }
-
         setTimeout(() => {
           elementsToAnimate.forEach((el) => {
             if (el.classList.contains('scroll-hidden')) {
@@ -190,6 +176,68 @@ const {
 
       // Initialize smooth scroll
       initSmoothScroll();
+
+      // Pixil contact form interactions
+      function initPixilForm() {
+        const inputs = document.querySelectorAll('.pixil-input');
+        const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+        const submitText = document.querySelector('.submit-text') as HTMLElement;
+        const loadingText = document.querySelector('.loading-text') as HTMLElement;
+        const successMessage = document.getElementById('success-message') as HTMLElement;
+        const form = document.querySelector('#contact-form form') as HTMLFormElement;
+
+        // Active pixil effect on focus
+        inputs.forEach((input) => {
+          const indicator = input.parentElement?.querySelector('.pixil-indicator') as HTMLElement;
+
+          input.addEventListener('focus', () => {
+            if (indicator) {
+              indicator.style.opacity = '1';
+              indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+            }
+          });
+
+          input.addEventListener('blur', () => {
+            if (indicator) {
+              indicator.style.opacity = '0';
+            }
+          });
+        });
+
+        // Form submission handling
+        if (form && submitBtn && submitText && loadingText) {
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Check reCAPTCHA
+            const recaptchaResponse = (window as any).grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+              alert('Please complete the reCAPTCHA verification.');
+              return;
+            }
+
+            // Show loading state
+            submitText.classList.add('hidden');
+            loadingText.classList.remove('hidden');
+            submitBtn.disabled = true;
+
+            // Simulate form submission (replace with actual form handling)
+            setTimeout(() => {
+              // Hide the entire button area and show success message in its place
+              const buttonArea = submitBtn.parentElement;
+              if (buttonArea && successMessage) {
+                buttonArea.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+              }
+              // Reset reCAPTCHA
+              (window as any).grecaptcha.reset();
+            }, 2000);
+          });
+        }
+      }
+
+      // Initialize pixil form
+      initPixilForm();
     </script>
   </body>
 </html>

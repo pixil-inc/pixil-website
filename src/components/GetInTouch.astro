@@ -26,81 +26,122 @@ import Button from '@/components/shared/Button.astro';
 
         <!-- Hidden Contact Form -->
         <div id="contact-form" class="mx-auto mt-12 hidden max-w-2xl">
-          <form class="space-y-6 text-left">
+          <form class="space-y-6 text-left" novalidate>
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
                 <label class="mb-2 block text-sm font-medium text-white/90" for="name">
                   Name *
                 </label>
-                <input
-                  class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
-                  id="name"
-                  name="name"
-                  placeholder="Your name"
-                  required
-                  type="text"
-                />
+                <div class="relative">
+                  <input
+                    class="pixil-input w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                    id="name"
+                    name="name"
+                    placeholder="Jane Doe"
+                    required
+                    type="text"
+                  />
+                  <div
+                    class="pixil-indicator absolute -top-1 -right-1 h-3 w-3 rotate-45 bg-white/20 opacity-0 transition-all duration-300"
+                  >
+                  </div>
+                </div>
               </div>
               <div>
                 <label class="mb-2 block text-sm font-medium text-white/90" for="email">
-                  Email *
+                  Email Address *
                 </label>
-                <input
-                  class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
-                  id="email"
-                  name="email"
-                  placeholder="your@email.com"
-                  required
-                  type="email"
-                />
+                <div class="relative">
+                  <input
+                    class="pixil-input w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                    id="email"
+                    name="email"
+                    placeholder="jane@company.com"
+                    required
+                    type="email"
+                  />
+                  <div
+                    class="pixil-indicator absolute -top-1 -right-1 h-3 w-3 rotate-45 bg-white/20 opacity-0 transition-all duration-300"
+                  >
+                  </div>
+                </div>
               </div>
             </div>
             <div>
-              <label class="mb-2 block text-sm font-medium text-white/90" for="company">
-                Company
+              <label class="mb-2 block text-sm font-medium text-white/90" for="project-type">
+                What are we building? *
               </label>
-              <input
-                class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
-                id="company"
-                name="company"
-                placeholder="Your company"
-                type="text"
-              />
+              <div class="relative">
+                <select
+                  class="pixil-input w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                  id="project-type"
+                  name="project-type"
+                  required
+                >
+                  <option value="">Select project type</option>
+                  <option value="new-website">New Website</option>
+                  <option value="web-application">Web Application</option>
+                  <option value="refining-existing">Refining an Existing Product</option>
+                  <option value="headless-cms">Headless CMS Integration</option>
+                  <option value="consulting">Just saying Hi / Consulting</option>
+                </select>
+                <div
+                  class="pixil-indicator absolute -top-1 -right-1 h-3 w-3 rotate-45 bg-white/20 opacity-0 transition-all duration-300"
+                >
+                </div>
+              </div>
             </div>
             <div>
-              <label class="mb-2 block text-sm font-medium text-white/90" for="project">
-                Project Budget
+              <label class="mb-2 block text-sm font-medium text-white/90" for="budget">
+                Estimated Budget (Optional)
               </label>
-              <select
-                class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
-                id="project"
-                name="project"
-              >
-                <option value="">Select budget range</option>
-                <option value="under-10k">Under $10k</option>
-                <option value="10k-25k">$10k - $25k</option>
-                <option value="25k-50k">$25k - $50k</option>
-                <option value="50k-100k">$50k - $100k</option>
-                <option value="over-100k">$100k+</option>
-              </select>
+              <div class="relative">
+                <select
+                  class="pixil-input w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                  id="budget"
+                  name="budget"
+                >
+                  <option value="">Select budget range</option>
+                  <option value="starter">&lt;$10k (Starter)</option>
+                  <option value="growth">$10k - $25k (Growth)</option>
+                  <option value="enterprise">$25k+ (Enterprise/Scale)</option>
+                  <option value="unsure">Not sure yet</option>
+                </select>
+                <div
+                  class="pixil-indicator absolute -top-1 -right-1 h-3 w-3 rotate-45 bg-white/20 opacity-0 transition-all duration-300"
+                >
+                </div>
+              </div>
             </div>
             <div>
-              <label class="mb-2 block text-sm font-medium text-white/90" for="message">
-                Tell us about your project *
+              <label class="mb-2 block text-sm font-medium text-white/90" for="vision">
+                Tell us about your vision *
               </label>
-              <textarea
-                class="h-32 w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
-                id="message"
-                name="message"
-                placeholder="Describe your vision, goals, and what you're looking to achieve..."
-                required></textarea>
+              <div class="relative">
+                <textarea
+                  class="pixil-input h-32 w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                  id="vision"
+                  name="vision"
+                  placeholder="Tell us a bit about your project, your timeline, or the biggest challenge you are trying to solve..."
+                  required></textarea>
+                <div
+                  class="pixil-indicator absolute -top-1 -right-1 h-3 w-3 rotate-45 bg-white/20 opacity-0 transition-all duration-300"
+                >
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <div class="g-recaptcha" data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}>
+              </div>
             </div>
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <button
                 class="bg-oatmeal text-charcoal rounded-pill px-8 py-3 text-lg font-bold transition-all hover:scale-105 hover:bg-white"
                 type="submit"
+                id="submit-btn"
               >
-                Send Message
+                <span class="submit-text">Start the Conversation</span>
+                <span class="loading-text hidden">Sending...</span>
               </button>
               <button
                 id="hide-form-btn"
@@ -109,6 +150,9 @@ import Button from '@/components/shared/Button.astro';
               >
                 Never mind, just email us
               </button>
+            </div>
+            <div id="success-message" class="hidden text-center text-lg text-white/90">
+              Message received! We'll be in touch soon.
             </div>
           </form>
         </div>
