@@ -55,9 +55,6 @@ const {
         });
       }
     </script>
-    <script
-      src="https://www.google.com/recaptcha/api.js?render=6LelFkcsAAAAAH2WZZ9iBikwzoYbPcoYnKbGvzkG"
-    ></script>
   </head>
 
   <body
@@ -177,6 +174,18 @@ const {
       // Initialize smooth scroll
       initSmoothScroll();
 
+      // Load reCAPTCHA v3 script dynamically
+      function loadRecaptcha() {
+        const siteKey = '6LelFkcsAAAAAH2WZZ9iBikwzoYbPcoYnKbGvzkG'; // Use your site key
+        const script = document.createElement('script');
+        script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+        script.async = true;
+        document.head.appendChild(script);
+        return siteKey;
+      }
+
+      const recaptchaSiteKey = loadRecaptcha();
+
       // Pixil contact form interactions
       function initPixilForm() {
         const inputs = document.querySelectorAll('.pixil-input');
@@ -216,10 +225,9 @@ const {
 
             try {
               // Execute reCAPTCHA v3
-              const token = await (window as any).grecaptcha.execute(
-                '6LelFkcsAAAAAH2WZZ9iBikwzoYbPcoYnKbGvzkG',
-                { action: 'contact_form' }
-              );
+              const token = await (window as any).grecaptcha.execute(recaptchaSiteKey, {
+                action: 'contact_form',
+              });
 
               // Here you would send the token to your backend for verification
               console.log('reCAPTCHA token:', token);
