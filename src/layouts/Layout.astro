@@ -55,7 +55,9 @@ const {
         });
       }
     </script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=6LelFkcsAAAAAH2WZZ9iBikwzoYbPcoYnKbGvzkG"
+    ></script>
   </head>
 
   <body
@@ -207,29 +209,38 @@ const {
           form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Check reCAPTCHA
-            const recaptchaResponse = (window as any).grecaptcha.getResponse();
-            if (!recaptchaResponse) {
-              alert('Please complete the reCAPTCHA verification.');
-              return;
-            }
-
             // Show loading state
             submitText.classList.add('hidden');
             loadingText.classList.remove('hidden');
             submitBtn.disabled = true;
 
-            // Simulate form submission (replace with actual form handling)
-            setTimeout(() => {
-              // Hide the entire button area and show success message in its place
-              const buttonArea = submitBtn.parentElement;
-              if (buttonArea && successMessage) {
-                buttonArea.classList.add('hidden');
-                successMessage.classList.remove('hidden');
-              }
-              // Reset reCAPTCHA
-              (window as any).grecaptcha.reset();
-            }, 2000);
+            try {
+              // Execute reCAPTCHA v3
+              const token = await (window as any).grecaptcha.execute(
+                '6LelFkcsAAAAAH2WZZ9iBikwzoYbPcoYnKbGvzkG',
+                { action: 'contact_form' }
+              );
+
+              // Here you would send the token to your backend for verification
+              console.log('reCAPTCHA token:', token);
+
+              // Simulate form submission (replace with actual form handling)
+              setTimeout(() => {
+                // Hide the entire button area and show success message in its place
+                const buttonArea = submitBtn.parentElement;
+                if (buttonArea && successMessage) {
+                  buttonArea.classList.add('hidden');
+                  successMessage.classList.remove('hidden');
+                }
+              }, 2000);
+            } catch (error) {
+              console.error('reCAPTCHA error:', error);
+              // Reset button state on error
+              submitText.classList.remove('hidden');
+              loadingText.classList.add('hidden');
+              submitBtn.disabled = false;
+              alert('There was an issue with the security verification. Please try again.');
+            }
           });
         }
       }
