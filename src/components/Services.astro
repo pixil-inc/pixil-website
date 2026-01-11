@@ -1,4 +1,5 @@
 ---
+import SectionWrapper from '@/components/shared/SectionWrapper.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import type { Service } from '@/types';
 import services from '@/data/services.json';
@@ -10,7 +11,7 @@ const firstColumnServices = services.slice(0, firstColumnCount);
 const secondColumnServices = services.slice(firstColumnCount);
 ---
 
-<section class="border-t border-black/5 py-32" id="services">
+<SectionWrapper id="services" hasBorder>
   <div class="mx-auto max-w-3xl space-y-24">
     <div class="space-y-8 pb-24">
       <span class="text-charcoal/40 text-xs font-bold tracking-widest uppercase">
@@ -28,7 +29,7 @@ const secondColumnServices = services.slice(firstColumnCount);
       </p>
     </div>
   </div>
-  <div class="container mx-auto max-w-7xl px-6">
+  <div class="mx-auto max-w-7xl">
     <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
       <div class="space-y-8">
         {
@@ -56,4 +57,4 @@ const secondColumnServices = services.slice(firstColumnCount);
       </div>
     </div>
   </div>
-</section>
+</SectionWrapper>

@@ -4,12 +4,9 @@ interface Props {
   hasBorder?: boolean;
   classNames?: string;
 }
-const { id, classNames, hasBorder } = Astro.props;
+const { id, classNames = 'px-6 py-32', hasBorder } = Astro.props;
 ---
 
-<section
-  class={`px-6 py-32${classNames ? ` ${classNames}` : ''} ${hasBorder ? ' border-t border-black/5' : ''}`}
-  id={id}
->
+<section class={`${classNames} ${hasBorder ? ' border-t border-black/5' : ''}`} id={id}>
   <slot />
 </section>

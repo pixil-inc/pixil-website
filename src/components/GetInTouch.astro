@@ -3,16 +3,16 @@ import SectionWrapper from '@/components/shared/SectionWrapper.astro';
 import Button from '@/components/shared/Button.astro';
 ---
 
-<SectionWrapper id="get-in-touch">
-  <div class="mx-auto max-w-7xl space-y-24 px-6">
+<SectionWrapper id="get-in-touch" classNames="px-6 py-0">
+  <div class="mx-auto max-w-7xl space-y-24">
     <div
       class="bg-charcoal text-oatmeal relative overflow-hidden rounded-[3rem] p-12 text-center lg:p-32"
     >
       <div class="relative z-10">
-        <h2 class="mb-8 text-5xl font-medium md:text-7xl">
+        <h2 class="mb-8 text-4xl font-medium md:text-5xl">
           Let’s build something exceptional together.
         </h2>
-        <p class="mx-auto mb-12 max-w-2xl text-xl font-light text-white/70 md:text-2xl">
+        <p class="mx-auto mb-12 max-w-2xl text-xl font-light text-white/70 md:text-xl">
           Whether you have a detailed roadmap or just a spark of an idea, we’d love to hear about
           it. No high-pressure sales tactics—just a friendly conversation about your goals and how
           we can bring them to life.
@@ -20,7 +20,7 @@ import Button from '@/components/shared/Button.astro';
 
         <!-- Contact Buttons -->
         <div id="contact-buttons" class="flex flex-col justify-center gap-6 sm:flex-row">
-          <Button id="show-form-btn" type="secondary">Start a Conversation</Button>
+          <Button id="show-form-btn" href="#" type="secondary">Start a Conversation</Button>
           <Button href="mailto:hello@pixil.ca" type="tertiary">hello@pixil.ca</Button>
         </div>
 
