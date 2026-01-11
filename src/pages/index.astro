@@ -5,8 +5,6 @@ import AboutUs from '@/components/AboutUs.astro';
 import WhyUs from '@/components/WhyUs.astro';
 import Services from '@/components/Services.astro';
 import GetInTouch from '@/components/GetInTouch.astro';
-
-const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY;
 ---
 
 <Layout>
@@ -14,5 +12,5 @@ const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY;
   <AboutUs />
   <WhyUs />
   <Services />
-  <GetInTouch recaptchaSiteKey={recaptchaSiteKey} />
+  <GetInTouch />
 </Layout>

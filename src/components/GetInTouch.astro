@@ -1,12 +1,6 @@
 ---
 import SectionWrapper from '@/components/shared/SectionWrapper.astro';
 import Button from '@/components/shared/Button.astro';
-
-interface Props {
-  recaptchaSiteKey: string;
-}
-
-const { recaptchaSiteKey } = Astro.props;
 ---
 
 <SectionWrapper id="get-in-touch" classNames="px-6 py-0">
@@ -137,7 +131,8 @@ const { recaptchaSiteKey } = Astro.props;
               </div>
             </div>
             <div class="flex justify-center">
-              <div class="g-recaptcha" data-sitekey={recaptchaSiteKey}></div>
+              <div class="g-recaptcha" data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}>
+              </div>
             </div>
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <button
