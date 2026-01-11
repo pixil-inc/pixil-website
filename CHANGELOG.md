@@ -1,3 +1,9 @@
+## [1.0.6](https://github.com/pixil-inc/pixil-website/compare/v1.0.5...v1.0.6) (2026-01-11)
+
+### Bug Fixes
+
+- header padding ([94e049d](https://github.com/pixil-inc/pixil-website/commit/94e049ddeda55cfea3fb3a4092d0c4bcb66c3a35))
+
 ## [1.0.5](https://github.com/pixil-inc/pixil-website/compare/v1.0.4...v1.0.5) (2026-01-11)
 
 ### Bug Fixes
