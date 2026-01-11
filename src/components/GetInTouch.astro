@@ -1,0 +1,118 @@
+---
+import SectionWrapper from '@/components/shared/SectionWrapper.astro';
+import Button from '@/components/shared/Button.astro';
+---
+
+<SectionWrapper id="get-in-touch">
+  <div class="mx-auto max-w-7xl space-y-24 px-6">
+    <div
+      class="bg-charcoal text-oatmeal relative overflow-hidden rounded-[3rem] p-12 text-center lg:p-32"
+    >
+      <div class="relative z-10">
+        <h2 class="mb-8 text-5xl font-medium md:text-7xl">
+          Let’s build something exceptional together.
+        </h2>
+        <p class="mx-auto mb-12 max-w-2xl text-xl font-light text-white/70 md:text-2xl">
+          Whether you have a detailed roadmap or just a spark of an idea, we’d love to hear about
+          it. No high-pressure sales tactics—just a friendly conversation about your goals and how
+          we can bring them to life.
+        </p>
+
+        <!-- Contact Buttons -->
+        <div id="contact-buttons" class="flex flex-col justify-center gap-6 sm:flex-row">
+          <Button id="show-form-btn" type="secondary">Start a Conversation</Button>
+          <Button href="mailto:hello@pixil.ca" type="tertiary">hello@pixil.ca</Button>
+        </div>
+
+        <!-- Hidden Contact Form -->
+        <div id="contact-form" class="mx-auto mt-12 hidden max-w-2xl">
+          <form class="space-y-6 text-left">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div>
+                <label class="mb-2 block text-sm font-medium text-white/90" for="name">
+                  Name *
+                </label>
+                <input
+                  class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                  type="text"
+                />
+              </div>
+              <div>
+                <label class="mb-2 block text-sm font-medium text-white/90" for="email">
+                  Email *
+                </label>
+                <input
+                  class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                  id="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  required
+                  type="email"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="mb-2 block text-sm font-medium text-white/90" for="company">
+                Company
+              </label>
+              <input
+                class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                id="company"
+                name="company"
+                placeholder="Your company"
+                type="text"
+              />
+            </div>
+            <div>
+              <label class="mb-2 block text-sm font-medium text-white/90" for="project">
+                Project Budget
+              </label>
+              <select
+                class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                id="project"
+                name="project"
+              >
+                <option value="">Select budget range</option>
+                <option value="under-10k">Under $10k</option>
+                <option value="10k-25k">$10k - $25k</option>
+                <option value="25k-50k">$25k - $50k</option>
+                <option value="50k-100k">$50k - $100k</option>
+                <option value="over-100k">$100k+</option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-2 block text-sm font-medium text-white/90" for="message">
+                Tell us about your project *
+              </label>
+              <textarea
+                class="h-32 w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                id="message"
+                name="message"
+                placeholder="Describe your vision, goals, and what you're looking to achieve..."
+                required></textarea>
+            </div>
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <button
+                class="bg-oatmeal text-charcoal rounded-pill px-8 py-3 text-lg font-bold transition-all hover:scale-105 hover:bg-white"
+                type="submit"
+              >
+                Send Message
+              </button>
+              <button
+                id="hide-form-btn"
+                class="text-white/70 underline transition-colors hover:text-white"
+                type="button"
+              >
+                Never mind, just email us
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</SectionWrapper>

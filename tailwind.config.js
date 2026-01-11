@@ -11,6 +11,9 @@ export default {
     'top-52',
     'top-56',
     'top-60',
+    'text-sm',
+    'text-md',
+    'text-lg',
     // Add pattern for dynamic sticky positioning
     {
       pattern: /top-\[(2[0-9]|[3-9][0-9]|1[0-9][0-9])px\]/,

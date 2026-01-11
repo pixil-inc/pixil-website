@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { id, service } = Astro.props;
-const { heading, description, image } = service;
+const { heading, description, icon } = service;
 const top = id * 8 + 20;
 ---
 
@@ -15,27 +15,28 @@ const top = id * 8 + 20;
   class={`sticky top-${top} flex flex-col items-center gap-12 rounded-3xl border border-black/5 bg-white p-8 shadow-[0_-5px_30px_rgba(0,0,0,0.08)] transition-all duration-500 md:flex-row md:p-16`}
 >
   <div class="flex-1 space-y-6">
-    <span class="text-charcoal/50 rounded-full border border-black/10 px-2 py-1 font-mono text-xs"
-      >{id.toString().padStart(2, '0')}</span
-    >
+    <div>
+      <span class="text-charcoal/50 rounded-full border border-black/10 px-2 py-1 font-mono text-xs"
+        >{id.toString().padStart(2, '0')}</span
+      >
+    </div>
     <h3 class="font-display text-3xl font-medium md:text-4xl">{heading}</h3>
     <p class="text-charcoal/60 text-lg leading-relaxed">
       {description}
     </p>
   </div>
   <div
-    class="group relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100 shadow-inner md:w-1/2"
+    class="neu-base group relative flex aspect-[4/3] w-full items-center justify-center rounded-2xl md:w-1/2"
   >
-    <img
-      src={image.src}
-      alt={image.alt}
-      loading={id <= 2 ? 'eager' : 'lazy'}
-      fetchpriority={id === 1 ? 'high' : 'auto'}
-      decoding="async"
-      width="450"
-      height="338"
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 450px"
-      class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
-    />
+    <div class="absolute inset-4 rounded-xl border border-white/40"></div>
+    <div
+      class="neu-embossed flex h-48 w-48 items-center justify-center rounded-full transition-transform duration-700 group-hover:scale-105"
+    >
+      <div
+        class="neu-pressed text-charcoal/70 flex h-28 w-28 items-center justify-center rounded-full"
+      >
+        <span class="material-symbols-outlined text-6xl">{icon}</span>
+      </div>
+    </div>
   </div>
 </div>
