@@ -1,9 +1,8 @@
 ## [1.0.3](https://github.com/pixil-inc/pixil-website/compare/v1.0.2...v1.0.3) (2026-01-10)
 
-
 ### Bug Fixes
 
-* local fonts ([41e9bae](https://github.com/pixil-inc/pixil-website/commit/41e9bae3b0aa8cccc954d9d0cd85d3d5877df3dc))
+- local fonts ([41e9bae](https://github.com/pixil-inc/pixil-website/commit/41e9bae3b0aa8cccc954d9d0cd85d3d5877df3dc))
 
 ## [1.0.2](https://github.com/pixil-inc/pixil-website/compare/v1.0.1...v1.0.2) (2026-01-10)
 
