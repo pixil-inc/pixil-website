@@ -1,3 +1,9 @@
+## [1.0.5](https://github.com/pixil-inc/pixil-website/compare/v1.0.4...v1.0.5) (2026-01-11)
+
+### Bug Fixes
+
+- tweak styles ([cc0bd37](https://github.com/pixil-inc/pixil-website/commit/cc0bd3777a6bfd659dd38cd72a4a88a7b38dbcc8))
+
 ## [1.0.4](https://github.com/pixil-inc/pixil-website/compare/v1.0.3...v1.0.4) (2026-01-11)
 
 ### Bug Fixes
