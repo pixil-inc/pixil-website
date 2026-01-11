@@ -1,0 +1,2 @@
+git add CHANGELOG.md 2>/dev/null || true
+npx lint-staged

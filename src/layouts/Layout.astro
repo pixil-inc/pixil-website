@@ -163,6 +163,33 @@ const {
           });
         }, 3000);
       });
+
+      // General smooth scroll utility for site-wide use
+      function initSmoothScroll() {
+        // Handle all elements with data-scroll-to attribute
+        const scrollElements = document.querySelectorAll('[data-scroll-to]');
+
+        scrollElements.forEach((element) => {
+          element.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = element.getAttribute('data-scroll-to');
+
+            if (targetId) {
+              const targetSection = document.getElementById(targetId);
+
+              if (targetSection) {
+                targetSection.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                });
+              }
+            }
+          });
+        });
+      }
+
+      // Initialize smooth scroll
+      initSmoothScroll();
     </script>
   </body>
 </html>

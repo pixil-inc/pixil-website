@@ -1,0 +1,59 @@
+---
+import ServiceCard from '@/components/ServiceCard.astro';
+import type { Service } from '@/types';
+import services from '@/data/services.json';
+
+// Split services into two columns
+const totalServices = services.length;
+const firstColumnCount = Math.ceil(totalServices / 2); // If odd, first column gets +1
+const firstColumnServices = services.slice(0, firstColumnCount);
+const secondColumnServices = services.slice(firstColumnCount);
+---
+
+<section class="border-t border-black/5 py-32" id="services">
+  <div class="mx-auto max-w-3xl space-y-24">
+    <div class="space-y-8 pb-24">
+      <span class="text-charcoal/40 text-xs font-bold tracking-widest uppercase">
+        Our Expertise</span
+      >
+      <p class="font-display text-charcoal scroll-hidden text-4xl leading-tight md:text-5xl">
+        Simple solutions for <span
+          class="text-charcoal/40 hover:text-charcoal cursor-default transition-colors duration-700"
+          >complex problems.</span
+        >
+      </p>
+      <p class="text-charcoal/60 text-xl leading-relaxed">
+        We don't just write code; we build digital assets you actually own. From custom applications
+        to flexible websites, we design systems that put you in control of your digital growth.
+      </p>
+    </div>
+  </div>
+  <div class="container mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
+      <div class="space-y-8">
+        {
+          firstColumnServices.map((service: Service, index: number) => (
+            <ServiceCard
+              title={service.heading}
+              description={service.description}
+              icon={service.icon}
+              index={index + 1}
+            />
+          ))
+        }
+      </div>
+      <div class="space-y-8 md:mt-24">
+        {
+          secondColumnServices.map((service: Service, index: number) => (
+            <ServiceCard
+              title={service.heading}
+              description={service.description}
+              icon={service.icon}
+              index={index + firstColumnCount + 1}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,6 @@
 ---
 import Logo from '@/components/shared/Logo.astro';
+import Button from '@/components/shared/Button.astro';
 ---
 
 <header class="bg-oatmeal/90 border-charcoal/5 fixed top-0 z-50 w-full border-b backdrop-blur-md">
@@ -10,7 +11,9 @@ import Logo from '@/components/shared/Logo.astro';
     <div
       class="text-charcoal/60 hidden items-center gap-8 text-sm font-medium tracking-wide md:flex"
     >
-      <a class="transition-colors hover:text-black" href="#get-in-touch">Get in Touch</a>
+      <Button type="primary" size="sm" href="#get-in-touch" scrollTo="get-in-touch"
+        >Get in Touch</Button
+      >
     </div>
   </nav>
 </header>

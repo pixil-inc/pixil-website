@@ -1,0 +1,27 @@
+[
+  {
+    "heading": "Obsessed with Your Customers.",
+    "description": "If your users aren't happy, we aren't happy. We design every screen and button with real people in mind. We obsess over the flow, the feeling, and the details to ensure your customers have a smooth, frustration-free experience every time.",
+    "icon": "person_heart"
+  },
+  {
+    "heading": "Perfection in Every Pixil.",
+    "description": "We sweat the small stuff so you don't have to. From the spacing of the text to the clean code underneath, we ensure everything is polished and precise. We take pride in craftsmanship, ensuring your brand looks professional from every angle.",
+    "icon": "architecture"
+  },
+  {
+    "heading": "Built to Grow.",
+    "description": "We hate the idea of building things twice. We create flexible digital products that fit your needs today but are ready for your success tomorrow. Whether you gain a hundred new customers or a hundred thousand, your site will be ready to handle it.",
+    "icon": "expand"
+  },
+  {
+    "heading": "We're On Your Team.",
+    "description": "We don't just take a brief and disappear. We listen, we ask the right questions, and we treat your business like it's our own. We handle the technical heavy lifting so you can focus on the big picture. Think of us as your in-house tech team, just a slack message away.",
+    "icon": "groups"
+  },
+  {
+    "heading": "Fast by Default.",
+    "description": "Nobody likes a slow website. We build lightweight, high-performance applications that load instantly. This doesn't just make your users happy—it helps you rank better on search engines and keeps people engaged longer.",
+    "icon": "speed"
+  }
+]

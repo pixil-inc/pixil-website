@@ -1,0 +1,22 @@
+[
+  {
+    "heading": "Custom Websites.",
+    "description": "Blazing fast, SEO-ready sites. We build high-performance websites that do more than just look good—they perform. Whether it’s a landing page or a corporate site, we ensure it is fast, accessible, and built to convert visitors into customers.",
+    "icon": "web"
+  },
+  {
+    "heading": "Web Applications.",
+    "description": "Software that lives in your browser. Need more than a brochure? We engineer custom web applications and dashboards tailored to your business logic. We turn manual processes into streamlined digital tools that run smoothly on any device.",
+    "icon": "apk_document"
+  },
+  {
+    "heading": "Content Management.",
+    "description": "Update your site without calling a developer. We use \"Headless\" technology, but really, freedom is the product. We build flexible systems (like Contentful) that give you total control to publish text and images instantly. You own the message; we just make it look exceptional.",
+    "icon": "dashboard_2_gear"
+  },
+  {
+    "heading": "UI/UX Design.",
+    "description": "The blueprint for a better experience. Before we write a single line of code, we map out the journey. We design intuitive interfaces and user flows that make complex ideas feel simple. It’s the strategy behind the screen that ensures your users stay engaged.",
+    "icon": "design_services"
+  }
+]
