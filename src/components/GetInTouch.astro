@@ -20,8 +20,8 @@ import Button from '@/components/shared/Button.astro';
 
         <!-- Contact Buttons -->
         <div id="contact-buttons" class="flex flex-col justify-center gap-6 sm:flex-row">
-          <Button id="show-form-btn" href="#" type="secondary">Start a Conversation</Button>
-          <Button href="mailto:hello@pixil.ca?subject=Start%20a%20Conversation" type="tertiary"
+          <Button id="show-form-btn" href="#" style="secondary">Start a Conversation</Button>
+          <Button href="mailto:hello@pixil.ca?subject=Start%20a%20Conversation" style="tertiary"
             >hello(at)pixil.ca</Button
           >
         </div>
@@ -137,21 +137,11 @@ import Button from '@/components/shared/Button.astro';
               </div>
             </div>
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <button
-                class="bg-oatmeal text-charcoal rounded-pill px-8 py-3 text-lg font-bold transition-all hover:scale-105 hover:bg-white"
-                type="submit"
-                id="submit-btn"
-              >
+              <Button id="submit-btn" style="secondary" type="submit">
                 <span class="submit-text">Start the Conversation</span>
                 <span class="loading-text hidden">Sending...</span>
-              </button>
-              <button
-                id="hide-form-btn"
-                class="text-white/70 underline transition-colors hover:text-white"
-                type="button"
-              >
-                Never mind, just email us
-              </button>
+              </Button>
+              <Button id="hide-form-btn" style="tertiary"> Never mind, just email us </Button>
             </div>
             <div id="success-message" class="hidden text-center text-lg text-white/90">
               Message received! We'll be in touch soon.
