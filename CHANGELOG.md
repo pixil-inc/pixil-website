@@ -1,3 +1,9 @@
+## [1.0.9](https://github.com/pixil-inc/pixil-website/compare/v1.0.8...v1.0.9) (2026-01-12)
+
+### Bug Fixes
+
+- cwv optimizations ([79ae7e9](https://github.com/pixil-inc/pixil-website/commit/79ae7e92923df27d7a968c8c58c43b99f5e95adf))
+
 ## [1.0.8](https://github.com/pixil-inc/pixil-website/compare/v1.0.7...v1.0.8) (2026-01-12)
 
 ### Bug Fixes
