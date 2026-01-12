@@ -133,21 +133,40 @@ const {
           });
         }
 
-        // Form submission handling
-        const form = document.querySelector('#contact-form form') as HTMLFormElement;
-        if (form) {
-          form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            // Here you would typically send the form data to your backend
-            // For now, we'll just show a success message
-            alert("Thank you for your message! We'll get back to you soon.");
+        // Header CTA visibility based on intro section
+        const headerCta = document.getElementById('header-cta');
+        const introSection = document.querySelector('section#intro');
 
-            // Reset form and hide it
-            form.reset();
-            if (hideFormBtn) {
-              hideFormBtn.click();
+        if (headerCta && introSection) {
+          const headerObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  // Intro section is in view - hide header CTA
+                  headerCta.style.opacity = '0';
+                  headerCta.style.transform = 'translateY(-10px)';
+                  headerCta.style.pointerEvents = 'none';
+                } else {
+                  // Intro section is not in view - show header CTA
+                  headerCta.style.opacity = '1';
+                  headerCta.style.transform = 'translateY(0)';
+                  headerCta.style.pointerEvents = 'auto';
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+              rootMargin: '-50px 0px 0px 0px',
             }
-          });
+          );
+
+          // Initially hide the header CTA and add transition
+          headerCta.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          headerCta.style.opacity = '0';
+          headerCta.style.transform = 'translateY(-10px)';
+          headerCta.style.pointerEvents = 'none';
+
+          headerObserver.observe(introSection);
         }
 
         setTimeout(() => {
@@ -190,6 +209,79 @@ const {
 
       // Initialize smooth scroll
       initSmoothScroll();
+
+      // Load reCAPTCHA v3 script dynamically
+      function loadRecaptcha() {
+        const siteKey = '6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV'; // Use your site key
+        const script = document.createElement('script');
+        script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+        script.async = true;
+        document.head.appendChild(script);
+        return siteKey;
+      }
+
+      const recaptchaSiteKey = loadRecaptcha();
+
+      // Pixil contact form interactions
+      function initPixilForm() {
+        const inputs = document.querySelectorAll('.pixil-input');
+        const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+        const submitText = document.querySelector('.submit-text') as HTMLElement;
+        const loadingText = document.querySelector('.loading-text') as HTMLElement;
+        const successMessage = document.getElementById('success-message') as HTMLElement;
+        const form = document.querySelector('#contact-form form') as HTMLFormElement;
+
+        // Active pixil effect on focus
+        inputs.forEach((input) => {
+          const indicator = input.parentElement?.querySelector('.pixil-indicator') as HTMLElement;
+
+          input.addEventListener('focus', () => {
+            if (indicator) {
+              indicator.style.opacity = '1';
+              indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+            }
+          });
+
+          input.addEventListener('blur', () => {
+            if (indicator) {
+              indicator.style.opacity = '0';
+            }
+          });
+        });
+
+        // Form submission handling
+        if (form && submitBtn && submitText && loadingText) {
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            submitText.classList.add('hidden');
+            loadingText.classList.remove('hidden');
+            submitBtn.disabled = true;
+
+            try {
+              const token = await (window as any).grecaptcha.execute(recaptchaSiteKey, {
+                action: 'contact_form',
+              });
+
+              setTimeout(() => {
+                const buttonArea = submitBtn.parentElement;
+                if (buttonArea && successMessage) {
+                  buttonArea.classList.add('hidden');
+                  successMessage.classList.remove('hidden');
+                }
+              }, 2000);
+            } catch (error) {
+              console.error('reCAPTCHA error:', error);
+              submitText.classList.remove('hidden');
+              loadingText.classList.add('hidden');
+              submitBtn.disabled = false;
+              alert('There was an issue with the security verification. Please try again.');
+            }
+          });
+        }
+      }
+
+      initPixilForm();
     </script>
   </body>
 </html>

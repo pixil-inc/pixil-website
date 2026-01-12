@@ -188,6 +188,9 @@
     -12px -12px 24px #ffffff;
 }
 
+.grecaptcha-badge {
+  display: none !important;
+}
 /* Optimize font rendering */
 body {
   font-feature-settings: 'kern', 'liga', 'clig', 'calt';
