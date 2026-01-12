@@ -10,7 +10,23 @@ export default defineConfig({
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),
+  build: {
+    inlineStylesheets: 'auto',
+    assets: '_astro',
+  },
+  compressHTML: true,
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Separate chunks for better caching
+            vendor: ['astro'],
+          },
+        },
+      },
+    },
   },
 });
