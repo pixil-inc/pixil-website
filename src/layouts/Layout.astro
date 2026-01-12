@@ -37,7 +37,7 @@ const {
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
       rel="preload"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="this.onload=null;this.rel='stylesheet';this.media='all'"
     />
     <noscript>
       <link
@@ -66,7 +66,16 @@ const {
     </main>
     <Footer />
 
+    <!-- Critical inline script for immediate functionality -->
     <script>
+      // Critical: Immediate font loading detection
+      if ('fonts' in document && document.fonts.load) {
+        document.fonts.load('400 1em Inter').then(() => {
+          document.documentElement.classList.add('fonts-loaded');
+        });
+      }
+
+      // Critical: Basic scroll observer setup
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px',
@@ -87,92 +96,20 @@ const {
         });
       }, observerOptions);
 
-      // Wait for DOM to be ready, then observe elements
+      // DOM ready handler
       document.addEventListener('DOMContentLoaded', function () {
+        // Critical: Start observing scroll animations immediately
         const elementsToAnimate = document.querySelectorAll('.scroll-hidden, .fade-up-hidden');
+        elementsToAnimate.forEach((el) => observer.observe(el));
 
-        elementsToAnimate.forEach((el, index) => {
-          observer.observe(el);
-        });
-
-        // Contact form toggle functionality
-        const showFormBtn = document.getElementById('show-form-btn');
-        const hideFormBtn = document.getElementById('hide-form-btn');
-        const contactButtons = document.getElementById('contact-buttons');
-        const contactForm = document.getElementById('contact-form');
-
-        if (showFormBtn && contactButtons && contactForm) {
-          showFormBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            contactButtons.style.display = 'none';
-            contactForm.classList.remove('hidden');
-            contactForm.style.opacity = '0';
-            contactForm.style.transform = 'translateY(20px)';
-
-            // Animate form in
-            requestAnimationFrame(() => {
-              contactForm.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-              contactForm.style.opacity = '1';
-              contactForm.style.transform = 'translateY(0)';
-            });
-          });
+        // Defer non-critical functionality
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(initNonCritical);
+        } else {
+          setTimeout(initNonCritical, 100);
         }
 
-        if (hideFormBtn && contactButtons && contactForm) {
-          hideFormBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            // Animate form out
-            contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-            contactForm.style.opacity = '0';
-            contactForm.style.transform = 'translateY(-20px)';
-
-            setTimeout(() => {
-              contactForm.classList.add('hidden');
-              contactButtons.style.display = 'flex';
-            }, 300);
-          });
-        }
-
-        // Header CTA visibility based on intro section
-        const headerCta = document.getElementById('header-cta');
-        const introSection = document.querySelector('section#intro');
-
-        if (headerCta && introSection) {
-          const headerObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  // Intro section is in view - hide header CTA
-                  headerCta.style.opacity = '0';
-                  headerCta.style.transform = 'translateY(-10px)';
-                  headerCta.style.pointerEvents = 'none';
-                  headerCta.setAttribute('aria-hidden', 'true');
-                  headerCta.setAttribute('tabindex', '-1');
-                } else {
-                  // Intro section is not in view - show header CTA
-                  headerCta.style.opacity = '1';
-                  headerCta.style.transform = 'translateY(0)';
-                  headerCta.style.pointerEvents = 'auto';
-                  headerCta.removeAttribute('aria-hidden');
-                  headerCta.removeAttribute('tabindex');
-                }
-              });
-            },
-            {
-              threshold: 0.1,
-              rootMargin: '-50px 0px 0px 0px',
-            }
-          );
-
-          // Initially hide the header CTA and add transition
-          headerCta.style.opacity = '0';
-          headerCta.style.pointerEvents = 'none';
-          headerCta.setAttribute('aria-hidden', 'true');
-          headerCta.setAttribute('tabindex', '-1');
-
-          headerObserver.observe(introSection);
-        }
-
+        // Fallback animation trigger
         setTimeout(() => {
           elementsToAnimate.forEach((el) => {
             if (el.classList.contains('scroll-hidden')) {
@@ -187,57 +124,126 @@ const {
         }, 3000);
       });
 
-      // General smooth scroll utility for site-wide use
-      function initSmoothScroll() {
-        // Handle all elements with data-scroll-to attribute
-        const scrollElements = document.querySelectorAll('[data-scroll-to]');
+      function initNonCritical() {
+        // Contact form toggle functionality
+        const showFormBtn = document.getElementById('show-form-btn');
+        const hideFormBtn = document.getElementById('hide-form-btn');
+        const contactButtons = document.getElementById('contact-buttons');
+        const contactForm = document.getElementById('contact-form');
 
-        scrollElements.forEach((element) => {
+        if (showFormBtn && contactButtons && contactForm) {
+          showFormBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            contactButtons.style.display = 'none';
+            contactForm.classList.remove('hidden');
+            contactForm.style.opacity = '0';
+            contactForm.style.transform = 'translateY(20px)';
+
+            requestAnimationFrame(() => {
+              contactForm.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+              contactForm.style.opacity = '1';
+              contactForm.style.transform = 'translateY(0)';
+            });
+          });
+        }
+
+        if (hideFormBtn && contactButtons && contactForm) {
+          hideFormBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+            contactForm.style.opacity = '0';
+            contactForm.style.transform = 'translateY(-20px)';
+
+            setTimeout(() => {
+              contactForm.classList.add('hidden');
+              contactButtons.style.display = 'flex';
+            }, 300);
+          });
+        }
+
+        // Header CTA visibility
+        const headerCta = document.getElementById('header-cta');
+        const introSection = document.querySelector('section#intro');
+
+        if (headerCta && introSection) {
+          const headerObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  headerCta.style.opacity = '0';
+                  headerCta.style.transform = 'translateY(-10px)';
+                  headerCta.style.pointerEvents = 'none';
+                  headerCta.setAttribute('aria-hidden', 'true');
+                  headerCta.setAttribute('tabindex', '-1');
+                } else {
+                  headerCta.style.opacity = '1';
+                  headerCta.style.transform = 'translateY(0)';
+                  headerCta.style.pointerEvents = 'auto';
+                  headerCta.removeAttribute('aria-hidden');
+                  headerCta.removeAttribute('tabindex');
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+              rootMargin: '-50px 0px 0px 0px',
+            }
+          );
+
+          headerCta.style.opacity = '0';
+          headerCta.style.pointerEvents = 'none';
+          headerCta.setAttribute('aria-hidden', 'true');
+          headerCta.setAttribute('tabindex', '-1');
+
+          headerObserver.observe(introSection);
+        }
+
+        // Initialize smooth scroll
+        initSmoothScroll();
+
+        // Load reCAPTCHA and form handling
+        loadRecaptcha();
+        initPixilForm();
+      }
+
+      function initSmoothScroll() {
+        document.querySelectorAll('[data-scroll-to]').forEach((element) => {
           element.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = element.getAttribute('data-scroll-to');
+            const targetSection = targetId && document.getElementById(targetId);
 
-            if (targetId) {
-              const targetSection = document.getElementById(targetId);
-
-              if (targetSection) {
-                targetSection.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start',
-                });
-              }
+            if (targetSection) {
+              targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              });
             }
           });
         });
       }
 
-      // Initialize smooth scroll
-      initSmoothScroll();
-
-      // Load reCAPTCHA v3 script dynamically
       function loadRecaptcha() {
-        const siteKey = '6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV'; // Use your site key
         const script = document.createElement('script');
-        script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+        script.src =
+          'https://www.google.com/recaptcha/api.js?render=6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV';
         script.async = true;
+        script.defer = true;
         document.head.appendChild(script);
-        return siteKey;
       }
 
-      const recaptchaSiteKey = loadRecaptcha();
-
-      // Pixil contact form interactions
       function initPixilForm() {
         const inputs = document.querySelectorAll('.pixil-input');
-        const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-        const submitText = document.querySelector('.submit-text') as HTMLElement;
-        const loadingText = document.querySelector('.loading-text') as HTMLElement;
-        const successMessage = document.getElementById('success-message') as HTMLElement;
-        const form = document.querySelector('#contact-form form') as HTMLFormElement;
+        const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+        const submitText = document.querySelector('.submit-text') as HTMLElement | null;
+        const loadingText = document.querySelector('.loading-text') as HTMLElement | null;
+        const successMessage = document.getElementById('success-message') as HTMLElement | null;
+        const form = document.querySelector('#contact-form form') as HTMLFormElement | null;
 
-        // Active pixil effect on focus
         inputs.forEach((input) => {
-          const indicator = input.parentElement?.querySelector('.pixil-indicator') as HTMLElement;
+          const indicator = input.parentElement?.querySelector(
+            '.pixil-indicator'
+          ) as HTMLElement | null;
 
           input.addEventListener('focus', () => {
             if (indicator) {
@@ -253,23 +259,22 @@ const {
           });
         });
 
-        // Form submission handling
         if (form && submitBtn && submitText && loadingText) {
           form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Show loading state
             submitText.classList.add('hidden');
             loadingText.classList.remove('hidden');
             submitBtn.disabled = true;
 
             try {
-              // Get reCAPTCHA token
-              const token = await (window as any).grecaptcha.execute(recaptchaSiteKey, {
-                action: 'contact_form',
-              });
+              const token = await (window as any).grecaptcha.execute(
+                '6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV',
+                {
+                  action: 'contact_form',
+                }
+              );
 
-              // Collect form data
               const formData = new FormData(form);
               const data = {
                 name: formData.get('name'),
@@ -280,7 +285,6 @@ const {
                 recaptchaToken: token,
               };
 
-              // Send to API
               const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
@@ -292,23 +296,19 @@ const {
               const result = await response.json();
 
               if (result.success) {
-                // Show success message
                 const buttonArea = submitBtn.parentElement;
                 if (buttonArea && successMessage) {
                   buttonArea.classList.add('hidden');
                   successMessage.classList.remove('hidden');
                 }
 
-                // Reset form after successful submission
                 form.reset();
 
-                // Hide form and show contact buttons after a delay
                 setTimeout(() => {
                   const contactForm = document.getElementById('contact-form');
                   const contactButtons = document.getElementById('contact-buttons');
 
                   if (contactForm && contactButtons) {
-                    // Animate form out
                     contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
                     contactForm.style.opacity = '0';
                     contactForm.style.transform = 'translateY(-20px)';
@@ -316,19 +316,17 @@ const {
                     setTimeout(() => {
                       contactForm.classList.add('hidden');
                       contactButtons.style.display = 'flex';
-                      // Reset success message for next time
                       if (successMessage) successMessage.classList.add('hidden');
                       if (buttonArea) buttonArea.classList.remove('hidden');
                     }, 300);
                   }
-                }, 3000); // Show success message for 3 seconds before hiding form
+                }, 3000);
               } else {
                 throw new Error(result.error || 'Form submission failed');
               }
             } catch (error) {
               console.error('Form submission error:', error);
 
-              // Reset button state on error
               submitText.classList.remove('hidden');
               loadingText.classList.add('hidden');
               submitBtn.disabled = false;
@@ -338,8 +336,6 @@ const {
           });
         }
       }
-
-      initPixilForm();
     </script>
   </body>
 </html>
