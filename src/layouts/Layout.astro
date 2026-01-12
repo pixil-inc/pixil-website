@@ -15,7 +15,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -61,7 +61,7 @@ const {
     class="bg-oatmeal text-charcoal font-sans antialiased selection:bg-black selection:text-white"
   >
     <Header />
-    <main class="pt-32 pb-20">
+    <main id="main-content" role="main" class="pt-32 pb-20">
       <slot />
     </main>
     <Footer />
@@ -146,11 +146,15 @@ const {
                   headerCta.style.opacity = '0';
                   headerCta.style.transform = 'translateY(-10px)';
                   headerCta.style.pointerEvents = 'none';
+                  headerCta.setAttribute('aria-hidden', 'true');
+                  headerCta.setAttribute('tabindex', '-1');
                 } else {
                   // Intro section is not in view - show header CTA
                   headerCta.style.opacity = '1';
                   headerCta.style.transform = 'translateY(0)';
                   headerCta.style.pointerEvents = 'auto';
+                  headerCta.removeAttribute('aria-hidden');
+                  headerCta.removeAttribute('tabindex');
                 }
               });
             },
@@ -161,10 +165,10 @@ const {
           );
 
           // Initially hide the header CTA and add transition
-          headerCta.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
           headerCta.style.opacity = '0';
-          headerCta.style.transform = 'translateY(-10px)';
           headerCta.style.pointerEvents = 'none';
+          headerCta.setAttribute('aria-hidden', 'true');
+          headerCta.setAttribute('tabindex', '-1');
 
           headerObserver.observe(introSection);
         }
@@ -254,28 +258,82 @@ const {
           form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Show loading state
             submitText.classList.add('hidden');
             loadingText.classList.remove('hidden');
             submitBtn.disabled = true;
 
             try {
+              // Get reCAPTCHA token
               const token = await (window as any).grecaptcha.execute(recaptchaSiteKey, {
                 action: 'contact_form',
               });
 
-              setTimeout(() => {
+              // Collect form data
+              const formData = new FormData(form);
+              const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                projectType: formData.get('project-type'),
+                budget: formData.get('budget'),
+                vision: formData.get('vision'),
+                recaptchaToken: token,
+              };
+
+              // Send to API
+              const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+              });
+
+              const result = await response.json();
+
+              if (result.success) {
+                // Show success message
                 const buttonArea = submitBtn.parentElement;
                 if (buttonArea && successMessage) {
                   buttonArea.classList.add('hidden');
                   successMessage.classList.remove('hidden');
                 }
-              }, 2000);
+
+                // Reset form after successful submission
+                form.reset();
+
+                // Hide form and show contact buttons after a delay
+                setTimeout(() => {
+                  const contactForm = document.getElementById('contact-form');
+                  const contactButtons = document.getElementById('contact-buttons');
+
+                  if (contactForm && contactButtons) {
+                    // Animate form out
+                    contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+                    contactForm.style.opacity = '0';
+                    contactForm.style.transform = 'translateY(-20px)';
+
+                    setTimeout(() => {
+                      contactForm.classList.add('hidden');
+                      contactButtons.style.display = 'flex';
+                      // Reset success message for next time
+                      if (successMessage) successMessage.classList.add('hidden');
+                      if (buttonArea) buttonArea.classList.remove('hidden');
+                    }, 300);
+                  }
+                }, 3000); // Show success message for 3 seconds before hiding form
+              } else {
+                throw new Error(result.error || 'Form submission failed');
+              }
             } catch (error) {
-              console.error('reCAPTCHA error:', error);
+              console.error('Form submission error:', error);
+
+              // Reset button state on error
               submitText.classList.remove('hidden');
               loadingText.classList.add('hidden');
               submitBtn.disabled = false;
-              alert('There was an issue with the security verification. Please try again.');
+
+              alert('There was an issue submitting your message. Please try again.');
             }
           });
         }

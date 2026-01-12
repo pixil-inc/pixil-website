@@ -21,16 +21,18 @@ import Button from '@/components/shared/Button.astro';
       We create custom digital experiences that delight users and keep them engaged. Simple,
       interactive design for startups, enterprises, and everyone in between.
     </p>
-    <Button type="primary" href="#get-in-touch" scrollTo="get-in-touch">Start your Project</Button>
+    <Button style="primary" href="#get-in-touch" scrollTo="get-in-touch">Start your Project</Button>
     <div class="fade-up-hidden pt-16" style="transition-delay: 0.4s;">
       <button
         id="scroll-to-next"
-        class="material-symbols-outlined text-charcoal/30 hover:text-charcoal/50 focus:text-charcoal/50 animate-bounce cursor-pointer text-7xl transition-colors duration-300 focus:outline-none"
+        class="text-charcoal/30 hover:text-charcoal/50 focus:text-charcoal/50 animate-bounce cursor-pointer transition-colors duration-300 focus:outline-none"
         aria-label="Scroll to next section"
         title="Continue reading"
         data-scroll-to="about-us"
       >
-        keyboard_arrow_down
+        <span class="material-symbols-outlined text-6xl" aria-hidden="true"
+          >keyboard_arrow_down</span
+        >
       </button>
     </div>
   </div>
