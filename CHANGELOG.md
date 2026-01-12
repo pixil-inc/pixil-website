@@ -1,3 +1,9 @@
+## [1.0.8](https://github.com/pixil-inc/pixil-website/compare/v1.0.7...v1.0.8) (2026-01-12)
+
+### Bug Fixes
+
+- contact api endpoint ([6dc788b](https://github.com/pixil-inc/pixil-website/commit/6dc788b9d55da3d161e1d5e763dfa681bcf061a1))
+
 ## [1.0.7](https://github.com/pixil-inc/pixil-website/compare/v1.0.6...v1.0.7) (2026-01-12)
 
 ### Bug Fixes
