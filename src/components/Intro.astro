@@ -25,12 +25,14 @@ import Button from '@/components/shared/Button.astro';
     <div class="fade-up-hidden pt-16" style="transition-delay: 0.4s;">
       <button
         id="scroll-to-next"
-        class="material-symbols-outlined text-charcoal/30 hover:text-charcoal/50 focus:text-charcoal/50 animate-bounce cursor-pointer text-6xl transition-colors duration-300 focus:outline-none"
+        class="text-charcoal/30 hover:text-charcoal/50 focus:text-charcoal/50 animate-bounce cursor-pointer transition-colors duration-300 focus:outline-none"
         aria-label="Scroll to next section"
         title="Continue reading"
         data-scroll-to="about-us"
       >
-        keyboard_arrow_down
+        <span class="material-symbols-outlined text-6xl" aria-hidden="true"
+          >keyboard_arrow_down</span
+        >
       </button>
     </div>
   </div>
