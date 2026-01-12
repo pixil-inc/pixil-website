@@ -5,14 +5,29 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     // Parse the form data
     const data = await request.json();
+    console.log('Received form data:', data);
     const { name, email, projectType, budget, vision, recaptchaToken } = data;
 
     // Validate required fields
     if (!name || !email || !projectType || !vision || !recaptchaToken) {
+      console.log('Validation failed:', {
+        name: !!name,
+        email: !!email,
+        projectType: !!projectType,
+        vision: !!vision,
+        recaptchaToken: !!recaptchaToken,
+      });
       return new Response(
         JSON.stringify({
           success: false,
           error: 'Missing required fields',
+          details: {
+            name: !!name,
+            email: !!email,
+            projectType: !!projectType,
+            vision: !!vision,
+            recaptchaToken: !!recaptchaToken,
+          },
         }),
         {
           status: 400,
@@ -36,13 +51,16 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const recaptchaResult = await recaptchaResponse.json();
+    console.log('reCAPTCHA result:', recaptchaResult);
 
     // Check if reCAPTCHA verification failed
     if (!recaptchaResult.success || recaptchaResult.score < 0.5) {
+      console.log('reCAPTCHA verification failed:', recaptchaResult);
       return new Response(
         JSON.stringify({
           success: false,
           error: 'reCAPTCHA verification failed',
+          recaptchaResult,
         }),
         {
           status: 400,
