@@ -80,7 +80,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Prepare email content
     const emailContent = `
-Start a Conversation from: ${name}
+Start a Conversation: ${name}
 
 Name: ${name}
 Email: ${email}
@@ -100,7 +100,7 @@ Submitted at: ${new Date().toLocaleString()}
         from: 'no-reply@pixil.ca', // Using Resend test domain
         to: 'hello@pixil.ca', // Must be your Resend account email for test domain
         replyTo: email,
-        subject: `Start a Conversation from ${name}`,
+        subject: `Start a Conversation: ${name}`,
         html: `
           <h2>Start a Conversation Submission</h2>
           <p><strong>From:</strong> ${name} (${email})</p>

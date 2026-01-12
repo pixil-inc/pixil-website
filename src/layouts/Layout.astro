@@ -146,11 +146,15 @@ const {
                   headerCta.style.opacity = '0';
                   headerCta.style.transform = 'translateY(-10px)';
                   headerCta.style.pointerEvents = 'none';
+                  headerCta.setAttribute('aria-hidden', 'true');
+                  headerCta.setAttribute('tabindex', '-1');
                 } else {
                   // Intro section is not in view - show header CTA
                   headerCta.style.opacity = '1';
                   headerCta.style.transform = 'translateY(0)';
                   headerCta.style.pointerEvents = 'auto';
+                  headerCta.removeAttribute('aria-hidden');
+                  headerCta.removeAttribute('tabindex');
                 }
               });
             },
@@ -163,6 +167,8 @@ const {
           // Initially hide the header CTA and add transition
           headerCta.style.opacity = '0';
           headerCta.style.pointerEvents = 'none';
+          headerCta.setAttribute('aria-hidden', 'true');
+          headerCta.setAttribute('tabindex', '-1');
 
           headerObserver.observe(introSection);
         }
