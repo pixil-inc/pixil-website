@@ -3,9 +3,32 @@ import { Resend } from 'resend';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    // Parse the form data
-    const data = await request.json();
-    console.log('Received form data:', data);
+    console.log('API route called');
+    console.log('Request headers:', Object.fromEntries(request.headers));
+
+    // Parse the form data with error handling
+    let data;
+    try {
+      const rawBody = await request.text();
+      console.log('Raw request body:', rawBody);
+      data = JSON.parse(rawBody);
+      console.log('Parsed form data:', data);
+    } catch (parseError) {
+      console.error('JSON parsing failed:', parseError);
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Invalid JSON format',
+        }),
+        {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+    }
+
     const { name, email, projectType, budget, vision, recaptchaToken } = data;
 
     // Validate required fields
