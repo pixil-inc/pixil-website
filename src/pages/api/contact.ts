@@ -115,7 +115,7 @@ Submitted at: ${new Date().toLocaleString()}
       const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
       const emailResult = await resend.emails.send({
-        from: 'onboarding@resend.dev', // Using Resend test domain
+        from: 'no-reply@pixil.ca', // Using Resend test domain
         to: 'shavarsean@gmail.com', // Must be your Resend account email for test domain
         replyTo: email,
         subject: `New contact form submission from ${name}`,

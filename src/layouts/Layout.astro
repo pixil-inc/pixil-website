@@ -297,6 +297,27 @@ const {
 
                 // Reset form after successful submission
                 form.reset();
+
+                // Hide form and show contact buttons after a delay
+                setTimeout(() => {
+                  const contactForm = document.getElementById('contact-form');
+                  const contactButtons = document.getElementById('contact-buttons');
+
+                  if (contactForm && contactButtons) {
+                    // Animate form out
+                    contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+                    contactForm.style.opacity = '0';
+                    contactForm.style.transform = 'translateY(-20px)';
+
+                    setTimeout(() => {
+                      contactForm.classList.add('hidden');
+                      contactButtons.style.display = 'flex';
+                      // Reset success message for next time
+                      if (successMessage) successMessage.classList.add('hidden');
+                      if (buttonArea) buttonArea.classList.remove('hidden');
+                    }, 300);
+                  }
+                }, 3000); // Show success message for 3 seconds before hiding form
               } else {
                 throw new Error(result.error || 'Form submission failed');
               }
