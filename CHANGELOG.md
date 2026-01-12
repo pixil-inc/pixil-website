@@ -1,3 +1,12 @@
+## [1.0.7](https://github.com/pixil-inc/pixil-website/compare/v1.0.6...v1.0.7) (2026-01-12)
+
+### Bug Fixes
+
+- added recaptcha ([b1ba66c](https://github.com/pixil-inc/pixil-website/commit/b1ba66c743ceaf00fbfaee780598d26baa971fe2))
+- site key ([884a791](https://github.com/pixil-inc/pixil-website/commit/884a791936db11d4355352c5b04f26b5be5066be))
+- site key test ([23cda3e](https://github.com/pixil-inc/pixil-website/commit/23cda3ec03195d5b11df579364051cb56a65da63))
+- updated keys ([40e5986](https://github.com/pixil-inc/pixil-website/commit/40e5986344abdcd832a063f2e1c13028353faa26))
+
 ## [1.0.6](https://github.com/pixil-inc/pixil-website/compare/v1.0.5...v1.0.6) (2026-01-11)
 
 ### Bug Fixes
