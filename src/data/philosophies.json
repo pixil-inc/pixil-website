@@ -5,7 +5,7 @@
     "icon": "person_heart"
   },
   {
-    "heading": "Perfection in Every Pixil.",
+    "heading": "Perfection in Every <span class='text-pixil'>Pixil.</span>",
     "description": "We sweat the small stuff so you don't have to. From the spacing of the text to the clean code underneath, we ensure everything is polished and precise. We take pride in craftsmanship, ensuring your brand looks professional from every angle.",
     "icon": "architecture"
   },
@@ -13,11 +13,6 @@
     "heading": "Built to Grow.",
     "description": "We hate the idea of building things twice. We create flexible digital products that fit your needs today but are ready for your success tomorrow. Whether you gain a hundred new customers or a hundred thousand, your site will be ready to handle it.",
     "icon": "expand"
-  },
-  {
-    "heading": "We're On Your Team.",
-    "description": "We don't just take a brief and disappear. We listen, we ask the right questions, and we treat your business like it's our own. We handle the technical heavy lifting so you can focus on the big picture. Think of us as your in-house tech team, just a slack message away.",
-    "icon": "groups"
   },
   {
     "heading": "Fast by Default.",

@@ -80,7 +80,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Prepare email content
     const emailContent = `
-New contact form submission from ${name}
+Start a Conversation from: ${name}
 
 Name: ${name}
 Email: ${email}
@@ -93,8 +93,6 @@ ${vision}
 reCAPTCHA Score: ${recaptchaResult.score}
 Submitted at: ${new Date().toLocaleString()}
     `.trim();
-
-    // Send email using Resend
     try {
       const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
@@ -102,9 +100,9 @@ Submitted at: ${new Date().toLocaleString()}
         from: 'no-reply@pixil.ca', // Using Resend test domain
         to: 'hello@pixil.ca', // Must be your Resend account email for test domain
         replyTo: email,
-        subject: `New contact form submission from ${name}`,
+        subject: `Start a Conversation from ${name}`,
         html: `
-          <h2>New Contact Form Submission</h2>
+          <h2>Start a Conversation Submission</h2>
           <p><strong>From:</strong> ${name} (${email})</p>
           <p><strong>Project Type:</strong> ${projectType}</p>
           <p><strong>Budget:</strong> ${budget || 'Not specified'}</p>

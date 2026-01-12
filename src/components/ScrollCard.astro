@@ -20,7 +20,7 @@ const top = id * 8 + 20;
         >{id.toString().padStart(2, '0')}</span
       >
     </div>
-    <h3 class="font-display text-3xl font-medium md:text-4xl">{heading}</h3>
+    <h3 class="font-display text-3xl font-medium md:text-4xl" set:html={heading} />
     <p class="text-charcoal/60 text-lg leading-relaxed">
       {description}
     </p>
