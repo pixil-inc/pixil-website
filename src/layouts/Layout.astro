@@ -133,6 +133,42 @@ const {
           });
         }
 
+        // Header CTA visibility based on intro section
+        const headerCta = document.getElementById('header-cta');
+        const introSection = document.querySelector('section#intro');
+
+        if (headerCta && introSection) {
+          const headerObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  // Intro section is in view - hide header CTA
+                  headerCta.style.opacity = '0';
+                  headerCta.style.transform = 'translateY(-10px)';
+                  headerCta.style.pointerEvents = 'none';
+                } else {
+                  // Intro section is not in view - show header CTA
+                  headerCta.style.opacity = '1';
+                  headerCta.style.transform = 'translateY(0)';
+                  headerCta.style.pointerEvents = 'auto';
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+              rootMargin: '-50px 0px 0px 0px',
+            }
+          );
+
+          // Initially hide the header CTA and add transition
+          headerCta.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          headerCta.style.opacity = '0';
+          headerCta.style.transform = 'translateY(-10px)';
+          headerCta.style.pointerEvents = 'none';
+
+          headerObserver.observe(introSection);
+        }
+
         setTimeout(() => {
           elementsToAnimate.forEach((el) => {
             if (el.classList.contains('scroll-hidden')) {
