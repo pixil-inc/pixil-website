@@ -3,18 +3,11 @@ import { Resend } from 'resend';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    console.log('API route called');
-    console.log('Request headers:', Object.fromEntries(request.headers));
-
-    // Parse the form data with error handling
     let data;
     try {
       const rawBody = await request.text();
-      console.log('Raw request body:', rawBody);
       data = JSON.parse(rawBody);
-      console.log('Parsed form data:', data);
     } catch (parseError) {
-      console.error('JSON parsing failed:', parseError);
       return new Response(
         JSON.stringify({
           success: false,
@@ -33,13 +26,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Validate required fields
     if (!name || !email || !projectType || !vision || !recaptchaToken) {
-      console.log('Validation failed:', {
-        name: !!name,
-        email: !!email,
-        projectType: !!projectType,
-        vision: !!vision,
-        recaptchaToken: !!recaptchaToken,
-      });
       return new Response(
         JSON.stringify({
           success: false,
@@ -74,11 +60,9 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const recaptchaResult = await recaptchaResponse.json();
-    console.log('reCAPTCHA result:', recaptchaResult);
 
     // Check if reCAPTCHA verification failed
     if (!recaptchaResult.success || recaptchaResult.score < 0.5) {
-      console.log('reCAPTCHA verification failed:', recaptchaResult);
       return new Response(
         JSON.stringify({
           success: false,
@@ -116,7 +100,7 @@ Submitted at: ${new Date().toLocaleString()}
 
       const emailResult = await resend.emails.send({
         from: 'no-reply@pixil.ca', // Using Resend test domain
-        to: 'shavarsean@gmail.com', // Must be your Resend account email for test domain
+        to: 'hello@pixil.ca', // Must be your Resend account email for test domain
         replyTo: email,
         subject: `New contact form submission from ${name}`,
         html: `
@@ -131,10 +115,7 @@ Submitted at: ${new Date().toLocaleString()}
         `,
         text: emailContent,
       });
-
-      console.log('Email sent successfully:', emailResult);
     } catch (emailError) {
-      console.error('Email sending failed:', emailError);
       // Continue anyway - don't fail the entire request if email fails
     }
     return new Response(
@@ -150,8 +131,6 @@ Submitted at: ${new Date().toLocaleString()}
       }
     );
   } catch (error) {
-    console.error('Form submission error:', error);
-
     return new Response(
       JSON.stringify({
         success: false,
