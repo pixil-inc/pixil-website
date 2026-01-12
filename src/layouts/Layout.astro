@@ -254,23 +254,16 @@ const {
           form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Show loading state
             submitText.classList.add('hidden');
             loadingText.classList.remove('hidden');
             submitBtn.disabled = true;
 
             try {
-              // Execute reCAPTCHA v3
               const token = await (window as any).grecaptcha.execute(recaptchaSiteKey, {
                 action: 'contact_form',
               });
 
-              // Here you would send the token to your backend for verification
-              console.log('reCAPTCHA token:', token);
-
-              // Simulate form submission (replace with actual form handling)
               setTimeout(() => {
-                // Hide the entire button area and show success message in its place
                 const buttonArea = submitBtn.parentElement;
                 if (buttonArea && successMessage) {
                   buttonArea.classList.add('hidden');
@@ -279,7 +272,6 @@ const {
               }, 2000);
             } catch (error) {
               console.error('reCAPTCHA error:', error);
-              // Reset button state on error
               submitText.classList.remove('hidden');
               loadingText.classList.add('hidden');
               submitBtn.disabled = false;
@@ -289,7 +281,6 @@ const {
         }
       }
 
-      // Initialize pixil form
       initPixilForm();
     </script>
   </body>
