@@ -11,13 +11,13 @@ interface Props {
 
 const { id, type, href, scrollTo, size = 'lg' } = Astro.props;
 
-const baseClass = `group inline-flex text-${size} items-center transition-all fade-up-hidden rounded-full px-8 py-4 justify-center hover:cursor-pointer`;
+const baseClass = `group inline-flex text-${size} items-center transition-all fade-up-hidden rounded-full px-8 py-4 justify-center hover:cursor-pointer transform hover:-translate-y-1`;
 
 const styleClass =
   type === 'primary'
-    ? 'bg-button-primary text-white font-medium hover:bg-black shadow-lg shadow-gray-200/50 transform hover:-translate-y-1'
+    ? 'bg-button-primary text-white font-medium hover:bg-black shadow-lg shadow-gray-200/50'
     : type === 'secondary'
-      ? 'bg-button-secondary text-primary font-medium hover:bg-gray-200 transform hover:-translate-y-1'
+      ? 'bg-button-secondary text-primary font-medium hover:bg-gray-200'
       : 'border border-white font-semibold';
 
 const buttonClass = `${baseClass} ${styleClass}`;

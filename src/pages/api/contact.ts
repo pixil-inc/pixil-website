@@ -7,6 +7,22 @@ export const POST: APIRoute = async ({ request }) => {
     const data = await request.json();
     const { name, email, projectType, budget, vision, recaptchaToken } = data;
 
+    // Validate required fields
+    if (!name || !email || !projectType || !vision || !recaptchaToken) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Missing required fields',
+        }),
+        {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+    }
+
     // Verify reCAPTCHA token
     const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
@@ -54,26 +70,32 @@ Submitted at: ${new Date().toLocaleString()}
     `.trim();
 
     // Send email using Resend
-    const resend = new Resend(import.meta.env.RESEND_API_KEY);
+    try {
+      const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-    await resend.emails.send({
-      from: 'website@pixil.ca',
-      to: 'hello@pixil.ca',
-      replyTo: email,
-      subject: `New contact form submission from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>From:</strong> ${name} (${email})</p>
-        <p><strong>Project Type:</strong> ${projectType}</p>
-        <p><strong>Budget:</strong> ${budget || 'Not specified'}</p>
-        <p><strong>Message:</strong></p>
-        <p>${vision}</p>
-        <hr>
-        <p><small>reCAPTCHA Score: ${recaptchaResult.score} | Submitted: ${new Date().toLocaleString()}</small></p>
-      `,
-      text: emailContent,
-    });
+      const emailResult = await resend.emails.send({
+        from: 'onboarding@resend.dev', // Using Resend test domain
+        to: 'hello@pixil.ca',
+        replyTo: email,
+        subject: `New contact form submission from ${name}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>From:</strong> ${name} (${email})</p>
+          <p><strong>Project Type:</strong> ${projectType}</p>
+          <p><strong>Budget:</strong> ${budget || 'Not specified'}</p>
+          <p><strong>Message:</strong></p>
+          <p>${vision}</p>
+          <hr>
+          <p><small>reCAPTCHA Score: ${recaptchaResult.score} | Submitted: ${new Date().toLocaleString()}</small></p>
+        `,
+        text: emailContent,
+      });
 
+      console.log('Email sent successfully:', emailResult);
+    } catch (emailError) {
+      console.error('Email sending failed:', emailError);
+      // Continue anyway - don't fail the entire request if email fails
+    }
     return new Response(
       JSON.stringify({
         success: true,
