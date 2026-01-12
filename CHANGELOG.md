@@ -1,3 +1,9 @@
+## [1.0.10](https://github.com/pixil-inc/pixil-website/compare/v1.0.9...v1.0.10) (2026-01-12)
+
+### Bug Fixes
+
+- revert layout ([7777450](https://github.com/pixil-inc/pixil-website/commit/777745099b6839ba878a1ffb5a7ceee8471f4890))
+
 ## [1.0.9](https://github.com/pixil-inc/pixil-website/compare/v1.0.8...v1.0.9) (2026-01-12)
 
 ### Bug Fixes
