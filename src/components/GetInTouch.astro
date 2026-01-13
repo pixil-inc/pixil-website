@@ -226,7 +226,8 @@ import Button from '@/components/shared/Button.astro';
       await loadRecaptcha();
 
       // Batch DOM changes to prevent forced reflows
-      contactButtons.classList.add('flex');
+      contactButtons.classList.add('hidden');
+      contactButtons.classList.remove('flex');
       contactForm.classList.remove('hidden');
 
       // Use CSS classes for smooth animation without forced reflows
