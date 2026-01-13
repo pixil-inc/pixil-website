@@ -1,3 +1,9 @@
+# [1.1.0](https://github.com/pixil-inc/pixil-website/compare/v1.0.13...v1.1.0) (2026-01-13)
+
+### Features
+
+- added anayltics ([8ef3c79](https://github.com/pixil-inc/pixil-website/commit/8ef3c796ebef752796ed3309f17466613a75c434))
+
 ## [1.0.13](https://github.com/pixil-inc/pixil-website/compare/v1.0.12...v1.0.13) (2026-01-13)
 
 ### Bug Fixes
