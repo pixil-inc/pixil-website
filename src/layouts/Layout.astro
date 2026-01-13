@@ -24,9 +24,23 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
 
-    <!-- Preload critical local font files -->
+    <!-- Critical font preloads - load immediately for better CWV -->
     <link href="/fonts/Inter-400.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
     <link href="/fonts/Inter-500.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-K3QVMP55');
+    </script>
 
     <!-- Preconnect for Material Symbols (still from Google) -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -60,6 +74,16 @@ const {
   <body
     class="bg-oatmeal text-primary font-sans antialiased selection:bg-black selection:text-white"
   >
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-K3QVMP55"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+
     <Header client:load />
     <main id="main-content" role="main" class="pt-32 pb-20">
       <slot />
@@ -67,14 +91,44 @@ const {
     <Footer />
 
     <script>
+      // Analytics tracking functions
+      const trackEvent = (eventName: string, parameters: any = {}) => {
+        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+          (window as any).dataLayer.push({
+            event: eventName,
+            ...parameters,
+          });
+        }
+      };
+
+      // Track section views with improved logic
+      const trackSectionView = (sectionName: string) => {
+        trackEvent('section_view', {
+          section_name: sectionName,
+          page_title: document.title,
+          page_location: window.location.href,
+        });
+      };
+
+      // Track button clicks
+      const trackButtonClick = (buttonText: string, buttonType: string = 'button') => {
+        trackEvent('button_click', {
+          button_text: buttonText,
+          button_type: buttonType,
+          page_title: document.title,
+          page_location: window.location.href,
+        });
+      };
+
       const observerOptions = {
-        threshold: 0.1,
+        threshold: 0.3, // Increased threshold for better section tracking
         rootMargin: '0px 0px -100px 0px',
       };
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            // Animation logic
             if (entry.target.classList.contains('scroll-hidden')) {
               entry.target.classList.remove('scroll-hidden');
               entry.target.classList.add('scroll-visible');
@@ -82,6 +136,16 @@ const {
             if (entry.target.classList.contains('fade-up-hidden')) {
               entry.target.classList.remove('fade-up-hidden');
               entry.target.classList.add('fade-up-visible');
+            }
+
+            // Section tracking - track when sections come into view
+            const sectionId = entry.target.id;
+            if (sectionId) {
+              // Only track main sections, avoid tracking every animated element
+              const mainSections = ['intro', 'services', 'about-us', 'why-us', 'get-in-touch'];
+              if (mainSections.includes(sectionId)) {
+                trackSectionView(sectionId);
+              }
             }
           }
         });
@@ -93,6 +157,34 @@ const {
 
         elementsToAnimate.forEach((el, index) => {
           observer.observe(el);
+        });
+
+        // Also observe main sections for tracking
+        const mainSections = document.querySelectorAll(
+          '#intro, #services, #about-us, #why-us, #get-in-touch'
+        );
+        mainSections.forEach((section) => {
+          observer.observe(section);
+        });
+
+        // Set up button click tracking
+        const trackableButtons = document.querySelectorAll(
+          'button, a[role="button"], .btn, [data-track-button]'
+        );
+        trackableButtons.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            const buttonText =
+              button.textContent?.trim() || button.getAttribute('aria-label') || 'Unknown Button';
+            const buttonType = button.tagName.toLowerCase() === 'a' ? 'link' : 'button';
+            trackButtonClick(buttonText, buttonType);
+          });
+        });
+
+        // Track page load
+        trackEvent('page_view', {
+          page_title: document.title,
+          page_location: window.location.href,
+          page_referrer: document.referrer,
         });
 
         // Fallback animation after 3 seconds
