@@ -210,7 +210,7 @@ import Button from '@/components/shared/Button.astro';
       await loadRecaptcha();
 
       // Batch DOM changes to prevent forced reflows
-      contactButtons.style.display = 'none';
+      contactButtons.classList.add('hidden');
       contactForm.classList.remove('hidden');
 
       // Use CSS classes for smooth animation without forced reflows
@@ -235,7 +235,8 @@ import Button from '@/components/shared/Button.astro';
       setTimeout(() => {
         contactForm.classList.add('hidden');
         contactForm.classList.remove('form-exit', 'form-exit-active');
-        contactButtons.style.display = 'flex';
+        contactButtons.classList.remove('hidden');
+        contactButtons.classList.add('flex');
       }, 300);
     });
   }
@@ -338,7 +339,8 @@ import Button from '@/components/shared/Button.astro';
                     'form-exit-active',
                     'form-enter-active'
                   );
-                  contactButtons.style.display = 'flex';
+                  contactButtons.classList.remove('hidden');
+                  contactButtons.classList.add('flex');
                   // Reset success message for next time
                   if (successMessage) successMessage.classList.add('hidden');
                   if (buttonArea) buttonArea.classList.remove('hidden');
