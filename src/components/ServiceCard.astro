@@ -8,15 +8,15 @@ const { title, description, icon, index } = Astro.props;
   <div class="space-y-6">
     <div class="flex items-start justify-between">
       <span
-        class="text-charcoal/50 rounded-full border border-black/10 px-2 py-1 font-mono text-xs transition-colors group-hover:bg-black group-hover:text-white"
+        class="text-primary/50 rounded-full border border-black/10 px-2 py-1 font-mono text-xs transition-colors group-hover:bg-black group-hover:text-white"
         >{index.toString().padStart(2, '0')}</span
       >
       <span
-        class="material-symbols-outlined text-charcoal/20 group-hover:text-charcoal text-4xl font-light transition-colors"
+        class="material-symbols-outlined text-primary/20 group-hover:text-primary text-4xl font-light transition-colors"
         >{icon}</span
       >
     </div>
     <h3 class="font-display pr-8 text-3xl font-medium md:text-4xl">{title}</h3>
   </div>
-  <p class="text-charcoal/60 mt-8 text-lg leading-relaxed">{description}</p>
+  <p class="text-primary/60 mt-8 text-lg leading-relaxed">{description}</p>
 </div>
