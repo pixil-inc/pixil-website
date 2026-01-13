@@ -161,21 +161,16 @@ import Button from '@/components/shared/Button.astro';
     recaptchaSiteKey = siteKey;
 
     return new Promise((resolve) => {
-      // Load reCAPTCHA without any UI components to avoid CSS
+      // Load reCAPTCHA v3 with render parameter for proper initialization
       const script = document.createElement('script');
-      script.src = `https://www.google.com/recaptcha/api.js`;
+      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
       script.async = true;
       script.onload = () => {
-        // Wait for reCAPTCHA to be ready
-        const checkReady = () => {
-          if ((window as any).grecaptcha && (window as any).grecaptcha.execute) {
-            recaptchaLoaded = true;
-            resolve(undefined);
-          } else {
-            setTimeout(checkReady, 100);
-          }
-        };
-        checkReady();
+        // Wait for grecaptcha to be ready
+        (window as any).grecaptcha.ready(() => {
+          recaptchaLoaded = true;
+          resolve(undefined);
+        });
       };
       document.head.appendChild(script);
     });
