@@ -132,10 +132,6 @@ import Button from '@/components/shared/Button.astro';
                 </div>
               </div>
             </div>
-            <div class="flex justify-center">
-              <div class="g-recaptcha" data-sitekey="6LelFkcsAAAAAH2WZZ9iBikwzoYbPcoYnKbGvzkG">
-              </div>
-            </div>
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <Button id="submit-btn" style="secondary" type="submit">
                 <span class="submit-text">Start the Conversation</span>
@@ -154,17 +150,36 @@ import Button from '@/components/shared/Button.astro';
 </SectionWrapper>
 
 <script>
-  // Load reCAPTCHA v3 script dynamically
-  function loadRecaptcha() {
-    const siteKey = '6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV'; // Use your site key
-    const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
-    script.async = true;
-    document.head.appendChild(script);
-    return siteKey;
-  }
+  // Load reCAPTCHA v3 script dynamically when needed
+  let recaptchaSiteKey: string | null = null;
+  let recaptchaLoaded = false;
 
-  const recaptchaSiteKey = loadRecaptcha();
+  function loadRecaptcha() {
+    if (recaptchaLoaded) return Promise.resolve();
+
+    const siteKey = '6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV';
+    recaptchaSiteKey = siteKey;
+
+    return new Promise((resolve) => {
+      // Load reCAPTCHA without any UI components to avoid CSS
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js`;
+      script.async = true;
+      script.onload = () => {
+        // Wait for reCAPTCHA to be ready
+        const checkReady = () => {
+          if ((window as any).grecaptcha && (window as any).grecaptcha.execute) {
+            recaptchaLoaded = true;
+            resolve(undefined);
+          } else {
+            setTimeout(checkReady, 100);
+          }
+        };
+        checkReady();
+      };
+      document.head.appendChild(script);
+    });
+  }
 
   // Contact form toggle functionality
   const showFormBtn = document.getElementById('show-form-btn');
@@ -173,8 +188,12 @@ import Button from '@/components/shared/Button.astro';
   const contactForm = document.getElementById('contact-form');
 
   if (showFormBtn && contactButtons && contactForm) {
-    showFormBtn.addEventListener('click', function (e) {
+    showFormBtn.addEventListener('click', async function (e) {
       e.preventDefault();
+
+      // Load reCAPTCHA when form is shown (not before)
+      await loadRecaptcha();
+
       contactButtons.style.display = 'none';
       contactForm.classList.remove('hidden');
       contactForm.style.opacity = '0';
@@ -242,9 +261,15 @@ import Button from '@/components/shared/Button.astro';
         submitBtn.disabled = true;
 
         try {
-          // Get reCAPTCHA token
-          const token = await (window as any).grecaptcha.execute(recaptchaSiteKey, {
-            action: 'contact_form',
+          // Ensure reCAPTCHA is loaded
+          await loadRecaptcha();
+
+          // Get reCAPTCHA token using programmatic approach
+          const token = await new Promise((resolve, reject) => {
+            (window as any).grecaptcha
+              .execute(recaptchaSiteKey, { action: 'contact_form' })
+              .then(resolve)
+              .catch(reject);
           });
 
           // Collect form data
