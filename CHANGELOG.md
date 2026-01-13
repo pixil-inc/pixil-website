@@ -1,3 +1,9 @@
+## [1.0.11](https://github.com/pixil-inc/pixil-website/compare/v1.0.10...v1.0.11) (2026-01-13)
+
+### Bug Fixes
+
+- astro optimization ([aee2ec3](https://github.com/pixil-inc/pixil-website/commit/aee2ec377ee4fd3463365eef885291cea2dc50d1))
+
 ## [1.0.10](https://github.com/pixil-inc/pixil-website/compare/v1.0.9...v1.0.10) (2026-01-12)
 
 ### Bug Fixes
