@@ -36,7 +36,7 @@ import Button from '@/components/shared/Button.astro';
                 </label>
                 <div class="relative">
                   <input
-                    class="pixil-input w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                    class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
                     id="name"
                     name="name"
                     placeholder="Jane Doe"
@@ -55,7 +55,7 @@ import Button from '@/components/shared/Button.astro';
                 </label>
                 <div class="relative">
                   <input
-                    class="pixil-input w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                    class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
                     id="email"
                     name="email"
                     placeholder="jane@company.com"
@@ -75,7 +75,7 @@ import Button from '@/components/shared/Button.astro';
               </label>
               <div class="relative">
                 <select
-                  class="pixil-input w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                  class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
                   id="project-type"
                   name="project-type"
                   required
@@ -99,7 +99,7 @@ import Button from '@/components/shared/Button.astro';
               </label>
               <div class="relative">
                 <select
-                  class="pixil-input w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                  class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
                   id="budget"
                   name="budget"
                 >
@@ -121,7 +121,7 @@ import Button from '@/components/shared/Button.astro';
               </label>
               <div class="relative">
                 <textarea
-                  class="pixil-input h-32 w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
+                  class="h-32 w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
                   id="vision"
                   name="vision"
                   placeholder="Tell us a bit about your project, your timeline, or the biggest challenge you are trying to solve..."
@@ -226,7 +226,7 @@ import Button from '@/components/shared/Button.astro';
       await loadRecaptcha();
 
       // Batch DOM changes to prevent forced reflows
-      contactButtons.classList.add('contact-buttons-hidden');
+      contactButtons.classList.add('flex');
       contactForm.classList.remove('hidden');
 
       // Use CSS classes for smooth animation without forced reflows
@@ -264,48 +264,11 @@ import Button from '@/components/shared/Button.astro';
 
   // Pixil contact form interactions
   function initPixilForm() {
-    const inputs = document.querySelectorAll('.pixil-input');
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
     const submitText = document.querySelector('.submit-text') as HTMLElement;
     const loadingText = document.querySelector('.loading-text') as HTMLElement;
     const successMessage = document.getElementById('success-message') as HTMLElement;
     const form = document.querySelector('#contact-form form') as HTMLFormElement;
-
-    // Active pixil effect on focus with tracking
-    inputs.forEach((input) => {
-      const indicator = input.parentElement?.querySelector('.pixil-indicator') as HTMLElement;
-      const inputName = input.getAttribute('name') || input.getAttribute('id') || 'unknown_field';
-
-      input.addEventListener('focus', () => {
-        if (indicator) {
-          indicator.style.opacity = '1';
-          indicator.style.backgroundColor = '#ff3838';
-        }
-
-        // Track field focus
-        trackFormEvent('form_field_focus', {
-          field_name: inputName,
-        });
-      });
-
-      input.addEventListener('blur', () => {
-        if (indicator) {
-          indicator.style.opacity = '0';
-        }
-      });
-
-      // Track when user starts typing
-      let hasTyped = false;
-      input.addEventListener('input', () => {
-        const inputElement = input as HTMLInputElement | HTMLTextAreaElement;
-        if (!hasTyped && inputElement.value.length > 0) {
-          hasTyped = true;
-          trackFormEvent('form_field_input', {
-            field_name: inputName,
-          });
-        }
-      });
-    });
 
     // Form submission handling
     if (form && submitBtn && submitText && loadingText) {
