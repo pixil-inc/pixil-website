@@ -1,3 +1,27 @@
+## [1.0.13](https://github.com/pixil-inc/pixil-website/compare/v1.0.12...v1.0.13) (2026-01-13)
+
+### Bug Fixes
+
+- optimize css ([0f90bc8](https://github.com/pixil-inc/pixil-website/commit/0f90bc8e227c2563dc286814a2a95dc7247c06e5))
+
+## [1.0.12](https://github.com/pixil-inc/pixil-website/compare/v1.0.11...v1.0.12) (2026-01-13)
+
+### Bug Fixes
+
+- removed google captcha css ([ef5fd5f](https://github.com/pixil-inc/pixil-website/commit/ef5fd5f784b926e7509b7d232fa0e4438c3bc962))
+
+## [1.0.11](https://github.com/pixil-inc/pixil-website/compare/v1.0.10...v1.0.11) (2026-01-13)
+
+### Bug Fixes
+
+- astro optimization ([aee2ec3](https://github.com/pixil-inc/pixil-website/commit/aee2ec377ee4fd3463365eef885291cea2dc50d1))
+
+## [1.0.10](https://github.com/pixil-inc/pixil-website/compare/v1.0.9...v1.0.10) (2026-01-12)
+
+### Bug Fixes
+
+- revert layout ([7777450](https://github.com/pixil-inc/pixil-website/commit/777745099b6839ba878a1ffb5a7ceee8471f4890))
+
 ## [1.0.9](https://github.com/pixil-inc/pixil-website/compare/v1.0.8...v1.0.9) (2026-01-12)
 
 ### Bug Fixes
