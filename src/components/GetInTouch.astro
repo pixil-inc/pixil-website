@@ -188,11 +188,6 @@ import Button from '@/components/shared/Button.astro';
       script.async = true;
       script.onload = () => {
         (window as any).grecaptcha.ready(() => {
-          // Configure for invisible operation
-          (window as any).grecaptcha.configure({
-            badge: 'inline', // This prevents the floating badge
-            size: 'invisible',
-          });
           recaptchaLoaded = true;
           resolve(undefined);
         });
