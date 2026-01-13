@@ -15,3 +15,45 @@ import Button from '@/components/shared/Button.astro';
     </div>
   </nav>
 </header>
+
+<script>
+  // Header CTA visibility based on intro section
+  const headerCta = document.getElementById('header-cta');
+  const introSection = document.querySelector('section#intro');
+
+  if (headerCta && introSection) {
+    const headerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Intro section is in view - hide header CTA
+            headerCta.style.opacity = '0';
+            headerCta.style.transform = 'translateY(-10px)';
+            headerCta.style.pointerEvents = 'none';
+            headerCta.setAttribute('aria-hidden', 'true');
+            headerCta.setAttribute('tabindex', '-1');
+          } else {
+            // Intro section is not in view - show header CTA
+            headerCta.style.opacity = '1';
+            headerCta.style.transform = 'translateY(0)';
+            headerCta.style.pointerEvents = 'auto';
+            headerCta.removeAttribute('aria-hidden');
+            headerCta.removeAttribute('tabindex');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-50px 0px 0px 0px',
+      }
+    );
+
+    // Initially hide the header CTA and add transition
+    headerCta.style.opacity = '0';
+    headerCta.style.pointerEvents = 'none';
+    headerCta.setAttribute('aria-hidden', 'true');
+    headerCta.setAttribute('tabindex', '-1');
+
+    headerObserver.observe(introSection);
+  }
+</script>

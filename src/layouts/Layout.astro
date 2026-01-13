@@ -60,7 +60,7 @@ const {
   <body
     class="bg-oatmeal text-charcoal font-sans antialiased selection:bg-black selection:text-white"
   >
-    <Header />
+    <Header client:load />
     <main id="main-content" role="main" class="pt-32 pb-20">
       <slot />
     </main>
@@ -95,84 +95,7 @@ const {
           observer.observe(el);
         });
 
-        // Contact form toggle functionality
-        const showFormBtn = document.getElementById('show-form-btn');
-        const hideFormBtn = document.getElementById('hide-form-btn');
-        const contactButtons = document.getElementById('contact-buttons');
-        const contactForm = document.getElementById('contact-form');
-
-        if (showFormBtn && contactButtons && contactForm) {
-          showFormBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            contactButtons.style.display = 'none';
-            contactForm.classList.remove('hidden');
-            contactForm.style.opacity = '0';
-            contactForm.style.transform = 'translateY(20px)';
-
-            // Animate form in
-            requestAnimationFrame(() => {
-              contactForm.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-              contactForm.style.opacity = '1';
-              contactForm.style.transform = 'translateY(0)';
-            });
-          });
-        }
-
-        if (hideFormBtn && contactButtons && contactForm) {
-          hideFormBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            // Animate form out
-            contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-            contactForm.style.opacity = '0';
-            contactForm.style.transform = 'translateY(-20px)';
-
-            setTimeout(() => {
-              contactForm.classList.add('hidden');
-              contactButtons.style.display = 'flex';
-            }, 300);
-          });
-        }
-
-        // Header CTA visibility based on intro section
-        const headerCta = document.getElementById('header-cta');
-        const introSection = document.querySelector('section#intro');
-
-        if (headerCta && introSection) {
-          const headerObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  // Intro section is in view - hide header CTA
-                  headerCta.style.opacity = '0';
-                  headerCta.style.transform = 'translateY(-10px)';
-                  headerCta.style.pointerEvents = 'none';
-                  headerCta.setAttribute('aria-hidden', 'true');
-                  headerCta.setAttribute('tabindex', '-1');
-                } else {
-                  // Intro section is not in view - show header CTA
-                  headerCta.style.opacity = '1';
-                  headerCta.style.transform = 'translateY(0)';
-                  headerCta.style.pointerEvents = 'auto';
-                  headerCta.removeAttribute('aria-hidden');
-                  headerCta.removeAttribute('tabindex');
-                }
-              });
-            },
-            {
-              threshold: 0.1,
-              rootMargin: '-50px 0px 0px 0px',
-            }
-          );
-
-          // Initially hide the header CTA and add transition
-          headerCta.style.opacity = '0';
-          headerCta.style.pointerEvents = 'none';
-          headerCta.setAttribute('aria-hidden', 'true');
-          headerCta.setAttribute('tabindex', '-1');
-
-          headerObserver.observe(introSection);
-        }
-
+        // Fallback animation after 3 seconds
         setTimeout(() => {
           elementsToAnimate.forEach((el) => {
             if (el.classList.contains('scroll-hidden')) {
@@ -213,133 +136,6 @@ const {
 
       // Initialize smooth scroll
       initSmoothScroll();
-
-      // Load reCAPTCHA v3 script dynamically
-      function loadRecaptcha() {
-        const siteKey = '6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV'; // Use your site key
-        const script = document.createElement('script');
-        script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
-        script.async = true;
-        document.head.appendChild(script);
-        return siteKey;
-      }
-
-      const recaptchaSiteKey = loadRecaptcha();
-
-      // Pixil contact form interactions
-      function initPixilForm() {
-        const inputs = document.querySelectorAll('.pixil-input');
-        const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-        const submitText = document.querySelector('.submit-text') as HTMLElement;
-        const loadingText = document.querySelector('.loading-text') as HTMLElement;
-        const successMessage = document.getElementById('success-message') as HTMLElement;
-        const form = document.querySelector('#contact-form form') as HTMLFormElement;
-
-        // Active pixil effect on focus
-        inputs.forEach((input) => {
-          const indicator = input.parentElement?.querySelector('.pixil-indicator') as HTMLElement;
-
-          input.addEventListener('focus', () => {
-            if (indicator) {
-              indicator.style.opacity = '1';
-              indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-            }
-          });
-
-          input.addEventListener('blur', () => {
-            if (indicator) {
-              indicator.style.opacity = '0';
-            }
-          });
-        });
-
-        // Form submission handling
-        if (form && submitBtn && submitText && loadingText) {
-          form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            // Show loading state
-            submitText.classList.add('hidden');
-            loadingText.classList.remove('hidden');
-            submitBtn.disabled = true;
-
-            try {
-              // Get reCAPTCHA token
-              const token = await (window as any).grecaptcha.execute(recaptchaSiteKey, {
-                action: 'contact_form',
-              });
-
-              // Collect form data
-              const formData = new FormData(form);
-              const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                projectType: formData.get('project-type'),
-                budget: formData.get('budget'),
-                vision: formData.get('vision'),
-                recaptchaToken: token,
-              };
-
-              // Send to API
-              const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-              });
-
-              const result = await response.json();
-
-              if (result.success) {
-                // Show success message
-                const buttonArea = submitBtn.parentElement;
-                if (buttonArea && successMessage) {
-                  buttonArea.classList.add('hidden');
-                  successMessage.classList.remove('hidden');
-                }
-
-                // Reset form after successful submission
-                form.reset();
-
-                // Hide form and show contact buttons after a delay
-                setTimeout(() => {
-                  const contactForm = document.getElementById('contact-form');
-                  const contactButtons = document.getElementById('contact-buttons');
-
-                  if (contactForm && contactButtons) {
-                    // Animate form out
-                    contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-                    contactForm.style.opacity = '0';
-                    contactForm.style.transform = 'translateY(-20px)';
-
-                    setTimeout(() => {
-                      contactForm.classList.add('hidden');
-                      contactButtons.style.display = 'flex';
-                      // Reset success message for next time
-                      if (successMessage) successMessage.classList.add('hidden');
-                      if (buttonArea) buttonArea.classList.remove('hidden');
-                    }, 300);
-                  }
-                }, 3000); // Show success message for 3 seconds before hiding form
-              } else {
-                throw new Error(result.error || 'Form submission failed');
-              }
-            } catch (error) {
-              console.error('Form submission error:', error);
-
-              // Reset button state on error
-              submitText.classList.remove('hidden');
-              loadingText.classList.add('hidden');
-              submitBtn.disabled = false;
-
-              alert('There was an issue submitting your message. Please try again.');
-            }
-          });
-        }
-      }
-
-      initPixilForm();
     </script>
   </body>
 </html>
