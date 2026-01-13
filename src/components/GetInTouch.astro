@@ -178,6 +178,17 @@ import Button from '@/components/shared/Button.astro';
   const recaptchaSiteKey = '6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV';
   let recaptchaLoaded = false;
 
+  // Analytics tracking helper
+  const trackFormEvent = (eventName: string, formData: any = {}) => {
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        event: eventName,
+        form_name: 'contact_form',
+        ...formData,
+      });
+    }
+  };
+
   function loadRecaptcha() {
     if (recaptchaLoaded) return Promise.resolve();
 
@@ -206,11 +217,16 @@ import Button from '@/components/shared/Button.astro';
     showFormBtn.addEventListener('click', async function (e) {
       e.preventDefault();
 
+      // Track form show event
+      trackFormEvent('form_show', {
+        form_trigger: 'start_conversation_button',
+      });
+
       // Load reCAPTCHA when form is shown (not before)
       await loadRecaptcha();
 
       // Batch DOM changes to prevent forced reflows
-      contactButtons.classList.add('hidden');
+      contactButtons.classList.add('contact-buttons-hidden');
       contactForm.classList.remove('hidden');
 
       // Use CSS classes for smooth animation without forced reflows
@@ -227,6 +243,11 @@ import Button from '@/components/shared/Button.astro';
   if (hideFormBtn && contactButtons && contactForm) {
     hideFormBtn.addEventListener('click', function (e) {
       e.preventDefault();
+
+      // Track form hide event
+      trackFormEvent('form_hide', {
+        form_trigger: 'never_mind_button',
+      });
 
       // Use CSS classes for smooth animation without forced reflows
       contactForm.classList.remove('form-enter-active');
@@ -250,20 +271,38 @@ import Button from '@/components/shared/Button.astro';
     const successMessage = document.getElementById('success-message') as HTMLElement;
     const form = document.querySelector('#contact-form form') as HTMLFormElement;
 
-    // Active pixil effect on focus
+    // Active pixil effect on focus with tracking
     inputs.forEach((input) => {
       const indicator = input.parentElement?.querySelector('.pixil-indicator') as HTMLElement;
+      const inputName = input.getAttribute('name') || input.getAttribute('id') || 'unknown_field';
 
       input.addEventListener('focus', () => {
         if (indicator) {
           indicator.style.opacity = '1';
           indicator.style.backgroundColor = '#ff3838';
         }
+
+        // Track field focus
+        trackFormEvent('form_field_focus', {
+          field_name: inputName,
+        });
       });
 
       input.addEventListener('blur', () => {
         if (indicator) {
           indicator.style.opacity = '0';
+        }
+      });
+
+      // Track when user starts typing
+      let hasTyped = false;
+      input.addEventListener('input', () => {
+        const inputElement = input as HTMLInputElement | HTMLTextAreaElement;
+        if (!hasTyped && inputElement.value.length > 0) {
+          hasTyped = true;
+          trackFormEvent('form_field_input', {
+            field_name: inputName,
+          });
         }
       });
     });
@@ -272,6 +311,9 @@ import Button from '@/components/shared/Button.astro';
     if (form && submitBtn && submitText && loadingText) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Track form submission attempt
+        trackFormEvent('form_submit_attempt');
 
         // Show loading state
         submitText.classList.add('hidden');
@@ -313,6 +355,12 @@ import Button from '@/components/shared/Button.astro';
           const result = await response.json();
 
           if (result.success) {
+            // Track successful form submission
+            trackFormEvent('form_submit_success', {
+              project_type: data.projectType,
+              budget: data.budget,
+            });
+
             // Show success message
             const buttonArea = submitBtn.parentElement;
             if (buttonArea && successMessage) {
@@ -352,6 +400,11 @@ import Button from '@/components/shared/Button.astro';
           }
         } catch (error) {
           console.error('Form submission error:', error);
+
+          // Track form submission error
+          trackFormEvent('form_submit_error', {
+            error_message: error instanceof Error ? error.message : 'Unknown error',
+          });
 
           // Reset button state on error
           submitText.classList.remove('hidden');
