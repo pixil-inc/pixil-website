@@ -150,12 +150,6 @@ import Button from '@/components/shared/Button.astro';
 </SectionWrapper>
 
 <style>
-  /* Hide reCAPTCHA badge */
-  .grecaptcha-badge {
-    visibility: hidden !important;
-    display: none !important;
-  }
-
   /* Performance optimized animations using CSS classes to avoid forced reflows */
   .form-enter {
     opacity: 0;
@@ -189,10 +183,16 @@ import Button from '@/components/shared/Button.astro';
 
     return new Promise((resolve) => {
       const script = document.createElement('script');
+      // Use render parameter for invisible/programmatic reCAPTCHA (no badge UI)
       script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`;
       script.async = true;
       script.onload = () => {
         (window as any).grecaptcha.ready(() => {
+          // Configure for invisible operation
+          (window as any).grecaptcha.configure({
+            badge: 'inline', // This prevents the floating badge
+            size: 'invisible',
+          });
           recaptchaLoaded = true;
           resolve(undefined);
         });
