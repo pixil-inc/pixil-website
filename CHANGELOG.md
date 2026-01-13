@@ -1,3 +1,9 @@
+## [1.0.12](https://github.com/pixil-inc/pixil-website/compare/v1.0.11...v1.0.12) (2026-01-13)
+
+### Bug Fixes
+
+- removed google captcha css ([ef5fd5f](https://github.com/pixil-inc/pixil-website/commit/ef5fd5f784b926e7509b7d232fa0e4438c3bc962))
+
 ## [1.0.11](https://github.com/pixil-inc/pixil-website/compare/v1.0.10...v1.0.11) (2026-01-13)
 
 ### Bug Fixes
