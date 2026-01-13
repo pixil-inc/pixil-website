@@ -56,26 +56,10 @@
 @theme {
   /* Colors */
   --color-oatmeal: #f8f7f4;
-  --color-charcoal: #1a1a1a;
-  --color-charcoal-light: #4a4a4a;
-  --color-accent: #000000;
   --color-pixil: #ff3838;
   --color-button-primary: #1a1a1a;
   --color-button-secondary: #e2e2e2;
-  --color-secondary-text: #555555;
-
   --color-primary: #1a1a1a;
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f9fafb;
-  --color-bg-navigation: rgba(244, 244, 245, 0.7);
-  --color-background-light: #ffffff;
-  --color-background-dark: #121212;
-  --color-card-light: #f4f4f5;
-  --color-card-dark: #1e1e1e;
-  --color-border-light: #e4e4e7;
-  --color-border-dark: #27272a;
-  --color-primary-text: #1a1a1a;
-  --color-secondary-text: #71717a;
 
   /* Font Families with system fallbacks */
   --font-family-sans:
@@ -171,27 +155,6 @@
   line-height: 1.75rem !important;
 }
 
-.neu-base {
-  background-color: #f8f7f4;
-}
-
-.neu-pressed {
-  background-color: #f8f7f4;
-  box-shadow:
-    inset 8px 8px 16px #d9d7d3,
-    inset -8px -8px 16px #ffffff;
-}
-.neu-embossed {
-  background-color: #f8f7f4;
-  box-shadow:
-    12px 12px 24px #d9d7d3,
-    -12px -12px 24px #ffffff;
-}
-
-.grecaptcha-badge {
-  display: none !important;
-}
-/* Optimize font rendering */
 body {
   font-feature-settings: 'kern', 'liga', 'clig', 'calt';
   font-optical-sizing: auto;

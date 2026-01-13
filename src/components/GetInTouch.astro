@@ -6,7 +6,7 @@ import Button from '@/components/shared/Button.astro';
 <SectionWrapper id="get-in-touch" classNames="px-6 py-0">
   <div class="mx-auto max-w-7xl space-y-24">
     <div
-      class="bg-charcoal text-oatmeal relative overflow-hidden rounded-[3rem] p-12 text-center lg:p-32"
+      class="bg-primary text-oatmeal relative overflow-hidden rounded-[3rem] p-12 text-center lg:p-32"
     >
       <div class="relative z-10">
         <h2 class="mb-8 text-4xl font-medium md:text-5xl">
@@ -149,6 +149,37 @@ import Button from '@/components/shared/Button.astro';
   </div>
 </SectionWrapper>
 
+<style>
+  /* Hide reCAPTCHA badge */
+  .grecaptcha-badge {
+    visibility: hidden !important;
+    display: none !important;
+  }
+
+  /* Performance optimized animations using CSS classes to avoid forced reflows */
+  .form-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .form-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .form-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .form-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
 <script>
   const recaptchaSiteKey = '6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV';
   let recaptchaLoaded = false;
@@ -183,16 +214,17 @@ import Button from '@/components/shared/Button.astro';
       // Load reCAPTCHA when form is shown (not before)
       await loadRecaptcha();
 
+      // Batch DOM changes to prevent forced reflows
       contactButtons.style.display = 'none';
       contactForm.classList.remove('hidden');
-      contactForm.style.opacity = '0';
-      contactForm.style.transform = 'translateY(20px)';
 
-      // Animate form in
+      // Use CSS classes for smooth animation without forced reflows
+      contactForm.classList.add('form-enter');
+
+      // Use requestAnimationFrame to ensure DOM is ready
       requestAnimationFrame(() => {
-        contactForm.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-        contactForm.style.opacity = '1';
-        contactForm.style.transform = 'translateY(0)';
+        contactForm.classList.remove('form-enter');
+        contactForm.classList.add('form-enter-active');
       });
     });
   }
@@ -200,13 +232,14 @@ import Button from '@/components/shared/Button.astro';
   if (hideFormBtn && contactButtons && contactForm) {
     hideFormBtn.addEventListener('click', function (e) {
       e.preventDefault();
-      // Animate form out
-      contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-      contactForm.style.opacity = '0';
-      contactForm.style.transform = 'translateY(-20px)';
+
+      // Use CSS classes for smooth animation without forced reflows
+      contactForm.classList.remove('form-enter-active');
+      contactForm.classList.add('form-exit', 'form-exit-active');
 
       setTimeout(() => {
         contactForm.classList.add('hidden');
+        contactForm.classList.remove('form-exit', 'form-exit-active');
         contactButtons.style.display = 'flex';
       }, 300);
     });
@@ -300,13 +333,16 @@ import Button from '@/components/shared/Button.astro';
               const contactButtons = document.getElementById('contact-buttons');
 
               if (contactForm && contactButtons) {
-                // Animate form out
-                contactForm.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-                contactForm.style.opacity = '0';
-                contactForm.style.transform = 'translateY(-20px)';
+                // Use CSS classes for smooth animation without forced reflows
+                contactForm.classList.add('form-exit', 'form-exit-active');
 
                 setTimeout(() => {
                   contactForm.classList.add('hidden');
+                  contactForm.classList.remove(
+                    'form-exit',
+                    'form-exit-active',
+                    'form-enter-active'
+                  );
                   contactButtons.style.display = 'flex';
                   // Reset success message for next time
                   if (successMessage) successMessage.classList.add('hidden');
