@@ -24,12 +24,25 @@ const styleClass =
 const buttonClass = `${baseClass} ${styleClass}`;
 ---
 
-<button
-  {...id && { id: id }}
-  class={buttonClass}
-  {...href && { href: href }}
-  {...type && { type: type }}
-  {...scrollTo && { 'data-scroll-to': scrollTo }}
->
-  <slot />
-</button>
+{
+  href ? (
+    <a
+      {...(id && { id })}
+      class={buttonClass}
+      href={href}
+      role="button"
+      {...(scrollTo && { 'data-scroll-to': scrollTo })}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      {...(id && { id })}
+      class={buttonClass}
+      {...(type && { type })}
+      {...(scrollTo && { 'data-scroll-to': scrollTo })}
+    >
+      <slot />
+    </button>
+  )
+}

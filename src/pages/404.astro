@@ -1,0 +1,104 @@
+---
+export const prerender = true;
+
+import Layout from '@/layouts/Layout.astro';
+import SectionWrapper from '@/components/shared/SectionWrapper.astro';
+import Button from '@/components/shared/Button.astro';
+---
+
+<Layout
+  title="404 | Pixil Web Studio Inc."
+  description="The page you're looking for doesn't exist. Let's get you back on track."
+  showHeaderCTA={false}
+>
+  <SectionWrapper
+    id="not-found"
+    classNames="flex flex-col items-center justify-center text-center px-6"
+  >
+    <div class="w-full max-w-4xl space-y-8">
+      <div class="flex flex-col items-center gap-4">
+        <div class="pixel-container my-8 flex flex-col items-center" aria-hidden="true">
+          <div class="pixel-3d">
+            <div class="pixel-face front"></div>
+            <div class="pixel-face back"></div>
+            <div class="pixel-face right"></div>
+            <div class="pixel-face left"></div>
+            <div class="pixel-face top"></div>
+            <div class="pixel-face bottom"></div>
+          </div>
+          <div class="pixel-shadow"></div>
+        </div>
+
+        <h2
+          class="font-display text-primary scroll-hidden mx-auto max-w-2xl text-4xl font-medium tracking-tighter md:text-6xl"
+        >
+          We found the missing <span class="text-pixil">pixil</span>, but lost the page.
+        </h2>
+
+        <p
+          class="text-primary/60 scroll-hidden mx-auto max-w-lg text-lg leading-relaxed font-light md:text-xl"
+          style="transition-delay: 0.2s;"
+        >
+          Oops! The page you're looking for seems to have vanished. Don't worry, our team of digital
+          explorers is on the case.
+        </p>
+
+        <div class="scroll-hidden mt-4" style="transition-delay: 0.3s;">
+          <Button style="primary" href="/">Take Me Home</Button>
+        </div>
+      </div>
+    </div>
+  </SectionWrapper>
+</Layout>
+
+<style type="text/css">
+  .pixel-container {
+    perspective: 1000px;
+  }
+  .pixel-3d {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(35deg);
+  }
+  .pixel-face {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: var(--safety);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .front {
+    transform: translateZ(24px);
+    background: #ff3838;
+  }
+  .back {
+    transform: rotateY(180deg) translateZ(24px);
+    background: #cc2020;
+  }
+  .right {
+    transform: rotateY(90deg) translateZ(24px);
+    background: #e63030;
+  }
+  .left {
+    transform: rotateY(-90deg) translateZ(24px);
+    background: #ff4d4d;
+  }
+  .top {
+    transform: rotateX(90deg) translateZ(24px);
+    background: #ff5555;
+  }
+  .bottom {
+    transform: rotateX(-90deg) translateZ(24px);
+    background: #b31a1a;
+  }
+  .pixel-shadow {
+    width: 40px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+    filter: blur(4px);
+    margin-top: 30px;
+  }
+</style>
