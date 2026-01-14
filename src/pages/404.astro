@@ -1,0 +1,113 @@
+---
+export const prerender = true;
+
+import Layout from '@/layouts/Layout.astro';
+import SectionWrapper from '@/components/shared/SectionWrapper.astro';
+import Button from '@/components/shared/Button.astro';
+---
+
+<Layout
+  title="404 | Pixil Web Studio Inc."
+  description="The page you're looking for doesn't exist. Let's get you back on track."
+  showHeaderCTA={false}
+>
+  <SectionWrapper
+    id="not-found"
+    classNames="flex flex-col items-center justify-center text-center px-6"
+  >
+    <div class="w-full max-w-4xl space-y-8">
+      <div class="mt-8 mb-12 flex flex-col items-center [perspective:1000px]">
+        <div
+          class="relative h-12 w-12 [transform:rotateX(-20deg)_rotateY(35deg)] [transform-style:preserve-3d]"
+        >
+          <div
+            class="absolute h-12 w-12 [transform:translateZ(24px)] border border-black/5 bg-[#ff7a1a]"
+          >
+          </div>
+          <div
+            class="absolute h-12 w-12 [transform:rotateY(180deg)_translateZ(24px)] border border-black/5 bg-[#cc5600]"
+          >
+          </div>
+          <div
+            class="absolute h-12 w-12 [transform:rotateY(90deg)_translateZ(24px)] border border-black/5 bg-[#e66000]"
+          >
+          </div>
+          <div
+            class="absolute h-12 w-12 [transform:rotateY(-90deg)_translateZ(24px)] border border-black/5 bg-[#ff8533]"
+          >
+          </div>
+          <div
+            class="absolute h-12 w-12 [transform:rotateX(90deg)_translateZ(24px)] border border-black/5 bg-[#ff914d]"
+          >
+          </div>
+          <div
+            class="absolute h-12 w-12 [transform:rotateX(-90deg)_translateZ(24px)] border border-black/5 bg-[#b34a00]"
+          >
+          </div>
+        </div>
+        <div class="mt-8 h-3 w-10 rounded-full bg-black/8 blur-sm"></div>
+      </div>
+
+      <h2
+        class="font-display text-primary scroll-hidden mx-auto max-w-2xl text-4xl font-medium tracking-tighter md:text-6xl"
+      >
+        We found the missing <span class="text-pixil">pixil</span>, but lost the page.
+      </h2>
+
+      <!-- Description -->
+      <p
+        class="text-primary/60 scroll-hidden mx-auto max-w-lg text-lg leading-relaxed font-light md:text-xl"
+        style="transition-delay: 0.2s;"
+      >
+        Oops! The page you're looking for seems to have vanished. Don't worry, our team of digital
+        explorers is on the case.
+      </p>
+
+      <div
+        class="scroll-hidden flex flex-col justify-center gap-4 sm:flex-row"
+        style="transition-delay: 0.3s;"
+      >
+        <Button style="primary" href="/">Take Me Home</Button>
+      </div>
+    </div>
+  </SectionWrapper>
+</Layout>
+
+<style>
+  /* Ensure smooth animations match the rest of the site */
+  .scroll-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  /* Auto-trigger animation on load */
+  .scroll-hidden {
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  #header-cta {
+    display: none !important;
+  }
+
+  .scroll-hidden:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .scroll-hidden:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .scroll-hidden:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
