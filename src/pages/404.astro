@@ -16,8 +16,8 @@ import Button from '@/components/shared/Button.astro';
     classNames="flex flex-col items-center justify-center text-center px-6"
   >
     <div class="w-full max-w-4xl space-y-8">
-      <div class="mt-8 mb-12 flex flex-col items-center [perspective:1000px]">
-        <div class="pixel-container mt-8 mb-12 flex flex-col items-center">
+      <div class="flex flex-col items-center gap-4">
+        <div class="pixel-container my-8 flex flex-col items-center" aria-hidden="true">
           <div class="pixel-3d">
             <div class="pixel-face front"></div>
             <div class="pixel-face back"></div>
@@ -35,7 +35,6 @@ import Button from '@/components/shared/Button.astro';
           We found the missing <span class="text-pixil">pixil</span>, but lost the page.
         </h2>
 
-        <!-- Description -->
         <p
           class="text-primary/60 scroll-hidden mx-auto max-w-lg text-lg leading-relaxed font-light md:text-xl"
           style="transition-delay: 0.2s;"
@@ -44,10 +43,7 @@ import Button from '@/components/shared/Button.astro';
           explorers is on the case.
         </p>
 
-        <div
-          class="scroll-hidden flex flex-col justify-center gap-4 sm:flex-row"
-          style="transition-delay: 0.3s;"
-        >
+        <div class="scroll-hidden mt-4" style="transition-delay: 0.3s;">
           <Button style="primary" href="/">Take Me Home</Button>
         </div>
       </div>
