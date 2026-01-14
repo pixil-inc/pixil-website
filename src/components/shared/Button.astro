@@ -27,7 +27,7 @@ const buttonClass = `${baseClass} ${styleClass}`;
 {
   href ? (
     <a
-      {...(id && { id: id })}
+      {...(id && { id })}
       class={buttonClass}
       href={href}
       {...(scrollTo && { 'data-scroll-to': scrollTo })}
@@ -36,9 +36,9 @@ const buttonClass = `${baseClass} ${styleClass}`;
     </a>
   ) : (
     <button
-      {...(id && { id: id })}
+      {...(id && { id })}
       class={buttonClass}
-      {...(type && { type: type })}
+      {...(type && { type })}
       {...(scrollTo && { 'data-scroll-to': scrollTo })}
     >
       <slot />
