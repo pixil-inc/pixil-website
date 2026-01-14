@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemaps (update with your actual domain when deployed)
+Sitemap: https://pixil.ca/sitemap.xml
+Sitemap: https://pixil.ca/sitemap-index.xml
+
+# Common paths to block (if needed in the future)
+# Disallow: /api/
+# Disallow: /admin/
+# Disallow: /_astro/
+
+# Block AI training bots (optional - uncomment if desired)
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: ChatGPT-User
+# Disallow: /
+# User-agent: CCBot
+# Disallow: /
+# User-agent: anthropic-ai
+# Disallow: /
+# User-agent: Claude-Web
+# Disallow: /
