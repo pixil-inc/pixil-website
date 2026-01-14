@@ -45,7 +45,7 @@ import Button from '@/components/shared/Button.astro';
           >
           </div>
         </div>
-        <div class="mt-8 h-3 w-10 rounded-full bg-black/8 blur-sm"></div>
+        <div class="mt-8 h-3 w-10 rounded-full bg-black opacity-30 blur-sm"></div>
       </div>
 
       <h2
@@ -72,38 +72,3 @@ import Button from '@/components/shared/Button.astro';
     </div>
   </SectionWrapper>
 </Layout>
-
-<style>
-  /* Ensure smooth animations match the rest of the site */
-  .scroll-hidden {
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease;
-  }
-
-  /* Auto-trigger animation on load */
-  .scroll-hidden {
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  .scroll-hidden:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-
-  .scroll-hidden:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-
-  .scroll-hidden:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>
