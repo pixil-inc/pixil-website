@@ -17,58 +17,92 @@ import Button from '@/components/shared/Button.astro';
   >
     <div class="w-full max-w-4xl space-y-8">
       <div class="mt-8 mb-12 flex flex-col items-center [perspective:1000px]">
-        <div
-          class="relative h-12 w-12 [transform:rotateX(-20deg)_rotateY(35deg)] [transform-style:preserve-3d]"
-        >
-          <div
-            class="absolute h-12 w-12 [transform:translateZ(24px)] border border-black/5 bg-[#ff7a1a]"
-          >
+        <div class="pixel-container mt-8 mb-12 flex flex-col items-center">
+          <div class="pixel-3d">
+            <div class="pixel-face front"></div>
+            <div class="pixel-face back"></div>
+            <div class="pixel-face right"></div>
+            <div class="pixel-face left"></div>
+            <div class="pixel-face top"></div>
+            <div class="pixel-face bottom"></div>
           </div>
-          <div
-            class="absolute h-12 w-12 [transform:rotateY(180deg)_translateZ(24px)] border border-black/5 bg-[#cc5600]"
-          >
-          </div>
-          <div
-            class="absolute h-12 w-12 [transform:rotateY(90deg)_translateZ(24px)] border border-black/5 bg-[#e66000]"
-          >
-          </div>
-          <div
-            class="absolute h-12 w-12 [transform:rotateY(-90deg)_translateZ(24px)] border border-black/5 bg-[#ff8533]"
-          >
-          </div>
-          <div
-            class="absolute h-12 w-12 [transform:rotateX(90deg)_translateZ(24px)] border border-black/5 bg-[#ff914d]"
-          >
-          </div>
-          <div
-            class="absolute h-12 w-12 [transform:rotateX(-90deg)_translateZ(24px)] border border-black/5 bg-[#b34a00]"
-          >
-          </div>
+          <div class="pixel-shadow"></div>
         </div>
-        <div class="mt-8 h-3 w-10 rounded-full bg-black opacity-30 blur-sm"></div>
-      </div>
 
-      <h2
-        class="font-display text-primary scroll-hidden mx-auto max-w-2xl text-4xl font-medium tracking-tighter md:text-6xl"
-      >
-        We found the missing <span class="text-pixil">pixil</span>, but lost the page.
-      </h2>
+        <h2
+          class="font-display text-primary scroll-hidden mx-auto max-w-2xl text-4xl font-medium tracking-tighter md:text-6xl"
+        >
+          We found the missing <span class="text-pixil">pixil</span>, but lost the page.
+        </h2>
 
-      <!-- Description -->
-      <p
-        class="text-primary/60 scroll-hidden mx-auto max-w-lg text-lg leading-relaxed font-light md:text-xl"
-        style="transition-delay: 0.2s;"
-      >
-        Oops! The page you're looking for seems to have vanished. Don't worry, our team of digital
-        explorers is on the case.
-      </p>
+        <!-- Description -->
+        <p
+          class="text-primary/60 scroll-hidden mx-auto max-w-lg text-lg leading-relaxed font-light md:text-xl"
+          style="transition-delay: 0.2s;"
+        >
+          Oops! The page you're looking for seems to have vanished. Don't worry, our team of digital
+          explorers is on the case.
+        </p>
 
-      <div
-        class="scroll-hidden flex flex-col justify-center gap-4 sm:flex-row"
-        style="transition-delay: 0.3s;"
-      >
-        <Button style="primary" href="/">Take Me Home</Button>
+        <div
+          class="scroll-hidden flex flex-col justify-center gap-4 sm:flex-row"
+          style="transition-delay: 0.3s;"
+        >
+          <Button style="primary" href="/">Take Me Home</Button>
+        </div>
       </div>
     </div>
   </SectionWrapper>
 </Layout>
+
+<style type="text/css">
+  .pixel-container {
+    perspective: 1000px;
+  }
+  .pixel-3d {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(35deg);
+  }
+  .pixel-face {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: var(--safety);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .front {
+    transform: translateZ(24px);
+    background: #ff3838;
+  }
+  .back {
+    transform: rotateY(180deg) translateZ(24px);
+    background: #cc2020;
+  }
+  .right {
+    transform: rotateY(90deg) translateZ(24px);
+    background: #e63030;
+  }
+  .left {
+    transform: rotateY(-90deg) translateZ(24px);
+    background: #ff4d4d;
+  }
+  .top {
+    transform: rotateX(90deg) translateZ(24px);
+    background: #ff5555;
+  }
+  .bottom {
+    transform: rotateX(-90deg) translateZ(24px);
+    background: #b31a1a;
+  }
+  .pixel-shadow {
+    width: 40px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+    filter: blur(4px);
+    margin-top: 30px;
+  }
+</style>
