@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/pixil-inc/pixil-website/compare/v1.2.0...v1.2.1) (2026-01-18)
+
+### Bug Fixes
+
+- optimizations ([6319541](https://github.com/pixil-inc/pixil-website/commit/6319541cf35fed006677fa08a313d78c5d04d937))
+
 # [1.2.0](https://github.com/pixil-inc/pixil-website/compare/v1.1.0...v1.2.0) (2026-01-14)
 
 ### Bug Fixes
