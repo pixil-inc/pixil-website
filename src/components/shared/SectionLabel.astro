@@ -1,0 +1,13 @@
+---
+// Reusable section label component
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className = '' } = Astro.props;
+---
+
+<span class={`text-primary/40 text-xs font-bold tracking-widest uppercase ${className}`}>
+  {text}
+</span>

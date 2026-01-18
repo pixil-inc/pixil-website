@@ -1,5 +1,6 @@
 ---
 import SectionWrapper from '@/components/shared/SectionWrapper.astro';
+import SectionLabel from '@/components/shared/SectionLabel.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import type { Service } from '@/types';
 import services from '@/data/services.json';
@@ -14,9 +15,7 @@ const secondColumnServices = services.slice(firstColumnCount);
 <SectionWrapper id="services" hasBorder>
   <div class="mx-auto max-w-3xl space-y-24">
     <div class="space-y-8 pb-24">
-      <span class="text-primary/40 text-xs font-bold tracking-widest uppercase">
-        Our Expertise</span
-      >
+      <SectionLabel text="Our Expertise" />
       <h2 class="font-display text-primary scroll-hidden text-4xl leading-tight md:text-5xl">
         Simple solutions for <span
           class="text-primary/40 hover:text-primary cursor-default transition-colors duration-700"

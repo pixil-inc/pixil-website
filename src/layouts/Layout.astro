@@ -27,8 +27,8 @@ const {
     <title>{title}</title>
 
     <!-- Critical font preloads - load immediately for better CWV -->
+    <link href="/fonts/Inter-600.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
     <link href="/fonts/Inter-400.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
-    <link href="/fonts/Inter-500.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
 
     <!-- Google Tag Manager -->
     <script is:inline>
@@ -43,39 +43,14 @@ const {
         f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-K3QVMP55');
     </script>
-
-    <!-- Preconnect for Material Symbols (still from Google) -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-
-    <!-- Load Material Symbols asynchronously -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
-
-    <!-- Simplified font loading detection for local fonts -->
-    <script>
-      // For local fonts, we can immediately apply font styles
-      if ('fonts' in document) {
-        document.fonts.load('400 1em Inter').then(() => {
-          document.documentElement.classList.add('fonts-loaded');
-        });
-      }
-    </script>
   </head>
 
   <body
     class="bg-oatmeal text-primary font-sans antialiased selection:bg-black selection:text-white"
   >
+    <!-- Skip link for keyboard navigation -->
+    <a href="#main-content" class="skip-link"> Skip to main content </a>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -93,73 +68,36 @@ const {
     <Footer />
 
     <script>
-      // Analytics tracking functions
-      const trackEvent = (eventName: string, parameters: any = {}) => {
-        if (typeof window !== 'undefined' && (window as any).dataLayer) {
-          (window as any).dataLayer.push({
-            event: eventName,
-            ...parameters,
-          });
-        }
-      };
+      import { trackSection, trackButton, trackPageView } from '@/utils/analytics';
+      import {
+        createScrollObserver,
+        handleScrollAnimation,
+        observeAnimations,
+        setupAnimationFallback,
+      } from '@/utils/observers';
 
-      // Track section views with improved logic
-      const trackSectionView = (sectionName: string) => {
-        trackEvent('section_view', {
-          section_name: sectionName,
-          page_title: document.title,
-          page_location: window.location.href,
-        });
-      };
+      // Create observer with custom callback for animations + tracking
+      const observer = createScrollObserver((entry) => {
+        handleScrollAnimation(entry);
 
-      // Track button clicks
-      const trackButtonClick = (buttonText: string, buttonType: string = 'button') => {
-        trackEvent('button_click', {
-          button_text: buttonText,
-          button_type: buttonType,
-          page_title: document.title,
-          page_location: window.location.href,
-        });
-      };
-
-      const observerOptions = {
-        threshold: 0.3, // Increased threshold for better section tracking
-        rootMargin: '0px 0px -100px 0px',
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Animation logic
-            if (entry.target.classList.contains('scroll-hidden')) {
-              entry.target.classList.remove('scroll-hidden');
-              entry.target.classList.add('scroll-visible');
-            }
-            if (entry.target.classList.contains('fade-up-hidden')) {
-              entry.target.classList.remove('fade-up-hidden');
-              entry.target.classList.add('fade-up-visible');
-            }
-
-            // Section tracking - track when sections come into view
-            const sectionId = entry.target.id;
-            if (sectionId) {
-              // Only track main sections, avoid tracking every animated element
-              const mainSections = ['intro', 'services', 'about-us', 'why-us', 'get-in-touch'];
-              if (mainSections.includes(sectionId)) {
-                trackSectionView(sectionId);
-              }
+        // Section tracking - track when sections come into view
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          if (sectionId) {
+            const mainSections = ['intro', 'services', 'about-us', 'why-us', 'get-in-touch'];
+            if (mainSections.includes(sectionId)) {
+              trackSection(sectionId);
             }
           }
-        });
-      }, observerOptions);
+        }
+      });
 
       // Wait for DOM to be ready, then observe elements
       document.addEventListener('DOMContentLoaded', function () {
         const elementsToAnimate = document.querySelectorAll('.scroll-hidden, .fade-up-hidden');
 
-        elementsToAnimate.forEach((el, index) => {
-          observer.observe(el);
-        });
+        // Observe animations
+        observeAnimations(elementsToAnimate, observer);
 
         // Also observe main sections for tracking
         const mainSections = document.querySelectorAll(
@@ -178,30 +116,15 @@ const {
             const buttonText =
               button.textContent?.trim() || button.getAttribute('aria-label') || 'Unknown Button';
             const buttonType = button.tagName.toLowerCase() === 'a' ? 'link' : 'button';
-            trackButtonClick(buttonText, buttonType);
+            trackButton(buttonText, buttonType);
           });
         });
 
         // Track page load
-        trackEvent('page_view', {
-          page_title: document.title,
-          page_location: window.location.href,
-          page_referrer: document.referrer,
-        });
+        trackPageView();
 
         // Fallback animation after 3 seconds
-        setTimeout(() => {
-          elementsToAnimate.forEach((el) => {
-            if (el.classList.contains('scroll-hidden')) {
-              el.classList.remove('scroll-hidden');
-              el.classList.add('scroll-visible');
-            }
-            if (el.classList.contains('fade-up-hidden')) {
-              el.classList.remove('fade-up-hidden');
-              el.classList.add('fade-up-visible');
-            }
-          });
-        }, 3000);
+        setupAnimationFallback(elementsToAnimate, 3000);
       });
 
       // General smooth scroll utility for site-wide use

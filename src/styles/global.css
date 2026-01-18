@@ -60,22 +60,16 @@
   --color-button-primary: #1a1a1a;
   --color-button-secondary: #e2e2e2;
   --color-primary: #1a1a1a;
+  --color-white: #ffffff;
 
-  /* Font Families with system fallbacks */
-  --font-family-sans:
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
-  --font-family-display:
+  /* Single font family definition with system fallbacks */
+  --font-family-base:
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
     sans-serif;
 
-  /* Font loading fallbacks (same as main for local fonts) */
-  --font-fallback-sans:
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
-  --font-fallback-display:
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
+  /* Semantic aliases using the base definition */
+  --font-family-sans: var(--font-family-base);
+  --font-family-display: var(--font-family-base);
 
   /* Animations */
   --animate-blur-in: blur-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -112,26 +106,44 @@
   opacity: 0;
   filter: blur(10px);
   transform: scale(0.98) translateY(20px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  contain: layout;
+  will-change: opacity, transform, filter;
 }
 
 .scroll-visible {
   opacity: 1;
   filter: blur(0);
   transform: scale(1) translateY(0);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  contain: layout;
+  will-change: auto;
 }
 
 .fade-up-hidden {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  contain: layout;
+  will-change: opacity, transform;
 }
 
 .fade-up-visible {
   opacity: 1;
   transform: translateY(0);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  contain: layout;
+  will-change: auto;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -141,21 +153,26 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-/* Override Material Symbols font size */
-.material-symbols-outlined.text-7xl {
-  font-size: 4.5rem !important;
-  line-height: 1 !important;
-}
-.material-symbols-outlined.text-6xl {
-  font-size: 3.75rem !important;
-  line-height: 1 !important;
-}
-.material-symbols-outlined.text-lg {
-  font-size: 1.125rem !important;
-  line-height: 1.75rem !important;
-}
 
 body {
   font-feature-settings: 'kern', 'liga', 'clig', 'calt';
   font-optical-sizing: auto;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  font-weight: 500;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
 }

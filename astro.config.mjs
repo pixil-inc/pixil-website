@@ -1,12 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
+import sitemap from '@astrojs/sitemap';
 
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  site: 'https://pixil.ca',
+  output: 'static',
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),
@@ -15,6 +17,7 @@ export default defineConfig({
     assets: '_astro',
   },
   compressHTML: true,
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
     build: {

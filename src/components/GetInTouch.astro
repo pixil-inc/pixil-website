@@ -175,211 +175,230 @@ import Button from '@/components/shared/Button.astro';
 </style>
 
 <script>
-  const recaptchaSiteKey = '6LdmlkcsAAAAAD-bCsMlXSbHrDMqll5nMDUZDGnV';
-  let recaptchaLoaded = false;
+  import { trackForm } from '@/utils/analytics';
 
-  // Analytics tracking helper
-  const trackFormEvent = (eventName: string, formData: any = {}) => {
-    if (typeof window !== 'undefined' && (window as any).dataLayer) {
-      (window as any).dataLayer.push({
-        event: eventName,
-        form_name: 'contact_form',
-        ...formData,
+  // Defer initialization until DOM is ready and form section is near viewport
+  const initFormHandling = () => {
+    const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+    let recaptchaLoaded = false;
+
+    function loadRecaptcha() {
+      if (recaptchaLoaded) return Promise.resolve();
+
+      return new Promise((resolve) => {
+        const script = document.createElement('script');
+        // Use render parameter for invisible/programmatic reCAPTCHA (no badge UI)
+        script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`;
+        script.async = true;
+        script.onload = () => {
+          (window as any).grecaptcha.ready(() => {
+            recaptchaLoaded = true;
+            resolve(undefined);
+          });
+        };
+        document.head.appendChild(script);
       });
     }
-  };
 
-  function loadRecaptcha() {
-    if (recaptchaLoaded) return Promise.resolve();
+    // Contact form toggle functionality
+    const showFormBtn = document.getElementById('show-form-btn');
+    const hideFormBtn = document.getElementById('hide-form-btn');
+    const contactButtons = document.getElementById('contact-buttons');
+    const contactForm = document.getElementById('contact-form');
 
-    return new Promise((resolve) => {
-      const script = document.createElement('script');
-      // Use render parameter for invisible/programmatic reCAPTCHA (no badge UI)
-      script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`;
-      script.async = true;
-      script.onload = () => {
-        (window as any).grecaptcha.ready(() => {
-          recaptchaLoaded = true;
-          resolve(undefined);
-        });
-      };
-      document.head.appendChild(script);
-    });
-  }
-
-  // Contact form toggle functionality
-  const showFormBtn = document.getElementById('show-form-btn');
-  const hideFormBtn = document.getElementById('hide-form-btn');
-  const contactButtons = document.getElementById('contact-buttons');
-  const contactForm = document.getElementById('contact-form');
-
-  if (showFormBtn && contactButtons && contactForm) {
-    showFormBtn.addEventListener('click', async function (e) {
-      e.preventDefault();
-
-      // Track form show event
-      trackFormEvent('form_show', {
-        form_trigger: 'start_conversation_button',
-      });
-
-      // Load reCAPTCHA when form is shown (not before)
-      await loadRecaptcha();
-
-      // Batch DOM changes to prevent forced reflows
-      contactButtons.classList.add('hidden');
-      contactButtons.classList.remove('flex');
-      contactForm.classList.remove('hidden');
-
-      // Use CSS classes for smooth animation without forced reflows
-      contactForm.classList.add('form-enter');
-
-      // Use requestAnimationFrame to ensure DOM is ready
-      requestAnimationFrame(() => {
-        contactForm.classList.remove('form-enter');
-        contactForm.classList.add('form-enter-active');
-      });
-    });
-  }
-
-  if (hideFormBtn && contactButtons && contactForm) {
-    hideFormBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      // Track form hide event
-      trackFormEvent('form_hide', {
-        form_trigger: 'never_mind_button',
-      });
-
-      // Use CSS classes for smooth animation without forced reflows
-      contactForm.classList.remove('form-enter-active');
-      contactForm.classList.add('form-exit', 'form-exit-active');
-
-      setTimeout(() => {
-        contactForm.classList.add('hidden');
-        contactForm.classList.remove('form-exit', 'form-exit-active');
-        contactButtons.classList.remove('hidden');
-        contactButtons.classList.add('flex');
-      }, 300);
-    });
-  }
-
-  // Pixil contact form interactions
-  function initPixilForm() {
-    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-    const submitText = document.querySelector('.submit-text') as HTMLElement;
-    const loadingText = document.querySelector('.loading-text') as HTMLElement;
-    const successMessage = document.getElementById('success-message') as HTMLElement;
-    const form = document.querySelector('#contact-form form') as HTMLFormElement;
-
-    // Form submission handling
-    if (form && submitBtn && submitText && loadingText) {
-      form.addEventListener('submit', async (e) => {
+    if (showFormBtn && contactButtons && contactForm) {
+      showFormBtn.addEventListener('click', async function (e) {
         e.preventDefault();
 
-        // Track form submission attempt
-        trackFormEvent('form_submit_attempt');
+        // Track form show event
+        trackForm('form_show', {
+          form_trigger: 'start_conversation_button',
+        });
 
-        // Show loading state
-        submitText.classList.add('hidden');
-        loadingText.classList.remove('hidden');
-        submitBtn.disabled = true;
+        // Load reCAPTCHA when form is shown (not before)
+        await loadRecaptcha();
 
-        try {
-          // Ensure reCAPTCHA is loaded
-          await loadRecaptcha();
+        // Batch DOM changes to prevent forced reflows
+        contactButtons.classList.add('hidden');
+        contactButtons.classList.remove('flex');
+        contactForm.classList.remove('hidden');
 
-          // Get reCAPTCHA token using programmatic approach
-          const token = await new Promise((resolve, reject) => {
-            (window as any).grecaptcha
-              .execute(recaptchaSiteKey, { action: 'contact_form' })
-              .then(resolve)
-              .catch(reject);
-          });
+        // Use CSS classes for smooth animation without forced reflows
+        contactForm.classList.add('form-enter');
 
-          // Collect form data
-          const formData = new FormData(form);
-          const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            projectType: formData.get('project-type'),
-            budget: formData.get('budget'),
-            vision: formData.get('vision'),
-            recaptchaToken: token,
-          };
-
-          // Send to API
-          const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-          });
-
-          const result = await response.json();
-
-          if (result.success) {
-            // Track successful form submission
-            trackFormEvent('form_submit_success', {
-              project_type: data.projectType,
-              budget: data.budget,
-            });
-
-            // Show success message
-            const buttonArea = submitBtn.parentElement;
-            if (buttonArea && successMessage) {
-              buttonArea.classList.add('hidden');
-              successMessage.classList.remove('hidden');
-            }
-
-            // Reset form after successful submission
-            form.reset();
-
-            // Hide form and show contact buttons after a delay
-            setTimeout(() => {
-              const contactForm = document.getElementById('contact-form');
-              const contactButtons = document.getElementById('contact-buttons');
-
-              if (contactForm && contactButtons) {
-                // Use CSS classes for smooth animation without forced reflows
-                contactForm.classList.add('form-exit', 'form-exit-active');
-
-                setTimeout(() => {
-                  contactForm.classList.add('hidden');
-                  contactForm.classList.remove(
-                    'form-exit',
-                    'form-exit-active',
-                    'form-enter-active'
-                  );
-                  contactButtons.classList.remove('hidden');
-                  contactButtons.classList.add('flex');
-                  // Reset success message for next time
-                  if (successMessage) successMessage.classList.add('hidden');
-                  if (buttonArea) buttonArea.classList.remove('hidden');
-                }, 300);
-              }
-            }, 3000); // Show success message for 3 seconds before hiding form
-          } else {
-            throw new Error(result.error || 'Form submission failed');
-          }
-        } catch (error) {
-          console.error('Form submission error:', error);
-
-          // Track form submission error
-          trackFormEvent('form_submit_error', {
-            error_message: error instanceof Error ? error.message : 'Unknown error',
-          });
-
-          // Reset button state on error
-          submitText.classList.remove('hidden');
-          loadingText.classList.add('hidden');
-          submitBtn.disabled = false;
-
-          alert('There was an issue submitting your message. Please try again.');
-        }
+        // Use requestAnimationFrame to ensure DOM is ready
+        requestAnimationFrame(() => {
+          contactForm.classList.remove('form-enter');
+          contactForm.classList.add('form-enter-active');
+        });
       });
     }
-  }
 
-  initPixilForm();
+    if (hideFormBtn && contactButtons && contactForm) {
+      hideFormBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Track form hide event
+        trackForm('form_hide', {
+          form_trigger: 'never_mind_button',
+        });
+
+        // Use CSS classes for smooth animation without forced reflows
+        contactForm.classList.remove('form-enter-active');
+        contactForm.classList.add('form-exit', 'form-exit-active');
+
+        setTimeout(() => {
+          contactForm.classList.add('hidden');
+          contactForm.classList.remove('form-exit', 'form-exit-active');
+          contactButtons.classList.remove('hidden');
+          contactButtons.classList.add('flex');
+        }, 300);
+      });
+    }
+
+    // Pixil contact form interactions
+    function initPixilForm() {
+      const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+      const submitText = document.querySelector('.submit-text') as HTMLElement;
+      const loadingText = document.querySelector('.loading-text') as HTMLElement;
+      const successMessage = document.getElementById('success-message') as HTMLElement;
+      const form = document.querySelector('#contact-form form') as HTMLFormElement;
+
+      // Form submission handling
+      if (form && submitBtn && submitText && loadingText) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          // Track form submission attempt
+          trackForm('form_submit_attempt');
+
+          // Show loading state
+          submitText.classList.add('hidden');
+          loadingText.classList.remove('hidden');
+          submitBtn.disabled = true;
+
+          try {
+            // Ensure reCAPTCHA is loaded
+            await loadRecaptcha();
+
+            // Get reCAPTCHA token using programmatic approach
+            const token = await new Promise((resolve, reject) => {
+              (window as any).grecaptcha
+                .execute(recaptchaSiteKey, { action: 'contact_form' })
+                .then(resolve)
+                .catch(reject);
+            });
+
+            // Collect form data
+            const formData = new FormData(form);
+            const data = {
+              name: formData.get('name'),
+              email: formData.get('email'),
+              projectType: formData.get('project-type'),
+              budget: formData.get('budget'),
+              vision: formData.get('vision'),
+              recaptchaToken: token,
+            };
+
+            // Send to API
+            const response = await fetch('/api/contact', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              // Track successful form submission
+              trackForm('form_submit_success', {
+                project_type: data.projectType,
+                budget: data.budget,
+              });
+
+              // Show success message
+              const buttonArea = submitBtn.parentElement;
+              if (buttonArea && successMessage) {
+                buttonArea.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+              }
+
+              // Reset form after successful submission
+              form.reset();
+
+              // Hide form and show contact buttons after a delay
+              setTimeout(() => {
+                const contactForm = document.getElementById('contact-form');
+                const contactButtons = document.getElementById('contact-buttons');
+
+                if (contactForm && contactButtons) {
+                  // Use CSS classes for smooth animation without forced reflows
+                  contactForm.classList.add('form-exit', 'form-exit-active');
+
+                  setTimeout(() => {
+                    contactForm.classList.add('hidden');
+                    contactForm.classList.remove(
+                      'form-exit',
+                      'form-exit-active',
+                      'form-enter-active'
+                    );
+                    contactButtons.classList.remove('hidden');
+                    contactButtons.classList.add('flex');
+                    // Reset success message for next time
+                    if (successMessage) successMessage.classList.add('hidden');
+                    if (buttonArea) buttonArea.classList.remove('hidden');
+                  }, 300);
+                }
+              }, 3000); // Show success message for 3 seconds before hiding form
+            } else {
+              throw new Error(result.error || 'Form submission failed');
+            }
+          } catch (error) {
+            console.error('Form submission error:', error);
+
+            // Track form submission error
+            trackForm('form_submit_error', {
+              error_message: error instanceof Error ? error.message : 'Unknown error',
+            });
+
+            // Reset button state on error
+            submitText.classList.remove('hidden');
+            loadingText.classList.add('hidden');
+            submitBtn.disabled = false;
+
+            alert('There was an issue submitting your message. Please try again.');
+          }
+        });
+      }
+    }
+
+    initPixilForm();
+  }; // End of initFormHandling
+
+  // Use IntersectionObserver to defer script initialization until form is near viewport
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            initFormHandling();
+            observer.disconnect(); // Run once
+          }
+        });
+      },
+      {
+        rootMargin: '200px', // Start loading 200px before form enters viewport
+      }
+    );
+
+    const formSection = document.getElementById('get-in-touch');
+    if (formSection) {
+      observer.observe(formSection);
+    }
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    initFormHandling();
+  }
 </script>

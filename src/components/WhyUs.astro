@@ -1,5 +1,6 @@
 ---
 import SectionWrapper from '@/components/shared/SectionWrapper.astro';
+import SectionLabel from '@/components/shared/SectionLabel.astro';
 import ScrollCard from '@/components/ScrollCard.astro';
 import type { Service } from '@/types';
 import philosophies from '@/data/philosophies.json';
@@ -8,9 +9,7 @@ import philosophies from '@/data/philosophies.json';
 <SectionWrapper id="why-us" hasBorder>
   <div class="mx-auto max-w-3xl space-y-24">
     <div class="space-y-8 pb-24">
-      <span class="text-primary/40 text-xs font-bold tracking-widest uppercase">
-        Our Philosophy</span
-      >
+      <SectionLabel text="Our Philosophy" />
       <h2 class="font-display text-primary scroll-hidden text-4xl leading-tight md:text-5xl">
         We build for people, <span
           class="text-primary/40 hover:text-primary cursor-default transition-colors duration-700"
