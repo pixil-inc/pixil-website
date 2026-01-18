@@ -1,6 +1,9 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 
+// Mark this endpoint as server-rendered (not static)
+export const prerender = false;
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     let data;
@@ -24,19 +27,23 @@ export const POST: APIRoute = async ({ request }) => {
 
     const { name, email, projectType, budget, vision, recaptchaToken } = data;
 
+    const isDev = import.meta.env.DEV;
+
     // Validate required fields
     if (!name || !email || !projectType || !vision || !recaptchaToken) {
       return new Response(
         JSON.stringify({
           success: false,
           error: 'Missing required fields',
-          details: {
-            name: !!name,
-            email: !!email,
-            projectType: !!projectType,
-            vision: !!vision,
-            recaptchaToken: !!recaptchaToken,
-          },
+          ...(isDev && {
+            details: {
+              name: !!name,
+              email: !!email,
+              projectType: !!projectType,
+              vision: !!vision,
+              recaptchaToken: !!recaptchaToken,
+            },
+          }),
         }),
         {
           status: 400,

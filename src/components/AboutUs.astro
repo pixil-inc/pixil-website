@@ -1,11 +1,12 @@
 ---
 import SectionWrapper from '@/components/shared/SectionWrapper.astro';
+import SectionLabel from '@/components/shared/SectionLabel.astro';
 ---
 
 <SectionWrapper id="about-us" hasBorder>
   <div class="mx-auto max-w-3xl space-y-24">
     <div class="space-y-8">
-      <span class="text-primary/40 text-xs font-bold tracking-widest uppercase"> Who We Are</span>
+      <SectionLabel text="Who We Are" />
       <p class="font-display text-primary scroll-hidden text-4xl leading-tight md:text-5xl">
         We work with you, <span
           class="text-primary/40 hover:text-primary cursor-default transition-colors duration-700"

@@ -1,0 +1,37 @@
+---
+// Icon component - inlines SVG icons from public/icons folder
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className = '' } = Astro.props;
+
+// Read the SVG file from public/icons
+const svgPath = `./public/icons/${name}.svg`;
+let svgContent = '';
+
+try {
+  svgContent = await Astro.glob('./public/icons/*.svg').then((files) => {
+    const file = files.find((f) => f.default.includes(name));
+    return file?.default || '';
+  });
+} catch {
+  // Fallback - try to read it directly
+  try {
+    const fs = await import('node:fs/promises');
+    svgContent = await fs.readFile(svgPath, 'utf-8');
+  } catch {
+    console.warn(`Icon "${name}" not found at ${svgPath}`);
+  }
+}
+
+// Replace fill colors with currentColor and add/update class
+if (svgContent) {
+  svgContent = svgContent
+    .replace(/fill="[^"]*"/g, 'fill="currentColor"')
+    .replace(/<svg/, `<svg class="${className}"`);
+}
+---
+
+{svgContent ? <Fragment set:html={svgContent} /> : <span class={className}>⚠</span>}

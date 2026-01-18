@@ -17,7 +17,7 @@ const { showHeaderCTA = true } = Astro.props;
     {
       showHeaderCTA ? (
         <div class="text-primary/60 flex items-center gap-8 text-sm font-medium tracking-wide">
-          <Button id="header-cta" style="primary" size="sm" scrollTo="get-in-touch">
+          <Button animate={false} style="primary" size="sm" scrollTo="get-in-touch">
             Get in Touch
           </Button>
         </div>
@@ -25,45 +25,3 @@ const { showHeaderCTA = true } = Astro.props;
     }
   </nav>
 </header>
-
-<script>
-  // Header CTA visibility based on intro section
-  const headerCta = document.getElementById('header-cta');
-  const introSection = document.querySelector('section#intro');
-
-  if (headerCta && introSection) {
-    const headerObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Intro section is in view - hide header CTA
-            headerCta.style.opacity = '0';
-            headerCta.style.transform = 'translateY(-10px)';
-            headerCta.style.pointerEvents = 'none';
-            headerCta.setAttribute('aria-hidden', 'true');
-            headerCta.setAttribute('tabindex', '-1');
-          } else {
-            // Intro section is not in view - show header CTA
-            headerCta.style.opacity = '1';
-            headerCta.style.transform = 'translateY(0)';
-            headerCta.style.pointerEvents = 'auto';
-            headerCta.removeAttribute('aria-hidden');
-            headerCta.removeAttribute('tabindex');
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '-50px 0px 0px 0px',
-      }
-    );
-
-    // Initially hide the header CTA and add transition
-    headerCta.style.opacity = '0';
-    headerCta.style.pointerEvents = 'none';
-    headerCta.setAttribute('aria-hidden', 'true');
-    headerCta.setAttribute('tabindex', '-1');
-
-    headerObserver.observe(introSection);
-  }
-</script>

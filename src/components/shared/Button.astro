@@ -8,21 +8,60 @@ interface Props {
   href?: string;
   scrollTo?: string;
   size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  animate?: boolean;
 }
 
-const { id, style, type, href, scrollTo, size = 'lg' } = Astro.props;
+const {
+  id,
+  style,
+  type,
+  href,
+  scrollTo,
+  size = 'lg',
+  class: additionalClass,
+  animate = true,
+} = Astro.props;
 
-const baseClass = `group inline-flex text-${size} items-center transition-all scroll-hidden rounded-full px-8 py-4 justify-center hover:cursor-pointer transform hover:-translate-y-1`;
+const baseClass = `group inline-flex text-${size} items-center ${animate ? 'scroll-hidden' : ''} rounded-full px-8 py-4 justify-center hover:cursor-pointer`;
 
 const styleClass =
   style === 'primary'
-    ? 'bg-button-primary text-white font-medium hover:bg-black shadow-lg shadow-gray-200/50'
+    ? 'button-primary bg-button-primary text-white font-medium hover:bg-black shadow-lg shadow-gray-200/50 hover:shadow-xl'
     : style === 'secondary'
-      ? 'bg-button-secondary text-primary font-medium hover:bg-gray-200'
-      : 'border border-white font-semibold';
+      ? 'button-secondary bg-button-secondary text-primary font-medium hover:bg-gray-200'
+      : 'button-tertiary border border-white font-semibold';
 
-const buttonClass = `${baseClass} ${styleClass}`;
+const buttonClass = `${baseClass} ${styleClass} ${additionalClass || ''}`;
 ---
+
+<style>
+  /* Override scroll-hidden transitions for button hover */
+  a[role='button'],
+  button {
+    transition:
+      transform 0.2s ease-out,
+      background-color 0.2s ease-out,
+      box-shadow 0.2s ease-out !important;
+  }
+
+  a[role='button']:hover,
+  button:hover {
+    transform: translateY(-4px) !important;
+  }
+
+  a[role='button']:hover:not(.button-tertiary),
+  button:hover:not(.button-tertiary) {
+    background-color: var(--color-pixil);
+    color: var(--color-white);
+  }
+
+  a[role='button'].button-tertiary:hover,
+  button.button-tertiary:hover {
+    border-color: var(--color-pixil);
+    color: var(--color-pixil);
+  }
+</style>
 
 {
   href ? (

@@ -9,20 +9,21 @@ import Button from '@/components/shared/Button.astro';
 >
   <div class="w-full max-w-5xl space-y-8">
     <h1
-      class="font-display text-primary scroll-hidden text-6xl leading-[0.95] font-medium tracking-tighter md:text-8xl"
+      class="font-display text-primary intro-animate intro-animate-1 text-6xl leading-[0.95] font-medium tracking-tighter md:text-8xl"
     >
       Digital Excellence.<br />
       Down to the last <span class="text-pixil">Pixil.</span>
     </h1>
     <p
-      class="text-primary/60 scroll-hidden mx-auto max-w-xl text-xl leading-relaxed font-light md:text-2xl"
-      style="transition-delay: 0.2s;"
+      class="text-primary/60 intro-animate intro-animate-2 mx-auto max-w-xl text-xl leading-relaxed font-light md:text-2xl"
     >
       We create custom digital experiences that delight users and keep them engaged. Simple,
       interactive design for startups, enterprises, and everyone in between.
     </p>
-    <Button style="primary" scrollTo="get-in-touch">Start your Project</Button>
-    <div class="fade-up-hidden pt-16" style="transition-delay: 0.4s;">
+    <div class="intro-animate intro-animate-3">
+      <Button style="primary" scrollTo="get-in-touch">Start your Project</Button>
+    </div>
+    <div class="intro-animate intro-animate-4 pt-16">
       <button
         id="scroll-to-next"
         class="text-primary/30 hover:text-primary/50 focus:text-primary/50 animate-bounce cursor-pointer transition-colors duration-300 focus:outline-none"
@@ -30,10 +31,49 @@ import Button from '@/components/shared/Button.astro';
         title="Continue reading"
         data-scroll-to="about-us"
       >
-        <span class="material-symbols-outlined text-6xl" aria-hidden="true"
-          >keyboard_arrow_down</span
-        >
+        <svg class="h-12 w-12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+        </svg>
       </button>
     </div>
   </div>
 </SectionWrapper>
+
+<style>
+  /* Initial hidden state for intro elements */
+  .intro-animate {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.98) translateY(20px);
+  }
+
+  /* Staggered animations for intro elements */
+  .intro-animate-1 {
+    animation: intro-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
+  }
+
+  .intro-animate-2 {
+    animation: intro-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  }
+
+  .intro-animate-3 {
+    animation: intro-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+  }
+
+  .intro-animate-4 {
+    animation: intro-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  }
+
+  @keyframes intro-fade-in {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+      transform: scale(0.98) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>
