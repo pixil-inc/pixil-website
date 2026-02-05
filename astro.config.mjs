@@ -17,7 +17,11 @@ export default defineConfig({
     assets: '_astro',
   },
   compressHTML: true,
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/estimates/'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
     build: {

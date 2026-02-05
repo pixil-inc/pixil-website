@@ -29,6 +29,7 @@ export function trackEvent(eventName: string, parameters: Record<string, any> = 
 export function trackSection(sectionName: string): void {
   trackEvent('section_view', {
     section_name: sectionName,
+    content_group: sectionName,
     page_title: document.title,
     page_location: window.location.href,
   });
