@@ -146,10 +146,14 @@ jobs:
           # Delete semantic-release branches and test branches
           if [[ "$BRANCH_NAME" =~ ^semantic-release ]] || [[ "$BRANCH_NAME" =~ ^test-release ]]; then
             echo "Deleting branch: $BRANCH_NAME"
-            if git push origin --delete "$BRANCH_NAME" 2>/dev/null; then
+            
+            # Try using gh CLI first (uses GH_TOKEN automatically)
+            if gh api -X DELETE "/repos/${{ github.repository }}/git/refs/heads/$BRANCH_NAME" 2>&1; then
               echo "✅ Deleted branch: $BRANCH_NAME"
             else
-              echo "⚠️ Failed to delete branch or already deleted: $BRANCH_NAME"
+              echo "⚠️ Failed to delete branch: $BRANCH_NAME"
+              echo "Attempting git push delete as fallback..."
+              git push origin --delete "$BRANCH_NAME" 2>&1 || echo "Git push delete also failed"
             fi
           else
             echo "ℹ️ Branch does not match deletion pattern, skipping: $BRANCH_NAME"
