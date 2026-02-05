@@ -1,3 +1,11 @@
+## [1.2.10](https://github.com/pixil-inc/pixil-website/compare/v1.2.9...v1.2.10) (2026-02-05)
+
+### Bug Fixes
+
+- add debug job to diagnose why tag-release workflow is skipped ([2daa1f6](https://github.com/pixil-inc/pixil-website/commit/2daa1f68159e55bdabc3ef607f22325a323955f8))
+- create tag and release directly in release workflow to avoid [skip ci] issue ([9513a3e](https://github.com/pixil-inc/pixil-website/commit/9513a3e9541b98ea35a929a2e85ced7ad93a8682))
+- improve branch deletion with better error handling and fallback ([05b8a90](https://github.com/pixil-inc/pixil-website/commit/05b8a9025396994e3abe9df47307a5ad8638e43d))
+
 ## [1.2.9](https://github.com/pixil-inc/pixil-website/compare/v1.2.8...v1.2.9) (2026-02-05)
 
 ### Bug Fixes
