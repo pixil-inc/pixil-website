@@ -128,3 +128,65 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr merge ${{ steps.create-pr.outputs.pr_url }} --auto --squash
+
+      - name: Wait for PR to Merge
+        if: steps.semantic.outputs.released == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Waiting for PR to merge..."
+          PR_NUMBER="${{ steps.create-pr.outputs.pr_number }}"
+          for i in {1..60}; do
+            STATE=$(gh pr view $PR_NUMBER --json state --jq '.state')
+            if [ "$STATE" = "MERGED" ]; then
+              echo "✅ PR merged successfully"
+              break
+            fi
+            echo "PR state: $STATE (attempt $i/60)"
+            sleep 5
+          done
+
+      - name: Create Tag and Release
+        if: steps.semantic.outputs.released == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Pull latest main to get the merged changes
+          git fetch origin main
+          git checkout main
+          git pull origin main
+
+          VERSION="${{ steps.semantic.outputs.version }}"
+          echo "Creating tag and release for v$VERSION"
+
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create and push tag
+          git tag -a "v$VERSION" -m "Release v$VERSION"
+          git push origin "v$VERSION"
+          echo "✅ Tag v$VERSION created"
+
+          # Extract release notes from CHANGELOG
+          if [ -f "CHANGELOG.md" ]; then
+            awk "/^## \[$VERSION\]/,/^## \[/{print}" CHANGELOG.md | sed '1d;$d' | sed '/^$/d' > release_notes.md
+          else
+            echo "Release v$VERSION" > release_notes.md
+          fi
+
+          echo "Release notes:"
+          cat release_notes.md
+
+          # Create GitHub release
+          gh release create "v$VERSION" \
+            --title "v$VERSION" \
+            --notes-file release_notes.md \
+            --latest
+
+          echo "✅ Release v$VERSION created"
+
+          # Delete the release branch
+          BRANCH="${{ steps.release-branch.outputs.branch }}"
+          gh api -X DELETE "/repos/${{ github.repository }}/git/refs/heads/$BRANCH" || true
+          echo "✅ Deleted branch: $BRANCH"
