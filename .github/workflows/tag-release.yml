@@ -9,6 +9,22 @@ permissions:
   contents: write
 
 jobs:
+  debug:
+    name: Debug PR Event
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show PR Details
+        run: |
+          echo "===== PR EVENT DEBUG ====="
+          echo "PR Number: ${{ github.event.pull_request.number }}"
+          echo "PR Title: '${{ github.event.pull_request.title }}'"
+          echo "PR Merged: ${{ github.event.pull_request.merged }}"
+          echo "PR Base: ${{ github.event.pull_request.base.ref }}"
+          echo "PR Head: ${{ github.event.pull_request.head.ref }}"
+          echo "Title starts with 'chore(release):': ${{ startsWith(github.event.pull_request.title, 'chore(release):') }}"
+          echo "======================="
+
   tag:
     name: Create GitHub Release
     if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'chore(release):')
