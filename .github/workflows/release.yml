@@ -188,5 +188,11 @@ jobs:
 
           # Delete the release branch
           BRANCH="${{ steps.release-branch.outputs.branch }}"
-          gh api -X DELETE "/repos/${{ github.repository }}/git/refs/heads/$BRANCH" || true
-          echo "✅ Deleted branch: $BRANCH"
+          echo "Attempting to delete branch: $BRANCH"
+
+          if gh api -X DELETE "/repos/${{ github.repository }}/git/refs/heads/$BRANCH" 2>&1; then
+            echo "✅ Deleted branch: $BRANCH"
+          else
+            echo "⚠️ Failed to delete via API, trying git push..."
+            git push origin --delete "$BRANCH" 2>&1 || echo "Git push delete also failed"
+          fi
