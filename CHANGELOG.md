@@ -1,3 +1,9 @@
+## [1.2.5](https://github.com/pixil-inc/pixil-website/compare/v1.2.4...v1.2.5) (2026-02-05)
+
+### Bug Fixes
+
+- update README with project branding ([95b6e60](https://github.com/pixil-inc/pixil-website/commit/95b6e604ac4ea11e2dc1c844cfa251eccf05d9f2))
+
 ## [1.2.4](https://github.com/pixil-inc/pixil-website/compare/v1.2.3...v1.2.4) (2026-02-05)
 
 ### Bug Fixes
