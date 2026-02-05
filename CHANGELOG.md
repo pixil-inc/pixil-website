@@ -1,3 +1,17 @@
+## [1.2.7](https://github.com/pixil-inc/pixil-website/compare/v1.2.6...v1.2.7) (2026-02-05)
+
+### Bug Fixes
+
+- add better error handling and logging to release creation ([3cbfd8c](https://github.com/pixil-inc/pixil-website/commit/3cbfd8c580e409052de448b7c306c8d294a02549))
+- ensure branch deletion runs even if release fails and include test branches ([150cf1e](https://github.com/pixil-inc/pixil-website/commit/150cf1e231443a9f7e0cd09056dcf49a59adbc81))
+
+## [1.2.6](https://github.com/pixil-inc/pixil-website/compare/v1.2.5...v1.2.6) (2026-02-05)
+
+### Bug Fixes
+
+- handle existing tags in release workflow ([f677706](https://github.com/pixil-inc/pixil-website/commit/f677706b50c3f4044beda038f7e98e6de6cb7c9f))
+- update commands to use yarn ([b0e4810](https://github.com/pixil-inc/pixil-website/commit/b0e4810ca72e9f8a01ba74de7dd6aee68b565fb1))
+
 ## [1.2.5](https://github.com/pixil-inc/pixil-website/compare/v1.2.4...v1.2.5) (2026-02-05)
 
 ### Bug Fixes
