@@ -88,8 +88,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Creating release for v${{ steps.version.outputs.version }}"
-          echo "Release notes:"
-          echo "${{ steps.notes.outputs.notes }}"
           echo "Repository: ${{ github.repository }}"
 
           # Wait a moment for tag to propagate
@@ -111,18 +109,30 @@ jobs:
             exit 0
           fi
 
-          # Create release with explicit error handling and repo flag
+          # Save release notes to file to avoid shell escaping issues
+          cat > release_notes.md << 'EOF'
+          ${{ steps.notes.outputs.notes }}
+          EOF
+
+          echo "Release notes content:"
+          cat release_notes.md
+
+          # Create release using notes file
           echo "Creating GitHub release..."
           if gh release create "v${{ steps.version.outputs.version }}" \
             --repo "${{ github.repository }}" \
             --title "v${{ steps.version.outputs.version }}" \
-            --notes "${{ steps.notes.outputs.notes }}" \
-            --latest; then
+            --notes-file release_notes.md \
+            --latest 2>&1; then
             echo "✅ Release created successfully"
           else
-            echo "❌ Failed to create release"
-            gh auth status
-            exit 1
+            EXIT_CODE=$?
+            echo "❌ Failed to create release (exit code: $EXIT_CODE)"
+            echo "GitHub CLI auth status:"
+            gh auth status 2>&1 || true
+            echo "Attempting to list recent releases:"
+            gh release list --limit 5 2>&1 || true
+            exit $EXIT_CODE
           fi
 
       - name: Delete Release Branch
