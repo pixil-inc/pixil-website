@@ -1,10 +1,6 @@
-# Astro Starter Kit: Minimal
+# Pixil Website
 
-```sh
-npm create astro@latest -- --template minimal
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Official website for Pixil - built with Astro and deployed on Vercel.
 
 ## 🚀 Project Structure
 
