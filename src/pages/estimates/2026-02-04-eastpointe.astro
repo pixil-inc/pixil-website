@@ -1,0 +1,591 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Logo from '@/components/shared/Logo.astro';
+---
+
+<Layout
+  title="Estimate | Pixil Web Studio"
+  description="Project estimate for Eastpointe"
+  showHeader={false}
+>
+  <head slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+
+  <div class="estimate-page">
+    <div class="page-container">
+      <header class="estimate-header">
+        <div class="brand flex h-14 w-32">
+          <Logo />
+        </div>
+        <div class="estimate-meta">
+          <div class="estimate-label">Date</div>
+          <div class="estimate-id">Feb 05, 2026</div>
+        </div>
+      </header>
+
+      <div class="info-grid">
+        <div class="info-col">
+          <h3>From</h3>
+          <p>
+            <strong>Pixil Web Studio Inc.</strong><br />1367 Lawson St.<br />Innisfil, ON
+            L9S&nbsp;0N8<br />647.613.2189<br />hello@pixil.ca
+          </p>
+        </div>
+        <div class="info-col">
+          <h3>To</h3>
+          <p>
+            <strong>Initi Group</strong>
+            27 Marble Bridge Dr.<br />Richmond Hill, ON<br />L4E&nbsp;4K5<br />647.231.2112
+            initigroup@gmail.com
+          </p>
+        </div>
+      </div>
+
+      <div class="section-title">01. Core Development Scope</div>
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th class="col-desc">Milestone / Deliverable</th>
+            <th class="col-qty">Est. Hrs</th>
+            <th class="col-total">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="item-title">1. Design & Strategy</span>
+              <span class="item-sub"
+                >Research, wireframing, and high-fidelity mockups for 4 core pages (Home, About,
+                Services, Contact).</span
+              >
+            </td>
+            <td class="col-qty">16</td>
+            <td class="col-total">$2,000</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="item-title">2. Architecture & Setup (Next.js/Astro)</span>
+              <span class="item-sub"
+                >Repository initialization, CI/CD pipeline setup (Vercel), SEO foundation, and
+                Global Component Library (Nav, Footer, Typography).</span
+              >
+            </td>
+            <td class="col-qty">12</td>
+            <td class="col-total">$1,500</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="item-title">3. Core Page Development</span>
+              <span class="item-sub"
+                >Frontend coding of Home, About, Services, and Contact pages. Includes responsive
+                logic for Mobile/Tablet.</span
+              >
+            </td>
+            <td class="col-qty">32</td>
+            <td class="col-total">$4,000</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="item-title">4. QA & Deployment</span>
+              <span class="item-sub"
+                >Cross-browser testing, accessibility audit, performance optimization, and final
+                launch.</span
+              >
+            </td>
+            <td class="col-qty">8</td>
+            <td class="col-total">$1,000</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="optional-section">
+        <div class="optional-header">
+          <div class="section-title" style="border: none; margin: 0">02. Optional Add-Ons</div>
+          <span class="badge">Selectable</span>
+        </div>
+        <table class="items-table" style="margin-bottom: 0">
+          <tbody>
+            <tr>
+              <td class="col-desc">
+                <span class="item-title">Feature: Projects/Portfolio Section</span>
+                <span class="item-sub"
+                  >Development of a filtered project index page and a reusable single project detail
+                  layout.</span
+                >
+              </td>
+              <td class="col-qty">10</td>
+              <td class="col-total">$1,250</td>
+            </tr>
+            <tr>
+              <td class="col-desc">
+                <span class="item-title">Integration: Contentful CMS (Headless)</span>
+                <span class="item-sub"
+                  >Setup of Contentful to allow client content editing. Includes content modeling,
+                  API integration, and dynamic routing.</span
+                >
+              </td>
+              <td class="col-qty">20</td>
+              <td class="col-total">$2,500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="optional-section">
+        <div class="optional-header">
+          <div class="section-title" style="border: none; margin: 0">
+            03. Maintenance / Retainer
+          </div>
+          <span class="badge">Optional</span>
+        </div>
+        <p style="margin-bottom: 15px; font-size: 13px; color: #666666; line-height: 1.5">
+          A monthly reservation of 5 hours for maintenance and updates, offered at a preferred rate
+          of $62.50/hr. Unused hours expire at the end of each month. Any additional work required
+          beyond the allocation will continue to be billed at the discounted retainer rate.
+        </p>
+        <table class="items-table" style="margin-bottom: 0">
+          <tbody>
+            <tr>
+              <td class="col-desc">
+                <span class="item-title">Standard Maintenance Retainer</span>
+                <span class="item-sub"
+                  >5 hours/month allocated for content updates, bug fixes, security patches, and
+                  feature enhancements.</span
+                >
+              </td>
+              <td class="col-qty">5 hrs/mo</td>
+              <td class="col-total">$312.50/mo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="recurring-box">
+        <span class="recurring-title">IMPORTANT: Third-Party Recurring Costs</span>
+        <p>
+          <strong>Hosting:</strong> Recommended hosting is <strong>Vercel Pro</strong> at <strong
+            >$20 USD/month</strong
+          >. This is billed directly by the vendor, not Pixil.
+        </p>
+        <p style="margin-top: 10px">
+          <strong>Optional CMS:</strong> If the <strong>Contentful CMS</strong> add-on is selected, the
+          client is responsible for the direct subscription cost to Contentful, currently estimated at
+          <strong>$300 USD/month</strong> (Lite Tier) depending on usage limits. This is billed directly
+          by the vendor, not Pixil.
+        </p>
+      </div>
+
+      <div class="totals-section">
+        <div class="totals-table">
+          <div class="totals-row rate-info">
+            <span>Hourly Rate</span>
+            <span>$125/hr</span>
+          </div>
+
+          <!-- Option 1: Core Development Only -->
+          <div class="totals-row section-header" style="margin-top: 15px; font-weight: 600">
+            <span>Option 1: Core Development Only</span>
+            <span></span>
+          </div>
+          <div class="totals-row">
+            <span>Core Development</span>
+            <span>$8,500.00</span>
+          </div>
+          <div class="totals-row">
+            <span>HST (13%)</span>
+            <span>$1,105.00</span>
+          </div>
+          <div class="totals-row final">
+            <span>Option 1 Total (CAD)</span>
+            <span>$9,605.00</span>
+          </div>
+
+          <!-- Option 2: With Optional Add-Ons -->
+          <div class="totals-row section-header" style="margin-top: 20px; font-weight: 600">
+            <span>Option 2: With Optional Add-Ons</span>
+            <span></span>
+          </div>
+          <div class="totals-row">
+            <span>Core Development</span>
+            <span>$8,500.00</span>
+          </div>
+          <div class="totals-row">
+            <span>Optional Add-ons</span>
+            <span>$3,750.00</span>
+          </div>
+          <div class="totals-row">
+            <span>Subtotal</span>
+            <span>$12,250.00</span>
+          </div>
+          <div class="totals-row">
+            <span>HST (13%)</span>
+            <span>$1,592.50</span>
+          </div>
+          <div class="totals-row final">
+            <span>Option 2 Total (CAD)</span>
+            <span>$13,842.50</span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="estimate-footer">
+        <p style="margin-bottom: 15px">
+          <strong>Terms & Conditions:</strong>
+        </p>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.7">
+          <li style="margin-bottom: 8px">
+            • <strong>Estimate Validity:</strong> This estimate is valid for 30 days from the date above.
+          </li>
+          <li style="margin-bottom: 8px">
+            • <strong>Deposit & Payment:</strong> 40% deposit required to schedule work, 30% at midway
+            mark, and remaining 30% balance due upon project completion before final delivery.
+          </li>
+          <li style="margin-bottom: 8px">
+            • <strong>Revisions:</strong> Assumes (2) rounds of revisions following the initial presentation
+            of each asset included in each deliverable phase. Additional revisions billed at $125/hour.
+          </li>
+          <li style="margin-bottom: 8px">
+            • <strong>Assets & Content:</strong> Any photography, videography, copywriting, or custom
+            asset development is not included in any budget line item above and will be provided in a
+            separate estimate as required. Client is responsible for providing all necessary content,
+            images, and materials.
+          </li>
+          <li style="margin-bottom: 8px">
+            • <strong>Out of Scope:</strong> Any requirements outside those described above will be estimated
+            separately at $125/hour.
+          </li>
+          <li style="margin-bottom: 8px">
+            • <strong>Currency:</strong> All costs are in Canadian dollars (CAD) before applicable taxes.
+          </li>
+          <li style="margin-bottom: 8px">
+            • <strong>Intellectual Property:</strong> Full source code and design files transferred to
+            client upon final payment. Pixil retains the right to showcase the project in portfolios and
+            case studies.
+          </li>
+          <li style="margin-bottom: 8px">
+            • <strong>Post-Launch Support:</strong> 30 days of complimentary bug fixes and minor adjustments
+            included. Ongoing support and maintenance available upon request.
+          </li>
+        </ul>
+      </footer>
+    </div>
+  </div>
+  <div class="no-print my-8 text-center">
+    <button
+      onclick="window.print()"
+      class="cursor-pointer rounded border-none bg-black px-5 py-2.5 font-semibold text-white transition-colors hover:bg-gray-800"
+    >
+      Download PDF
+    </button>
+  </div>
+</Layout>
+
+<style>
+  .estimate-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .page-container {
+    background: white;
+    padding: 60px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+  }
+
+  /* Header */
+  .estimate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #666666;
+    padding-bottom: 20px;
+  }
+
+  .brand h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+
+  .estimate-meta {
+    text-align: right;
+  }
+
+  .estimate-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666666;
+    margin-bottom: 2px;
+  }
+
+  .estimate-id {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+  }
+
+  /* Grid Info */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+
+  .info-col h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666666;
+    margin-bottom: 8px;
+  }
+
+  .info-col p {
+    font-size: 14px;
+    white-space: pre-line;
+    color: #1a1a1a;
+  }
+
+  /* Tables */
+  .section-title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e5e5e5;
+    color: #1a1a1a;
+  }
+
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+  }
+
+  .items-table th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #666666;
+    padding: 10px 0;
+    font-weight: 600;
+  }
+
+  .items-table td {
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    font-size: 14px;
+    color: #1a1a1a;
+  }
+
+  .items-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .col-desc {
+    width: 75%;
+    padding-right: 20px;
+  }
+
+  .col-qty {
+    width: 10%;
+    text-align: center;
+  }
+
+  .col-total {
+    width: 15%;
+    text-align: right;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .item-title {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    color: #1a1a1a;
+  }
+
+  .item-sub {
+    color: #666666;
+    font-size: 13px;
+    display: block;
+    line-height: 1.4;
+  }
+
+  /* Optional Section Styling */
+  .optional-section {
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px dashed #e5e5e5;
+    margin-bottom: 40px;
+  }
+
+  .optional-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .badge {
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Totals */
+  .totals-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 50px;
+  }
+
+  .totals-table {
+    width: 300px;
+  }
+
+  .totals-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #1a1a1a;
+  }
+  .totals-row.rate-info {
+    font-size: 12px;
+    color: #666666;
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .totals-row.rate-info {
+    font-size: 12px;
+    color: #666666;
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .totals-row.final {
+    border-top: 2px solid #1a1a1a;
+    margin-top: 10px;
+    padding-top: 15px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  /* Recurring Costs Box */
+  .recurring-box {
+    background-color: #fff0f0;
+    border-left: 4px solid #d32f2f;
+    padding: 15px;
+    margin-bottom: 40px;
+    font-size: 13px;
+  }
+
+  .recurring-title {
+    font-weight: 700;
+    color: #d32f2f;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .estimate-footer {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 30px;
+    font-size: 12px;
+    color: #666666;
+  }
+
+  @media print {
+    :global(body) {
+      background: white;
+      padding: 0;
+    }
+
+    :global(header),
+    :global(main > :not(.estimate-page)),
+    :global(footer) {
+      display: none !important;
+    }
+
+    .estimate-page {
+      padding: 0;
+      max-width: 100%;
+    }
+
+    .page-container {
+      box-shadow: none;
+      max-width: 100%;
+      padding: 40px;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+
+    .recurring-box {
+      background-color: #fafafa;
+      border-left-color: #000;
+      color: #000;
+    }
+  }
+  /* 
+  @media (max-width: 768px) {
+    .page-container {
+      padding: 40px 30px;
+    }
+
+    .estimate-header {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .estimate-meta {
+      text-align: left;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .items-table {
+      font-size: 12px;
+    }
+
+    .col-desc {
+      width: 100%;
+      display: block;
+      padding-right: 0;
+    }
+
+    .col-qty,
+    .col-price,
+    .col-total {
+      display: none;
+    }
+
+    .items-table td {
+      display: block;
+      padding: 10px 0;
+    }
+  } */
+</style>

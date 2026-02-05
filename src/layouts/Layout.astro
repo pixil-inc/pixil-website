@@ -7,12 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   showHeaderCTA?: boolean;
+  showHeader?: boolean;
 }
 
 const {
   title = 'Pixil Web Studio Inc.',
   description = 'Digital Excellence. Down to the last Pixil.',
   showHeaderCTA = true,
+  showHeader = true,
 } = Astro.props;
 ---
 
@@ -61,8 +63,8 @@ const {
     >
     <!-- End Google Tag Manager (noscript) -->
 
-    <Header showHeaderCTA={showHeaderCTA} />
-    <main id="main-content" role="main" class="pt-32 pb-20">
+    {showHeader && <Header showHeaderCTA={showHeaderCTA} />}
+    <main id="main-content" role="main" class={`pb-20 ${showHeader ? 'pt-32' : 'pt-6'}`}>
       <slot />
     </main>
     <Footer />
