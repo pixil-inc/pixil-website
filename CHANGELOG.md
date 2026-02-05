@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/pixil-inc/pixil-website/compare/v1.2.1...v1.2.2) (2026-02-05)
+
+### Bug Fixes
+
+- added estimates ([88372c9](https://github.com/pixil-inc/pixil-website/commit/88372c98940cf6030656cf132e90d178660cf613))
+- remove persist ([1285f19](https://github.com/pixil-inc/pixil-website/commit/1285f19714d7cca3c579f800161ccee3258cb4aa))
+- revert release.yml ([130cb2f](https://github.com/pixil-inc/pixil-website/commit/130cb2f593d1cc426ff2b6740ecb8d643a2ddd35))
+- update release ([9d514b6](https://github.com/pixil-inc/pixil-website/commit/9d514b67d0438c798c980ebbce50b6f7b02a517b))
+
 ## [1.2.1](https://github.com/pixil-inc/pixil-website/compare/v1.2.0...v1.2.1) (2026-01-18)
 
 ### Bug Fixes
