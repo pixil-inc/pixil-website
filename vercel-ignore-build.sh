@@ -10,10 +10,22 @@ if [[ "$VERCEL_GIT_COMMIT_REF" =~ ^semantic-release ]]; then
   exit 0
 fi
 
-# Always build main/master branches
-if [[ "$VERCEL_GIT_COMMIT_REF" == "main" ]] || [[ "$VERCEL_GIT_COMMIT_REF" == "master" ]]; then
-  echo "✅ Building main branch"
-  exit 1
+# Check if commit message contains "chore" (case insensitive)
+if [[ "$VERCEL_GIT_COMMIT_MESSAGE" =~ ^[Cc]hore.*version.*bump ]]; then
+  echo "⏭️  Skipping build: Version bump commit detected"
+  exit 0
+fi
+
+# Check for other chore patterns you want to skip
+if [[ "$VERCEL_GIT_COMMIT_MESSAGE" =~ ^[Cc]hore.* ]]; then
+  echo "⏭️  Skipping build: Chore commit detected"
+  exit 0
+fi
+
+# Check for specific patterns like semantic-release
+if [[ "$VERCEL_GIT_COMMIT_MESSAGE" =~ ^chore\(release\): ]]; then
+  echo "⏭️  Skipping build: Release commit detected"
+  exit 0
 fi
 
 echo "✅ Proceeding with build"
