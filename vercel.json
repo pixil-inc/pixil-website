@@ -1,0 +1,13 @@
+{
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "master": true
+    }
+  },
+  "github": {
+    "silent": true,
+    "autoAlias": false
+  },
+  "ignoreCommand": "bash vercel-ignore-build.sh"
+}
