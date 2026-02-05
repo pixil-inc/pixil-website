@@ -118,11 +118,21 @@ jobs:
           fi
 
       - name: Delete Release Branch
+        if: always()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
-          if [[ "$BRANCH_NAME" =~ ^semantic-release ]]; then
-            git push origin --delete "$BRANCH_NAME" || true
-            echo "Deleted branch: $BRANCH_NAME"
+          echo "Checking branch: $BRANCH_NAME"
+
+          # Delete semantic-release branches and test branches
+          if [[ "$BRANCH_NAME" =~ ^semantic-release ]] || [[ "$BRANCH_NAME" =~ ^test-release ]]; then
+            echo "Deleting branch: $BRANCH_NAME"
+            if git push origin --delete "$BRANCH_NAME" 2>/dev/null; then
+              echo "✅ Deleted branch: $BRANCH_NAME"
+            else
+              echo "⚠️ Failed to delete branch or already deleted: $BRANCH_NAME"
+            fi
+          else
+            echo "ℹ️ Branch does not match deletion pattern, skipping: $BRANCH_NAME"
           fi
