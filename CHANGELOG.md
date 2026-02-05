@@ -1,3 +1,10 @@
+## [1.2.12](https://github.com/pixil-inc/pixil-website/compare/v1.2.11...v1.2.12) (2026-02-05)
+
+### Bug Fixes
+
+- allow Vercel to deploy main branch regardless of commit message ([6b30d82](https://github.com/pixil-inc/pixil-website/commit/6b30d823e2a7b13ddc29ccc4182bd049ab1a80c8))
+- enable GitHub deployment status updates from Vercel ([f299b96](https://github.com/pixil-inc/pixil-website/commit/f299b9699858ba2a4124368cd1ea9bd1544a432a))
+
 ## [1.2.11](https://github.com/pixil-inc/pixil-website/compare/v1.2.10...v1.2.11) (2026-02-05)
 
 ### Bug Fixes
