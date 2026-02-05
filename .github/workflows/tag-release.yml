@@ -41,8 +41,19 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Check if tag already exists
+          if git rev-parse "v${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "⚠️ Tag v${{ steps.version.outputs.version }} already exists"
+            # Delete the old tag locally and remotely to recreate on correct commit
+            git tag -d "v${{ steps.version.outputs.version }}" || true
+            git push origin --delete "v${{ steps.version.outputs.version }}" || true
+            echo "Deleted existing tag to recreate on correct commit"
+          fi
+
           git tag -a "v${{ steps.version.outputs.version }}" -m "Release v${{ steps.version.outputs.version }}"
           git push origin "v${{ steps.version.outputs.version }}"
+          echo "✅ Tag created on commit $(git rev-parse HEAD)"
 
       - name: Extract Release Notes
         id: notes
@@ -78,6 +89,12 @@ jobs:
 
           # Wait a moment for tag to propagate
           sleep 2
+
+          # Check if release already exists
+          if gh release view "v${{ steps.version.outputs.version }}" &>/dev/null; then
+            echo "⚠️ Release v${{ steps.version.outputs.version }} already exists, skipping"
+            exit 0
+          fi
 
           # Create release
           gh release create "v${{ steps.version.outputs.version }}" \
