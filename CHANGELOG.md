@@ -1,3 +1,9 @@
+## [1.2.4](https://github.com/pixil-inc/pixil-website/compare/v1.2.3...v1.2.4) (2026-02-05)
+
+### Bug Fixes
+
+- release failure ([0659886](https://github.com/pixil-inc/pixil-website/commit/06598862b0da1d07511f5a012ffeaab46f506e4d))
+
 ## [1.2.3](https://github.com/pixil-inc/pixil-website/compare/v1.2.2...v1.2.3) (2026-02-05)
 
 ### Bug Fixes
