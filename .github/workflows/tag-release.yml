@@ -25,6 +25,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -84,13 +85,18 @@ jobs:
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Creating release for v${{ steps.version.outputs.version }}"
           echo "Release notes:"
           echo "${{ steps.notes.outputs.notes }}"
+          echo "Repository: ${{ github.repository }}"
 
           # Wait a moment for tag to propagate
           sleep 5
+
+          # Fetch tags to ensure we have the latest
+          git fetch --tags --force
 
           # Verify tag exists
           if ! git rev-parse "v${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
@@ -105,15 +111,17 @@ jobs:
             exit 0
           fi
 
-          # Create release with explicit error handling
+          # Create release with explicit error handling and repo flag
           echo "Creating GitHub release..."
           if gh release create "v${{ steps.version.outputs.version }}" \
+            --repo "${{ github.repository }}" \
             --title "v${{ steps.version.outputs.version }}" \
             --notes "${{ steps.notes.outputs.notes }}" \
             --latest; then
             echo "✅ Release created successfully"
           else
             echo "❌ Failed to create release"
+            gh auth status
             exit 1
           fi
 
