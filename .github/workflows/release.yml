@@ -120,10 +120,3 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr merge ${{ steps.create-pr.outputs.pr_url }} --auto --squash
-
-      - name: Approve PR
-        if: steps.semantic.outputs.released == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr review ${{ steps.create-pr.outputs.pr_url }} --approve

@@ -14,6 +14,12 @@ jobs:
     if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'chore(release):')
     runs-on: ubuntu-latest
     steps:
+      - name: Debug PR Info
+        run: |
+          echo "PR Title: ${{ github.event.pull_request.title }}"
+          echo "PR Merged: ${{ github.event.pull_request.merged }}"
+          echo "PR Number: ${{ github.event.pull_request.number }}"
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -42,7 +48,24 @@ jobs:
         id: notes
         run: |
           VERSION="${{ steps.version.outputs.version }}"
-          NOTES=$(awk "/^## \[$VERSION\]/,/^## \[/" CHANGELOG.md | sed '1d;$d' | sed '/^$/d')
+          echo "Extracting release notes for version $VERSION"
+
+          # Check if CHANGELOG.md exists and has content
+          if [ ! -f "CHANGELOG.md" ]; then
+            echo "CHANGELOG.md not found"
+            echo "notes=Automated release v$VERSION" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Extract notes between the current version and the next version header
+          NOTES=$(awk "/^## \[$VERSION\]/,/^## \[/{print}" CHANGELOG.md | sed '1d;$d' | sed '/^$/d')
+
+          # If no notes found, use a default message
+          if [ -z "$NOTES" ]; then
+            echo "No release notes found in CHANGELOG.md"
+            NOTES="Automated release v$VERSION"
+          fi
+
           echo "notes<<EOF" >> $GITHUB_OUTPUT
           echo "$NOTES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -51,6 +74,25 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          echo "Creating release for v${{ steps.version.outputs.version }}"
+
+          # Wait a moment for tag to propagate
+          sleep 2
+
+          # Create release
           gh release create "v${{ steps.version.outputs.version }}" \
             --title "v${{ steps.version.outputs.version }}" \
-            --notes "${{ steps.notes.outputs.notes }}"
+            --notes "${{ steps.notes.outputs.notes }}" \
+            --latest
+
+          echo "✅ Release created successfully"
+
+      - name: Delete Release Branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+          if [[ "$BRANCH_NAME" =~ ^semantic-release ]]; then
+            git push origin --delete "$BRANCH_NAME" || true
+            echo "Deleted branch: $BRANCH_NAME"
+          fi
