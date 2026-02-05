@@ -82,7 +82,19 @@ jobs:
           GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
         run: |
           yarn semantic-release --no-ci
-          echo "released=$(git diff --quiet origin/main || echo 'true')" >> $GITHUB_OUTPUT
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          if git diff --quiet origin/main; then
+            echo "released=false" >> $GITHUB_OUTPUT
+          else
+            echo "released=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit Changes
+        if: steps.semantic.outputs.released == 'true'
+        run: |
+          git add CHANGELOG.md package.json
+          git commit -m "chore(release): ${{ steps.semantic.outputs.version }} [skip ci]"
 
       - name: Push Release Branch
         if: steps.semantic.outputs.released == 'true'
