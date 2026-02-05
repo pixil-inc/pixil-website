@@ -86,23 +86,36 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Creating release for v${{ steps.version.outputs.version }}"
+          echo "Release notes:"
+          echo "${{ steps.notes.outputs.notes }}"
 
           # Wait a moment for tag to propagate
-          sleep 2
+          sleep 5
+
+          # Verify tag exists
+          if ! git rev-parse "v${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "❌ Tag v${{ steps.version.outputs.version }} does not exist!"
+            exit 1
+          fi
+          echo "✅ Tag v${{ steps.version.outputs.version }} verified"
 
           # Check if release already exists
-          if gh release view "v${{ steps.version.outputs.version }}" &>/dev/null; then
+          if gh release view "v${{ steps.version.outputs.version }}" 2>/dev/null; then
             echo "⚠️ Release v${{ steps.version.outputs.version }} already exists, skipping"
             exit 0
           fi
 
-          # Create release
-          gh release create "v${{ steps.version.outputs.version }}" \
+          # Create release with explicit error handling
+          echo "Creating GitHub release..."
+          if gh release create "v${{ steps.version.outputs.version }}" \
             --title "v${{ steps.version.outputs.version }}" \
             --notes "${{ steps.notes.outputs.notes }}" \
-            --latest
-
-          echo "✅ Release created successfully"
+            --latest; then
+            echo "✅ Release created successfully"
+          else
+            echo "❌ Failed to create release"
+            exit 1
+          fi
 
       - name: Delete Release Branch
         env:
