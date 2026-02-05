@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/pixil-inc/pixil-website/compare/v1.2.5...v1.2.6) (2026-02-05)
+
+### Bug Fixes
+
+- handle existing tags in release workflow ([f677706](https://github.com/pixil-inc/pixil-website/commit/f677706b50c3f4044beda038f7e98e6de6cb7c9f))
+- update commands to use yarn ([b0e4810](https://github.com/pixil-inc/pixil-website/commit/b0e4810ca72e9f8a01ba74de7dd6aee68b565fb1))
+
 ## [1.2.5](https://github.com/pixil-inc/pixil-website/compare/v1.2.4...v1.2.5) (2026-02-05)
 
 ### Bug Fixes
