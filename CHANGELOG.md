@@ -1,3 +1,9 @@
+## [1.2.14](https://github.com/pixil-inc/pixil-website/compare/v1.2.13...v1.2.14) (2026-02-05)
+
+### Bug Fixes
+
+- update eastpointe estimate ([3c3fa99](https://github.com/pixil-inc/pixil-website/commit/3c3fa99b32e1610756cb0e3d11755635cd587e97))
+
 ## [1.2.13](https://github.com/pixil-inc/pixil-website/compare/v1.2.12...v1.2.13) (2026-02-05)
 
 ### Bug Fixes
