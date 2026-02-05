@@ -1,3 +1,20 @@
+## [1.2.1](https://github.com/pixil-inc/pixil-website/compare/v1.2.0...v1.2.1) (2026-01-18)
+
+### Bug Fixes
+
+- optimizations ([6319541](https://github.com/pixil-inc/pixil-website/commit/6319541cf35fed006677fa08a313d78c5d04d937))
+
+# [1.2.0](https://github.com/pixil-inc/pixil-website/compare/v1.1.0...v1.2.0) (2026-01-14)
+
+### Bug Fixes
+
+- 404 ([8ebd5e1](https://github.com/pixil-inc/pixil-website/commit/8ebd5e18a78084b8c4913dbdae02c93cfae78836))
+- add sitemap ([af68cb0](https://github.com/pixil-inc/pixil-website/commit/af68cb05ce0ca6a8ef7bd8a25cfd42ad6c88a364))
+
+### Features
+
+- address github review ([0b95f3e](https://github.com/pixil-inc/pixil-website/commit/0b95f3e83d6680bc517c34c09c45acd836774ae9))
+
 # [1.1.0](https://github.com/pixil-inc/pixil-website/compare/v1.0.13...v1.1.0) (2026-01-13)
 
 ### Features
