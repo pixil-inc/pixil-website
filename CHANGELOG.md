@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/pixil-inc/pixil-website/compare/v1.2.2...v1.2.3) (2026-02-05)
+
+### Bug Fixes
+
+- added automatic semantic branch release ([f1aed34](https://github.com/pixil-inc/pixil-website/commit/f1aed3434f33ce34a023c032f91c761d400a5cb5))
+- attempt to fix auto release ([07c744a](https://github.com/pixil-inc/pixil-website/commit/07c744af62982d8304a817a21018f8b706f83592))
+
 ## [1.2.2](https://github.com/pixil-inc/pixil-website/compare/v1.2.1...v1.2.2) (2026-02-05)
 
 ### Bug Fixes
