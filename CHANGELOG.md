@@ -1,3 +1,9 @@
+## [1.2.13](https://github.com/pixil-inc/pixil-website/compare/v1.2.12...v1.2.13) (2026-02-05)
+
+### Bug Fixes
+
+- skip chore commits to prevent duplicate deployments ([3b5f3d2](https://github.com/pixil-inc/pixil-website/commit/3b5f3d222c4b7418478ec12b15f65e964059db77))
+
 ## [1.2.12](https://github.com/pixil-inc/pixil-website/compare/v1.2.11...v1.2.12) (2026-02-05)
 
 ### Bug Fixes
