@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/pixil-inc/pixil-website/compare/v1.2.8...v1.2.9) (2026-02-05)
+
+### Bug Fixes
+
+- use GitHub API to delete branches with proper authentication ([1f64843](https://github.com/pixil-inc/pixil-website/commit/1f64843a2dde8277bfc531e8c2e888f5ee4a4970))
+- use notes file instead of inline notes to avoid shell escaping issues ([f556b65](https://github.com/pixil-inc/pixil-website/commit/f556b6598d1b5c4324ae9213f20f449dcf70fed5))
+
 ## [1.2.8](https://github.com/pixil-inc/pixil-website/compare/v1.2.7...v1.2.8) (2026-02-05)
 
 ### Bug Fixes
