@@ -2,6 +2,12 @@
 
 echo "🔍 Checking if build should be skipped..."
 
+# Skip builds for semantic-release branches
+if [[ "$VERCEL_GIT_COMMIT_REF" =~ ^semantic-release ]]; then
+  echo "⏭️  Skipping build: Semantic-release branch detected"
+  exit 0
+fi
+
 # Check if commit message contains "chore" (case insensitive)
 if [[ "$VERCEL_GIT_COMMIT_MESSAGE" =~ ^[Cc]hore.*version.*bump ]]; then
   echo "⏭️  Skipping build: Version bump commit detected"

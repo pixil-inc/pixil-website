@@ -13,6 +13,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
@@ -40,7 +41,58 @@ jobs:
       - name: Format Check
         run: yarn format:check
 
-      - name: Release
+      - name: Setup Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create Release Branch
+        id: release-branch
+        run: |
+          BRANCH_NAME="semantic-release-$(date +%s)"
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          git checkout -b $BRANCH_NAME
+
+      - name: Run Semantic Release
+        id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+        run: |
+          yarn semantic-release --no-ci
+          echo "released=$(git diff --quiet origin/main || echo 'true')" >> $GITHUB_OUTPUT
+
+      - name: Push Release Branch
+        if: steps.semantic.outputs.released == 'true'
+        run: |
+          git push origin ${{ steps.release-branch.outputs.branch }}
+
+      - name: Create Pull Request
+        if: steps.semantic.outputs.released == 'true'
+        id: create-pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_URL=$(gh pr create \
+            --title "chore(release): automated version bump" \
+            --body "Automated release created by semantic-release" \
+            --base main \
+            --head ${{ steps.release-branch.outputs.branch }})
+          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
+
+      - name: Enable Auto-merge
+        if: steps.semantic.outputs.released == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge ${{ steps.create-pr.outputs.pr_url }} --auto --squash
+
+      - name: Approve PR
+        if: steps.semantic.outputs.released == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr review ${{ steps.create-pr.outputs.pr_url }} --approve
