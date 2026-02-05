@@ -1,3 +1,9 @@
+## [1.2.11](https://github.com/pixil-inc/pixil-website/compare/v1.2.10...v1.2.11) (2026-02-05)
+
+### Bug Fixes
+
+- handle existing tags by deleting and recreating them ([3477d4b](https://github.com/pixil-inc/pixil-website/commit/3477d4b7514ab62f65b077076f49cfd6d35a06ac))
+
 ## [1.2.10](https://github.com/pixil-inc/pixil-website/compare/v1.2.9...v1.2.10) (2026-02-05)
 
 ### Bug Fixes
