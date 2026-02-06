@@ -1,3 +1,9 @@
+## [1.2.15](https://github.com/pixil-inc/pixil-website/compare/v1.2.14...v1.2.15) (2026-02-06)
+
+### Bug Fixes
+
+- revise est padding mobile ([7fa7901](https://github.com/pixil-inc/pixil-website/commit/7fa790120804b1adebd3a1817cb9a97be5ba504b))
+
 ## [1.2.14](https://github.com/pixil-inc/pixil-website/compare/v1.2.13...v1.2.14) (2026-02-05)
 
 ### Bug Fixes
