@@ -36,35 +36,6 @@ const {
     <link href="/fonts/Inter-600.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
     <link href="/fonts/Inter-400.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
 
-    <!-- Inline critical CSS for above-the-fold content -->
-    <style is:inline>
-      body {
-        margin: 0;
-        background-color: #f9f7f4;
-        color: #1a1a1a;
-        font-family:
-          Inter,
-          system-ui,
-          -apple-system,
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      .skip-link {
-        position: absolute;
-        left: -9999px;
-        z-index: 999;
-        padding: 1em;
-        background-color: #000;
-        color: #fff;
-        text-decoration: none;
-      }
-      .skip-link:focus {
-        left: 50%;
-        transform: translateX(-50%);
-        top: 0;
-      }
-    </style>
-
     <!-- Google Tag Manager -->
     <script is:inline>
       (function (w, d, s, l, i) {
@@ -100,47 +71,33 @@ const {
     </main>
     <Footer />
 
-    <!-- Defer non-critical scripts to improve LCP -->
     <script>
-      // Defer analytics and animations until after page load
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeNonCriticalScripts);
-      } else {
-        // DOMContentLoaded already fired
-        initializeNonCriticalScripts();
-      }
+      import { trackSection, trackButton, trackPageView } from '@/utils/analytics';
+      import {
+        createScrollObserver,
+        handleScrollAnimation,
+        observeAnimations,
+        setupAnimationFallback,
+      } from '@/utils/observers';
 
-      function initializeNonCriticalScripts() {
-        // Use requestIdleCallback to run after main thread is free
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadTracking);
-        } else {
-          // Fallback for browsers without requestIdleCallback
-          setTimeout(loadTracking, 1);
-        }
-      }
+      // Create observer with custom callback for animations + tracking
+      const observer = createScrollObserver((entry) => {
+        handleScrollAnimation(entry);
 
-      async function loadTracking() {
-        const { trackSection, trackButton, trackPageView } = await import('@/utils/analytics');
-        const { createScrollObserver, handleScrollAnimation, observeAnimations, setupAnimationFallback } =
-          await import('@/utils/observers');
-
-        // Create observer with custom callback for animations + tracking
-        const observer = createScrollObserver((entry) => {
-          handleScrollAnimation(entry);
-
-          // Section tracking - track when sections come into view
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.id;
-            if (sectionId) {
-              const mainSections = ['intro', 'services', 'about-us', 'why-us', 'get-in-touch'];
-              if (mainSections.includes(sectionId)) {
-                trackSection(sectionId);
-              }
+        // Section tracking - track when sections come into view
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          if (sectionId) {
+            const mainSections = ['intro', 'services', 'about-us', 'why-us', 'get-in-touch'];
+            if (mainSections.includes(sectionId)) {
+              trackSection(sectionId);
             }
           }
-        });
+        }
+      });
 
+      // Wait for DOM to be ready, then observe elements
+      document.addEventListener('DOMContentLoaded', function () {
         const elementsToAnimate = document.querySelectorAll('.scroll-hidden, .fade-up-hidden');
 
         // Observe animations
@@ -167,10 +124,11 @@ const {
 
         // Fallback animation after 3 seconds
         setupAnimationFallback(elementsToAnimate, 3000);
-      }
+      });
 
-      // General smooth scroll utility for site-wide use (keep synchronous for immediate use)
+      // General smooth scroll utility for site-wide use
       function initSmoothScroll() {
+        // Handle all elements with data-scroll-to attribute
         const scrollElements = document.querySelectorAll('[data-scroll-to]');
 
         scrollElements.forEach((element) => {
@@ -192,7 +150,7 @@ const {
         });
       }
 
-      // Initialize smooth scroll immediately (needed for navigation)
+      // Initialize smooth scroll
       initSmoothScroll();
     </script>
   </body>
