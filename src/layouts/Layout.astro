@@ -8,6 +8,8 @@ interface Props {
   description?: string;
   showHeaderCTA?: boolean;
   showHeader?: boolean;
+  noIndex?: boolean;
+  noFollow?: boolean;
 }
 
 const {
@@ -15,6 +17,7 @@ const {
   description = 'Digital Excellence. Down to the last Pixil.',
   showHeaderCTA = true,
   showHeader = true,
+  noFollow = false,
 } = Astro.props;
 ---
 
@@ -26,6 +29,7 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    {noFollow && <meta name="robots" content="noindex, nofollow" />}
     <title>{title}</title>
 
     <!-- Critical font preloads - load immediately for better CWV -->
@@ -47,9 +51,7 @@ const {
     </script>
   </head>
 
-  <body
-    class="bg-oatmeal text-primary font-sans antialiased selection:bg-black selection:text-white"
-  >
+  <body class="bg-oatmeal text-primary font-sans antialiased selection:bg-black selection:text-white">
     <!-- Skip link for keyboard navigation -->
     <a href="#main-content" class="skip-link"> Skip to main content </a>
 
@@ -102,21 +104,16 @@ const {
         observeAnimations(elementsToAnimate, observer);
 
         // Also observe main sections for tracking
-        const mainSections = document.querySelectorAll(
-          '#intro, #services, #about-us, #why-us, #get-in-touch'
-        );
+        const mainSections = document.querySelectorAll('#intro, #services, #about-us, #why-us, #get-in-touch');
         mainSections.forEach((section) => {
           observer.observe(section);
         });
 
         // Set up button click tracking
-        const trackableButtons = document.querySelectorAll(
-          'button, a[role="button"], .btn, [data-track-button]'
-        );
+        const trackableButtons = document.querySelectorAll('button, a[role="button"], .btn, [data-track-button]');
         trackableButtons.forEach((button) => {
           button.addEventListener('click', (e) => {
-            const buttonText =
-              button.textContent?.trim() || button.getAttribute('aria-label') || 'Unknown Button';
+            const buttonText = button.textContent?.trim() || button.getAttribute('aria-label') || 'Unknown Button';
             const buttonType = button.tagName.toLowerCase() === 'a' ? 'link' : 'button';
             trackButton(buttonText, buttonType);
           });

@@ -1,0 +1,38 @@
+---
+import Logo from '@/components/shared/Logo.astro';
+import type { Client } from '@/types';
+
+interface Props {
+  date: string;
+  client: Client;
+}
+
+const { date, client } = Astro.props;
+---
+
+<header class="estimate-header">
+  <div class="brand flex h-14 w-32">
+    <Logo />
+  </div>
+  <div class="estimate-meta">
+    <div class="estimate-id">{date}</div>
+  </div>
+</header>
+
+<div class="info-grid">
+  <div class="info-col">
+    <h3>From</h3>
+    <p>
+      <strong>Pixil Web Studio Inc.</strong><br />1367 Lawson St.<br />Innisfil, ON L9S&nbsp;0N8<br />647.613.2189<br
+      />hello@pixil.ca
+    </p>
+  </div>
+  <div class="info-col">
+    <h3>To</h3>
+    <p>
+      <strong>{client.name}</strong><br />{client.address1}<br />{client.address2}<br />{client.phone}<br />{
+        client.email
+      }
+    </p>
+  </div>
+</div>
