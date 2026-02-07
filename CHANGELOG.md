@@ -1,3 +1,9 @@
+## [1.2.19](https://github.com/pixil-inc/pixil-website/compare/v1.2.18...v1.2.19) (2026-02-07)
+
+### Bug Fixes
+
+- added prop to Client ([53bbfa5](https://github.com/pixil-inc/pixil-website/commit/53bbfa53f4aa17117c9d15f0278906d0d36d8c19))
+
 ## [1.2.18](https://github.com/pixil-inc/pixil-website/compare/v1.2.17...v1.2.18) (2026-02-07)
 
 ### Bug Fixes
