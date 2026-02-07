@@ -1,3 +1,10 @@
+## [1.2.16](https://github.com/pixil-inc/pixil-website/compare/v1.2.15...v1.2.16) (2026-02-07)
+
+### Bug Fixes
+
+- added specified estimate ([cbc415f](https://github.com/pixil-inc/pixil-website/commit/cbc415fa616a3bf6c81060912dad3b00a86232b7))
+- update specified date ([8aabfdf](https://github.com/pixil-inc/pixil-website/commit/8aabfdfd9a30d0f8c1708e9b15ae5a40ea3f2c2a))
+
 ## [1.2.15](https://github.com/pixil-inc/pixil-website/compare/v1.2.14...v1.2.15) (2026-02-06)
 
 ### Bug Fixes
