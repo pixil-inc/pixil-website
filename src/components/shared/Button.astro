@@ -12,16 +12,7 @@ interface Props {
   animate?: boolean;
 }
 
-const {
-  id,
-  style,
-  type,
-  href,
-  scrollTo,
-  size = 'lg',
-  class: additionalClass,
-  animate = true,
-} = Astro.props;
+const { id, style, type, href, scrollTo, size = 'lg', class: additionalClass, animate = true } = Astro.props;
 
 const baseClass = `group inline-flex text-${size} items-center ${animate ? 'scroll-hidden' : ''} rounded-full px-8 py-4 justify-center hover:cursor-pointer`;
 

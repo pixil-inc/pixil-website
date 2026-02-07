@@ -28,9 +28,7 @@ try {
 
 // Replace fill colors with currentColor and add/update class
 if (svgContent) {
-  svgContent = svgContent
-    .replace(/fill="[^"]*"/g, 'fill="currentColor"')
-    .replace(/<svg/, `<svg class="${className}"`);
+  svgContent = svgContent.replace(/fill="[^"]*"/g, 'fill="currentColor"').replace(/<svg/, `<svg class="${className}"`);
 }
 ---
 

@@ -5,17 +5,12 @@ import Button from '@/components/shared/Button.astro';
 
 <SectionWrapper id="get-in-touch" classNames="px-6 py-0">
   <div class="mx-auto max-w-7xl space-y-24">
-    <div
-      class="bg-primary text-oatmeal relative overflow-hidden rounded-[3rem] p-12 text-center lg:p-32"
-    >
+    <div class="bg-primary text-oatmeal relative overflow-hidden rounded-[3rem] p-12 text-center lg:p-32">
       <div class="relative z-10">
-        <h2 class="mb-8 text-4xl font-medium md:text-5xl">
-          Let’s build something exceptional together.
-        </h2>
+        <h2 class="mb-8 text-4xl font-medium md:text-5xl">Let’s build something exceptional together.</h2>
         <p class="mx-auto mb-12 max-w-2xl text-xl font-light text-white/70 md:text-xl">
-          Whether you have a detailed roadmap or just a spark of an idea, we’d love to hear about
-          it. No high-pressure sales tactics—just a friendly conversation about your goals and how
-          we can bring them to life.
+          Whether you have a detailed roadmap or just a spark of an idea, we’d love to hear about it. No high-pressure
+          sales tactics—just a friendly conversation about your goals and how we can bring them to life.
         </p>
 
         <!-- Contact Buttons -->
@@ -31,9 +26,7 @@ import Button from '@/components/shared/Button.astro';
           <form class="space-y-6 text-left" novalidate>
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <label class="mb-2 block text-sm font-medium text-white/90" for="name">
-                  Name *
-                </label>
+                <label class="mb-2 block text-sm font-medium text-white/90" for="name"> Name * </label>
                 <div class="relative">
                   <input
                     class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
@@ -50,9 +43,7 @@ import Button from '@/components/shared/Button.astro';
                 </div>
               </div>
               <div>
-                <label class="mb-2 block text-sm font-medium text-white/90" for="email">
-                  Email Address *
-                </label>
+                <label class="mb-2 block text-sm font-medium text-white/90" for="email"> Email Address * </label>
                 <div class="relative">
                   <input
                     class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white transition-all placeholder:text-white/50 focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:outline-none"
@@ -339,11 +330,7 @@ import Button from '@/components/shared/Button.astro';
 
                   setTimeout(() => {
                     contactForm.classList.add('hidden');
-                    contactForm.classList.remove(
-                      'form-exit',
-                      'form-exit-active',
-                      'form-enter-active'
-                    );
+                    contactForm.classList.remove('form-exit', 'form-exit-active', 'form-enter-active');
                     contactButtons.classList.remove('hidden');
                     contactButtons.classList.add('flex');
                     // Reset success message for next time

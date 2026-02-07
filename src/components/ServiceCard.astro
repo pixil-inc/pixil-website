@@ -13,10 +13,7 @@ const { title, description, icon, index } = Astro.props;
         class="text-primary/50 rounded-full border border-black/10 px-2 py-1 font-mono text-xs transition-colors group-hover:bg-black group-hover:text-white"
         >{index.toString().padStart(2, '0')}</span
       >
-      <Icon
-        name={icon}
-        class="text-primary/20 group-hover:text-primary h-10 w-10 transition-colors"
-      />
+      <Icon name={icon} class="text-primary/20 group-hover:text-primary h-10 w-10 transition-colors" />
     </div>
     <h3 class="font-display pr-8 text-3xl font-medium md:text-4xl">{title}</h3>
   </div>
