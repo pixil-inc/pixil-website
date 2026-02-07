@@ -1,0 +1,35 @@
+---
+import '@/styles/estimates.css';
+interface Props {
+  title?: string;
+  description?: string;
+  noFollow?: boolean;
+}
+
+const {
+  title = 'Estimate | Pixil Web Studio',
+  description = 'Project estimate from Pixil Web Studio',
+  noFollow = true,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    {noFollow && <meta name="robots" content="noindex, nofollow" />}
+    <title>{title}</title>
+
+    <!-- Critical font preloads -->
+    <link href="/fonts/Inter-600.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+    <link href="/fonts/Inter-400.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+  </head>
+
+  <body style="margin: 0; padding: 20px 0; background: #f5f5f5; font-family: Inter, system-ui, sans-serif;">
+    <slot />
+  </body>
+</html>
