@@ -49,6 +49,44 @@ const {
         f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-K3QVMP55');
     </script>
+
+    <!-- Inline analytics to break dependency chain (1KB) -->
+    <script is:inline>
+      // Analytics utility - inlined to prevent dependency chain
+      window.__analytics = {
+        trackEvent: function (eventName, parameters) {
+          if (window.dataLayer) {
+            window.dataLayer.push({ event: eventName, ...parameters });
+          }
+        },
+        trackSection: function (sectionName) {
+          this.trackEvent('section_view', {
+            section_name: sectionName,
+            content_group: sectionName,
+            page_title: document.title,
+            page_location: window.location.href,
+          });
+        },
+        trackButton: function (buttonText, buttonType) {
+          this.trackEvent('button_click', {
+            button_text: buttonText,
+            button_type: buttonType || 'button',
+            page_title: document.title,
+            page_location: window.location.href,
+          });
+        },
+        trackForm: function (eventName, formData) {
+          this.trackEvent(eventName, { form_name: 'contact_form', ...formData });
+        },
+        trackPageView: function () {
+          this.trackEvent('page_view', {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_referrer: document.referrer,
+          });
+        },
+      };
+    </script>
   </head>
 
   <body class="bg-oatmeal text-primary font-sans antialiased selection:bg-black selection:text-white">
@@ -72,13 +110,15 @@ const {
     <Footer />
 
     <script>
-      import { trackSection, trackButton, trackPageView } from '@/utils/analytics';
       import {
         createScrollObserver,
         handleScrollAnimation,
         observeAnimations,
         setupAnimationFallback,
       } from '@/utils/observers';
+
+      // Use inlined analytics (window.__analytics)
+      const { trackSection, trackButton, trackPageView } = window.__analytics;
 
       // Create observer with custom callback for animations + tracking
       const observer = createScrollObserver((entry) => {
