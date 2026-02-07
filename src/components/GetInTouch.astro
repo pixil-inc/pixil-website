@@ -166,10 +166,11 @@ import Button from '@/components/shared/Button.astro';
 </style>
 
 <script>
-  import { trackForm } from '@/utils/analytics';
-
   // Defer initialization until DOM is ready and form section is near viewport
-  const initFormHandling = () => {
+  const initFormHandling = async () => {
+    // Dynamically import analytics to avoid blocking
+    const { trackForm } = await import('@/utils/analytics');
+
     const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     let recaptchaLoaded = false;
 
