@@ -1,15 +1,13 @@
 ---
-import '@/styles/estimates.css';
-import Layout from '@/layouts/Layout.astro';
+import EstimateLayout from '@/layouts/EstimateLayout.astro';
 import EstimateHeader from '@/components/molecules/EstimateHeader.astro';
 import EstimateFooter from '@/components/molecules/EstimateFooter.astro';
 import clientData from '@/data/clients/specified-roofing.json';
 ---
 
-<Layout
-  title="Specified Roofing Estimate | Pixil Web Studio"
+<EstimateLayout
+  title="Specified Roofing Estimate"
   description="Website Development estimate for Specified Roofing"
-  showHeader={false}
   noFollow
 >
   <div class="estimate-page">
@@ -231,4 +229,4 @@ import clientData from '@/data/clients/specified-roofing.json';
       Download PDF
     </button>
   </div>
-</Layout>
+</EstimateLayout>

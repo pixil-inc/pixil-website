@@ -1,12 +1,11 @@
 ---
-import '@/styles/estimates.css';
-import Layout from '@/layouts/Layout.astro';
+import EstimateLayout from '@/layouts/EstimateLayout.astro';
 import EstimateHeader from '@/components/molecules/EstimateHeader.astro';
 import EstimateFooter from '@/components/molecules/EstimateFooter.astro';
 import clientData from '@/data/clients/initi-group.json';
 ---
 
-<Layout title="Eastpointe" description="Website Development estimate for Eastepointe" showHeader={false} noFollow>
+<EstimateLayout title="Eastpointe" description="Website Development estimate for Eastepointe" noFollow>
   <div class="estimate-page">
     <div class="page-container">
       <EstimateHeader date="February 6, 2026" client={clientData} />
@@ -201,4 +200,4 @@ import clientData from '@/data/clients/initi-group.json';
       Download PDF
     </button>
   </div>
-</Layout>
+</EstimateLayout>
