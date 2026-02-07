@@ -1,0 +1,512 @@
+---
+import '@/styles/strategies.css';
+import EstimateLayout from '@/layouts/EstimateLayout.astro';
+import StrategyHeader from '@/components/molecules/StrategyHeader.astro';
+import clientData from '@/data/clients/specified-roofing.json';
+---
+
+<EstimateLayout
+  title="Specified Roofing Website Strategy | Pixil Web Studio"
+  description="Comprehensive website redesign strategy and competitive analysis for Specified Roofing"
+  noFollow
+>
+  <div class="strategy-page">
+    <div class="strategy-container">
+      <StrategyHeader date="February 1, 2026" client={clientData} strategyType="Website Redesign Strategy" />
+
+      <div class="executive-summary">
+        <h2>Executive Summary</h2>
+        <p>
+          This comprehensive analysis examines Specified Roofing's current website against top Toronto commercial
+          roofing competitors to identify gaps and opportunities. Key findings reveal significant opportunities in user
+          experience, portfolio presentation, and conversion optimization. The recommended strategy focuses on creating
+          an intuitive, client-centric website that positions Specified Roofing as the preferred choice for commercial
+          roofing across Canada.
+        </p>
+      </div>
+
+      <!-- Current Website Analysis -->
+      <h2 class="section-header">Current Website Analysis</h2>
+
+      <div class="two-column">
+        <div class="column">
+          <h3>Strengths</h3>
+          <ul class="content-list strength">
+            <li><strong>25+ years of experience</strong> - Strong industry credibility</li>
+            <li><strong>Comprehensive service offerings</strong> - Wide range of roofing systems</li>
+            <li><strong>24/7 Emergency service</strong> - Critical differentiator</li>
+            <li><strong>Professional associations</strong> - Multiple industry certifications</li>
+            <li><strong>Geographic coverage</strong> - Canada-wide service</li>
+            <li><strong>Specialized services</strong> - Infrared scanning, asset management</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <h3>Weaknesses</h3>
+          <ul class="content-list weakness">
+            <li><strong>Navigation complexity</strong> - Too many nested dropdown menus</li>
+            <li><strong>Limited portfolio visibility</strong> - Projects buried in subcategories</li>
+            <li><strong>No clear CTAs</strong> - Homepage lacks prominent conversion paths</li>
+            <li><strong>Generic terminology</strong> - Confusing technical pages</li>
+            <li><strong>Minimal visual hierarchy</strong> - Text-heavy, limited imagery</li>
+            <li><strong>No integrated quote tool</strong> - Multi-step contact process</li>
+            <li><strong>Missing trust signals</strong> - No prominent testimonials on homepage</li>
+            <li><strong>Outdated design</strong> - Does not reflect modern B2B expectations</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Current Sitemap -->
+      <h3 class="subsection-header">Current Sitemap Structure</h3>
+      <div class="sitemap-display">
+        <pre>
+Home
+├── About Us
+│   ├── Our Team
+│   ├── Strategic Partners
+│   └── Community Support
+├── Roofing (Services)
+│   ├── Modified Bitumen
+│   ├── Built-up Roofing
+│   ├── Single Ply
+│   ├── Lightweight Concrete
+│   ├── Green Roofing
+│   ├── Photovoltaic
+│   └── Roofing Terminology
+├── Service
+│   ├── 24/7 Emergency Service
+│   ├── Preventative Maintenance
+│   ├── Infrared Roof Moisture Scan
+│   ├── Inspection Reports
+│   └── Roof Asset Management
+├── Portfolio
+│   ├── Retail
+│   ├── Office
+│   ├── Industrial
+│   ├── Data Centre
+│   ├── Institutional
+│   └── Special Projects
+├── Sustainability
+├── Safety
+├── Careers
+└── Contact</pre>
+      </div>
+
+      <!-- Competitive Analysis -->
+      <h2 class="section-header">Competitive Analysis</h2>
+
+      <div class="competitor-grid">
+        <div class="competitor-card">
+          <h3>Elite Roofing</h3>
+          <div class="website">eliteroofing.com</div>
+          <h4>Key Strengths:</h4>
+          <ul class="content-list">
+            <li>Clean, modern design with strong visual hierarchy</li>
+            <li>Exceptional project showcase with before/after images</li>
+            <li>Prominent client logos (Toyota, CN, CIBC, Starbucks)</li>
+            <li>Active blog content (10+ recent articles)</li>
+            <li>Since 1956 (70+ years experience)</li>
+          </ul>
+          <h4>Key Differentiator:</h4>
+          <p>Superior visual presentation and thought leadership through extensive blog content.</p>
+        </div>
+
+        <div class="competitor-card">
+          <h3>Coverall Roofing</h3>
+          <div class="website">coverallroofing.ca</div>
+          <h4>Key Strengths:</h4>
+          <ul class="content-list">
+            <li>Immediate quote form on homepage</li>
+            <li>7 years HomeStars Best of the Best</li>
+            <li>40+ years experience prominently displayed</li>
+            <li>Multiple customer testimonials on homepage</li>
+            <li>Brand partner logos visible</li>
+          </ul>
+          <h4>Key Differentiator:</h4>
+          <p>Immediate conversion focus with prominent quote form and extensive social proof.</p>
+        </div>
+
+        <div class="competitor-card">
+          <h3>Integrity Roofers</h3>
+          <div class="website">integrityroofers.com</div>
+          <h4>Key Strengths:</h4>
+          <ul class="content-list">
+            <li>20+ years experience</li>
+            <li>Clear commercial B2B positioning</li>
+            <li>Warranty focus messaging</li>
+            <li>FAQ section for common questions</li>
+            <li>Transparency emphasis</li>
+          </ul>
+          <h4>Key Differentiator:</h4>
+          <p>Process transparency and warranty-backed quality commitment.</p>
+        </div>
+      </div>
+
+      <!-- Gap Analysis -->
+      <h2 class="section-header">Gap Analysis & Opportunities</h2>
+
+      <div class="content-block">
+        <div class="highlight-box danger">
+          <h4>Critical Gaps Identified</h4>
+          <p>
+            Analysis reveals 7 major areas where competitors outperform current website, creating significant
+            opportunities for competitive advantage through strategic improvements.
+          </p>
+        </div>
+      </div>
+
+      <ol class="recommendation-list">
+        <li>
+          <h4>User Experience & Navigation</h4>
+          <p>
+            <strong>Gap:</strong> Complex nested menus confuse users; services and portfolio are hard to find<br />
+            <strong>Competitor Advantage:</strong> Elite Roofing has clear service grouping; Coverall has simple navigation<br
+            />
+            <strong>Opportunity:</strong> Implement flat, intuitive navigation with max 2 levels
+          </p>
+        </li>
+
+        <li>
+          <h4>Portfolio Presentation</h4>
+          <p>
+            <strong>Gap:</strong> Projects are categorized but lack visual appeal and detail<br />
+            <strong>Competitor Advantage:</strong> Elite Roofing showcases projects with professional photography, case studies<br
+            />
+            <strong>Opportunity:</strong> Create featured project showcase on homepage with detailed case studies
+          </p>
+        </li>
+
+        <li>
+          <h4>Conversion Optimization</h4>
+          <p>
+            <strong>Gap:</strong> No immediate quote/estimate form; multiple steps to contact<br />
+            <strong>Competitor Advantage:</strong> Coverall has homepage quote form; all competitors have prominent phone
+            CTAs<br />
+            <strong>Opportunity:</strong> Add multi-channel conversion paths (quote form, click-to-call, live chat)
+          </p>
+        </li>
+
+        <li>
+          <h4>Trust Signals & Social Proof</h4>
+          <p>
+            <strong>Gap:</strong> Awards/certifications in footer only; no customer testimonials visible<br />
+            <strong>Competitor Advantage:</strong> Coverall displays 7+ years of awards; Elite shows major client logos<br
+            />
+            <strong>Opportunity:</strong> Prominently display awards, certifications, testimonials, client logos
+          </p>
+        </li>
+
+        <li>
+          <h4>Content Marketing</h4>
+          <p>
+            <strong>Gap:</strong> No blog or resource center<br />
+            <strong>Competitor Advantage:</strong> Elite has active blog with 10+ recent articles<br />
+            <strong>Opportunity:</strong> Launch blog with educational content (ROI calculator, maintenance guides)
+          </p>
+        </li>
+
+        <li>
+          <h4>Emergency Service Visibility</h4>
+          <p>
+            <strong>Gap:</strong> Emergency service exists but not immediately visible<br />
+            <strong>Competitor Advantage:</strong> Multiple competitors feature emergency numbers in header<br />
+            <strong>Opportunity:</strong> Sticky emergency banner with 60-minute response promise
+          </p>
+        </li>
+
+        <li>
+          <h4>Client Portal & Tools</h4>
+          <p>
+            <strong>Gap:</strong> No online tools for clients<br />
+            <strong>Competitor Advantage:</strong> Elite has online invoice payment<br />
+            <strong>Opportunity:</strong> Client login for project tracking, document access, payments
+          </p>
+        </li>
+      </ol>
+
+      <!-- Recommended Strategy -->
+      <h2 class="section-header">Recommended Website Strategy</h2>
+
+      <div class="highlight-box success">
+        <h4>Strategic Goals</h4>
+        <p>Transform the website from an informational brochure into a powerful business development tool.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">40%</div>
+          <div class="stat-label">Increase Lead Generation</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">25%</div>
+          <div class="stat-label">Reduce Bounce Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">50%</div>
+          <div class="stat-label">Improve Mobile Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">30%</div>
+          <div class="stat-label">More Organic Traffic</div>
+        </div>
+      </div>
+
+      <h3 class="subsection-header">Key Design Principles</h3>
+      <ul class="content-list opportunity">
+        <li><strong>Client-centric design</strong> - Every element serves the visitor's needs</li>
+        <li><strong>Clarity over complexity</strong> - Simple navigation, clear messaging</li>
+        <li><strong>Visual storytelling</strong> - Show, don't just tell through imagery</li>
+        <li><strong>Trust building</strong> - Prominent social proof and credibility indicators</li>
+        <li><strong>Action-oriented</strong> - Clear next steps on every page</li>
+        <li><strong>Educational value</strong> - Help clients make informed decisions</li>
+      </ul>
+
+      <!-- New Sitemap -->
+      <h2 class="section-header">Proposed Sitemap Structure</h2>
+
+      <div class="highlight-box info">
+        <h4>Simplified Information Architecture</h4>
+        <p>
+          Reducing navigation complexity from 4+ levels to maximum 2 levels while improving content discoverability.
+        </p>
+      </div>
+
+      <div class="sitemap-display">
+        <pre>
+HOME
+│
+├── SERVICES (Mega Menu)
+│   ├── Commercial Roofing
+│   │   ├── New Installation
+│   │   ├── Roof Replacement
+│   │   ├── Repairs & Restoration
+│   │   └── Roof Recovery
+│   ├── Roofing Systems
+│   │   ├── Modified Bitumen
+│   │   ├── Built-Up Roofing (BUR)
+│   │   ├── Single-Ply (TPO/EPDM/PVC)
+│   │   ├── Green Roofing Systems
+│   │   └── Solar/Photovoltaic Integration
+│   ├── Maintenance & Service
+│   │   ├── 24/7 Emergency Service 🚨
+│   │   ├── Preventative Maintenance Plans
+│   │   ├── Infrared Moisture Detection
+│   │   ├── Roof Inspections & Reports
+│   │   └── Asset Management Programs
+│   └── Specialty Services
+│       ├── Lightweight Concrete
+│       ├── Waterproofing
+│       └── Sheet Metal Fabrication
+│
+├── PROJECTS (Portfolio)
+│   ├── Featured Projects
+│   ├── By Industry
+│   │   ├── Retail & Shopping Centers
+│   │   ├── Office Buildings
+│   │   ├── Industrial & Warehouses
+│   │   ├── Data Centers
+│   │   ├── Institutional
+│   │   └── Multi-Residential
+│   └── Case Studies
+│
+├── ABOUT US
+│   ├── Our Story (25+ Years)
+│   ├── Why Choose Us
+│   ├── Leadership Team
+│   ├── Certifications & Awards
+│   ├── Strategic Partners
+│   └── Community Involvement
+│
+├── RESOURCES (New Section)
+│   ├── Blog & Insights
+│   ├── Educational Content
+│   ├── FAQ
+│   ├── Warranty Information
+│   └── Downloadable Resources
+│
+├── COVERAGE AREAS
+│   ├── Greater Toronto Area
+│   ├── Southern Ontario
+│   ├── National Projects
+│   └── Service Area Map
+│
+├── CAREERS
+│   ├── Why Work With Us
+│   ├── Current Openings
+│   └── Apply Now
+│
+└── CONTACT
+    ├── Get a Quote
+    ├── Emergency Service
+    ├── Office Locations
+    └── Client Portal Login</pre>
+      </div>
+
+      <!-- Implementation Roadmap -->
+      <h2 class="section-header">Implementation Roadmap</h2>
+
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-number">1</div>
+          <div class="phase-content">
+            <h4>Phase 1: Foundation (Weeks 1-4)</h4>
+            <p>
+              Content audit and migration, new sitemap implementation, homepage redesign, core service pages,
+              contact/quote page, and mobile optimization.
+            </p>
+          </div>
+        </div>
+
+        <div class="phase-item">
+          <div class="phase-number">2</div>
+          <div class="phase-content">
+            <h4>Phase 2: Portfolio & Trust Building (Weeks 5-8)</h4>
+            <p>
+              Portfolio section build, 10-15 featured case studies, About Us page enhancement, testimonial collection
+              and display, client logo showcase, awards/certification page.
+            </p>
+          </div>
+        </div>
+
+        <div class="phase-item">
+          <div class="phase-number">3</div>
+          <div class="phase-content">
+            <h4>Phase 3: Resources & Engagement (Weeks 9-12)</h4>
+            <p>
+              Blog setup, 5-10 initial blog posts, FAQ section, downloadable resources, interactive tools, newsletter
+              integration.
+            </p>
+          </div>
+        </div>
+
+        <div class="phase-item">
+          <div class="phase-number">4</div>
+          <div class="phase-content">
+            <h4>Phase 4: Advanced Features (Weeks 13-16)</h4>
+            <p>
+              Client portal development, live chat integration, advanced form features, quote calculator, service area
+              pages, ongoing content creation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Metrics -->
+      <h2 class="section-header">Success Metrics & KPIs</h2>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Metric Category</th>
+            <th>Key Performance Indicators</th>
+            <th>6-Month Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Traffic Metrics</strong></td>
+            <td>Monthly unique visitors, page views, session duration, bounce rate</td>
+            <td>50% increase in organic traffic, 25% bounce rate reduction</td>
+          </tr>
+          <tr>
+            <td><strong>Conversion Metrics</strong></td>
+            <td>Quote requests, phone calls, form submissions, emergency requests</td>
+            <td>40% increase in qualified lead generation</td>
+          </tr>
+          <tr>
+            <td><strong>Engagement Metrics</strong></td>
+            <td>Time on site, blog readership, resource downloads, video views</td>
+            <td>3+ minutes average session duration</td>
+          </tr>
+          <tr>
+            <td><strong>SEO Metrics</strong></td>
+            <td>Keyword rankings, domain authority, backlinks, local visibility</td>
+            <td>Top 3 rankings for 10+ target keywords</td>
+          </tr>
+          <tr>
+            <td><strong>Business Impact</strong></td>
+            <td>Leads generated, lead quality, acquisition cost, revenue</td>
+            <td>30% reduction in customer acquisition cost</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Competitive Advantages -->
+      <h2 class="section-header">Competitive Advantages Post-Redesign</h2>
+
+      <div class="content-block">
+        <p>After implementing this strategy, Specified Roofing will have:</p>
+      </div>
+
+      <ol class="recommendation-list">
+        <li>
+          <h4>Superior User Experience</h4>
+          <p>Clearest, most intuitive navigation in the industry</p>
+        </li>
+        <li>
+          <h4>Best Portfolio Presentation</h4>
+          <p>Most comprehensive project showcase with detailed case studies</p>
+        </li>
+        <li>
+          <h4>Multiple Conversion Paths</h4>
+          <p>Easier to request quotes than any competitor</p>
+        </li>
+        <li>
+          <h4>Educational Leadership</h4>
+          <p>Most valuable content resources in the commercial roofing space</p>
+        </li>
+        <li>
+          <h4>Client-Centric Tools</h4>
+          <p>Only competitor with full client portal for project tracking</p>
+        </li>
+        <li>
+          <h4>Mobile Excellence</h4>
+          <p>Best mobile experience in the category</p>
+        </li>
+        <li>
+          <h4>Trust Building</h4>
+          <p>Most comprehensive display of credibility indicators</p>
+        </li>
+        <li>
+          <h4>Emergency Service Visibility</h4>
+          <p>Clearest communication of 24/7 availability and 60-minute response</p>
+        </li>
+      </ol>
+
+      <!-- Conclusion -->
+      <h2 class="section-header">Conclusion</h2>
+
+      <div class="executive-summary">
+        <p>
+          The current Specified Roofing website has strong foundational content but lacks the modern UX, visual appeal,
+          and conversion optimization necessary to compete in today's digital landscape. By implementing the recommended
+          sitemap, page strategies, and design improvements, Specified Roofing will make it easier for clients to find
+          information and request quotes, showcase 25+ years of expertise through compelling project stories, build
+          trust through prominent social proof, educate clients through valuable resources, convert more visitors into
+          leads through optimized conversion paths, and position itself as the clear choice for commercial roofing in
+          Canada.
+        </p>
+        <p style="margin-top: 20px">
+          This redesign will transform the website from an informational brochure into a powerful business development
+          tool that works 24/7 to generate quality leads and reinforce Specified Roofing's position as Canada's trusted
+          commercial roofing partner.
+        </p>
+      </div>
+
+      <div class="strategy-footer">
+        <p><strong>Prepared by Pixil Web Studio Inc.</strong></p>
+        <p>1367 Lawson St., Innisfil, ON L9S 0N8</p>
+        <p>647.613.2189 | hello@pixil.ca</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-print my-8 text-center">
+    <button
+      onclick="window.print()"
+      class="cursor-pointer rounded border-none bg-black px-5 py-2.5 font-semibold text-white transition-colors hover:bg-gray-800"
+    >
+      Download PDF
+    </button>
+  </div>
+</EstimateLayout>

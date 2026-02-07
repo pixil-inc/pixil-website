@@ -30,8 +30,8 @@ const { date, client } = Astro.props;
   <div class="info-col">
     <h3>To</h3>
     <p>
-      <strong>{client.name}</strong><br />{client.address1}<br />{client.address2}<br />{client.phone}<br />{
-        client.email
+      <strong>{client?.name}</strong><br />{client?.address1}<br />{client?.address2}<br />{client?.phone}<br />{
+        client?.email
       }
     </p>
   </div>

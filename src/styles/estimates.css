@@ -267,11 +267,11 @@
     display: none !important;
   }
 
-  .recurring-box {
+  /* .recurring-box {
     background-color: #fafafa;
     border-left-color: #000;
     color: #000;
-  }
+  } */
 }
 
 @media (max-width: 768px) {

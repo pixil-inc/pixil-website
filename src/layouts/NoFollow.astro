@@ -1,0 +1,48 @@
+---
+import '@/styles/estimates.css';
+import type { Client } from '@/types';
+import EstimateHeader from '@/components/molecules/EstimateHeader.astro';
+import EstimateFooter from '@/components/molecules/EstimateFooter.astro';
+
+interface Props {
+  date: string;
+  client: Client;
+}
+
+const { date, client } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Project estimate from Pixil Web Studio" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{`${client?.name} | Pixil`}</title>
+
+    <!-- Critical font preloads -->
+    <link href="/fonts/Inter-600.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+    <link href="/fonts/Inter-400.woff2" rel="preload" as="font" type="font/woff2" crossorigin />
+  </head>
+
+  <body style="background: #f8f7f4; margin: 0; padding: 40px 0">
+    <div class="estimate-page">
+      <div class="page-container">
+        <EstimateHeader date={date} client={client} />
+        <slot />
+        <EstimateFooter />
+      </div>
+    </div>
+    <div class="no-print my-8 text-center">
+      <button
+        onclick="window.print()"
+        class="cursor-pointer rounded-full border-none bg-black px-5 py-2.5 font-semibold text-white transition-colors hover:bg-gray-800"
+      >
+        Download PDF
+      </button>
+    </div>
+  </body>
+</html>
