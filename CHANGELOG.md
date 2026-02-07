@@ -1,3 +1,9 @@
+## [1.2.20](https://github.com/pixil-inc/pixil-website/compare/v1.2.19...v1.2.20) (2026-02-07)
+
+### Bug Fixes
+
+- revert cwv changes ([7be5752](https://github.com/pixil-inc/pixil-website/commit/7be5752e9de6a8341552105ba06c9d4eaffc19b7))
+
 ## [1.2.19](https://github.com/pixil-inc/pixil-website/compare/v1.2.18...v1.2.19) (2026-02-07)
 
 ### Bug Fixes
