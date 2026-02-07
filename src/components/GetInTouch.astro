@@ -166,8 +166,7 @@ import Button from '@/components/shared/Button.astro';
 </style>
 
 <script>
-  // Use inlined analytics from window.__analytics
-  const trackForm = window.__analytics.trackForm;
+  import { trackForm } from '@/utils/analytics';
 
   // Defer initialization until DOM is ready and form section is near viewport
   const initFormHandling = () => {
