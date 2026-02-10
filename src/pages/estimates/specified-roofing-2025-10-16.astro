@@ -1,232 +1,209 @@
 ---
-import EstimateLayout from '@/layouts/EstimateLayout.astro';
-import EstimateHeader from '@/components/molecules/EstimateHeader.astro';
-import EstimateFooter from '@/components/molecules/EstimateFooter.astro';
+import NoFollow from '@/layouts/NoFollow.astro';
 import clientData from '@/data/clients/specified-roofing.json';
 ---
 
-<EstimateLayout
-  title="Specified Roofing Estimate"
-  description="Website Development estimate for Specified Roofing"
-  noFollow
->
-  <div class="estimate-page">
-    <div class="page-container">
-      <EstimateHeader date="October 16, 2025" client={clientData} />
+<NoFollow client={clientData} date="October 16, 2025">
+  <div class="section-title">Core Development Scope</div>
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th class="col-desc">Milestone / Deliverable</th>
+        <th class="col-qty">Hours</th>
+        <th class="col-total">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <span class="item-title">Discovery & Strategy</span>
+          <span class="item-sub"
+            >Kick-off meeting, technical requirement documentation, sitemap & navigation architecture, analytics setup
+            planning.</span
+          >
+        </td>
+        <td class="col-qty">24</td>
+        <td class="col-total">$3,000.00</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-title">UX/UI Design</span>
+          <span class="item-sub"
+            >Homepage, Services page, About, Contact, responsive design system, brand integration, component library.</span
+          >
+        </td>
+        <td class="col-qty">48</td>
+        <td class="col-total">$6,000.00</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-title">Development</span>
+          <span class="item-sub"
+            >Homepage, About, Services, Contact, responsive implementation, mobile optimization, animation &
+            interactions, forms & backend integration, SEO foundation.</span
+          >
+        </td>
+        <td class="col-qty">120</td>
+        <td class="col-total">$15,000.00</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-title">Integration: Contentful CMS (Headless)</span>
+          <span class="item-sub"
+            >Setup of Contentful to allow client content editing. Includes content modeling, API integration, and
+            dynamic routing.</span
+          >
+        </td>
+        <td class="col-qty">24</td>
+        <td class="col-total">$3,000.00</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-title">QA, Testing & Deployment</span>
+          <span class="item-sub"
+            >Cross-browser testing, mobile device testing, accessibility audit, performance testing, staging environment
+            setup, production deployment.</span
+          >
+        </td>
+        <td class="col-qty">18</td>
+        <td class="col-total">$2,250.00</td>
+      </tr>
+    </tbody>
+  </table>
 
-      <div class="section-title">Core Development Scope</div>
+  <div class="optional-section">
+    <div class="optional-header">
+      <div class="section-title" style="border: none; margin: 0">Annual Recurring Infrastructure Costs</div>
+    </div>
 
-      <table class="items-table">
-        <thead>
-          <tr>
-            <th class="col-desc">Milestone / Deliverable</th>
-            <th class="col-qty">Hours</th>
-            <th class="col-total">Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <span class="item-title">Discovery & Strategy</span>
-              <span class="item-sub"
-                >Kick-off meeting, technical requirement documentation, sitemap & navigation architecture, analytics
-                setup planning.</span
-              >
-            </td>
-            <td class="col-qty">24</td>
-            <td class="col-total">$3,000.00</td>
-          </tr>
-          <tr>
-            <td>
-              <span class="item-title">UX/UI Design</span>
-              <span class="item-sub"
-                >Homepage, Services page, About, Contact, responsive design system, brand integration, component
-                library.</span
-              >
-            </td>
-            <td class="col-qty">48</td>
-            <td class="col-total">$6,000.00</td>
-          </tr>
-          <tr>
-            <td>
-              <span class="item-title">Development</span>
-              <span class="item-sub"
-                >Homepage, About, Services, Contact, responsive implementation, mobile optimization, animation &
-                interactions, forms & backend integration, SEO foundation.</span
-              >
-            </td>
-            <td class="col-qty">120</td>
-            <td class="col-total">$15,000.00</td>
-          </tr>
-          <tr>
-            <td>
-              <span class="item-title">Integration: Contentful CMS (Headless)</span>
-              <span class="item-sub"
-                >Setup of Contentful to allow client content editing. Includes content modeling, API integration, and
-                dynamic routing.</span
-              >
-            </td>
-            <td class="col-qty">24</td>
-            <td class="col-total">$3,000.00</td>
-          </tr>
-          <tr>
-            <td>
-              <span class="item-title">QA, Testing & Deployment</span>
-              <span class="item-sub"
-                >Cross-browser testing, mobile device testing, accessibility audit, performance testing, staging
-                environment setup, production deployment.</span
-              >
-            </td>
-            <td class="col-qty">18</td>
-            <td class="col-total">$2,250.00</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="optional-header" style="margin-bottom: 15px">
+      <div class="section-title" style="border: none; margin: 0; font-size: 12px">
+        Option A: Headless CMS Architecture
+      </div>
+      <span class="badge">Recommended</span>
+    </div>
+    <p style="margin-bottom: 15px; font-size: 13px; color: #666666; line-height: 1.5">
+      Modern, scalable architecture with a headless CMS (Next.js/Astro + Contentful) for easy content management. Offers
+      better performance, security, and flexibility for future growth.
+    </p>
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th class="col-desc">Service</th>
+          <th class="col-qty">Provider</th>
+          <th class="col-total">Annual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">Hosting (Vercel Pro)</span>
+          </td>
+          <td class="col-qty">Vercel</td>
+          <td class="col-total">$550</td>
+        </tr>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">CMS (Contentful)</span>
+          </td>
+          <td class="col-qty">Contentful</td>
+          <td class="col-total">$6,000</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="optional-header" style="margin-top: 40px; margin-bottom: 15px">
+      <div class="section-title" style="border: none; margin: 0; font-size: 12px">
+        Option B: Managed WordPress Architecture
+      </div>
+      <span class="badge">Alternative</span>
+    </div>
+    <p style="margin-bottom: 15px; font-size: 13px; color: #666666; line-height: 1.5">
+      Traditional WordPress solution with managed hosting (WP Engine/GoDaddy). Familiar interface and extensive plugin
+      ecosystem, suitable for teams comfortable with WordPress.
+    </p>
+    <table class="items-table" style="margin-bottom: 0">
+      <thead>
+        <tr>
+          <th class="col-desc">Service</th>
+          <th class="col-qty">Provider</th>
+          <th class="col-total">Annual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">Managed WordPress Hosting</span>
+          </td>
+          <td class="col-qty">GoDaddy</td>
+          <td class="col-total">$600</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-      <div class="optional-section">
-        <div class="optional-header">
-          <div class="section-title" style="border: none; margin: 0">Annual Recurring Infrastructure Costs</div>
-        </div>
+  <div class="optional-section">
+    <div class="optional-header">
+      <div class="section-title" style="border: none; margin: 0">Maintenance / Retainer</div>
+      <span class="badge">Optional</span>
+    </div>
+    <p style="margin-bottom: 15px; font-size: 13px; color: #666666; line-height: 1.5">
+      A monthly maintenance and support package with a reserved block of hours at a bundled rate, designed to keep your
+      website secure, up to date, and running smoothly. Any unused hours expire at the end of each month. Work required
+      beyond the selected package is billed at the standard rate of $125/hr. Maintenance tasks may include content
+      updates, minor design or layout adjustments, performance improvements, security updates, and general website
+      upkeep.
+    </p>
+    <table class="items-table" style="margin-bottom: 0">
+      <tbody>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">Essential</span>
+          </td>
+          <td class="col-qty">5 hrs/mo</td>
+          <td class="col-total">$450.00/mo</td>
+        </tr>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">Growth</span>
+          </td>
+          <td class="col-qty">10 hrs/mo</td>
+          <td class="col-total">$750.00/mo</td>
+        </tr>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">Scale</span>
+          </td>
+          <td class="col-qty">20 hrs/mo</td>
+          <td class="col-total">$1,250.00/mo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-        <div class="optional-header" style="margin-bottom: 15px">
-          <div class="section-title" style="border: none; margin: 0; font-size: 12px">
-            Option A: Headless CMS Architecture
-          </div>
-          <span class="badge">Recommended</span>
-        </div>
-        <p style="margin-bottom: 15px; font-size: 13px; color: #666666; line-height: 1.5">
-          Modern, scalable architecture with a headless CMS (Next.js/Astro + Contentful) for easy content management.
-          Offers better performance, security, and flexibility for future growth.
-        </p>
-        <table class="items-table">
-          <thead>
-            <tr>
-              <th class="col-desc">Service</th>
-              <th class="col-qty">Provider</th>
-              <th class="col-total">Annual</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="col-desc">
-                <span class="item-title">Hosting (Vercel Pro)</span>
-              </td>
-              <td class="col-qty">Vercel</td>
-              <td class="col-total">$550</td>
-            </tr>
-            <tr>
-              <td class="col-desc">
-                <span class="item-title">CMS (Contentful)</span>
-              </td>
-              <td class="col-qty">Contentful</td>
-              <td class="col-total">$6,000</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="optional-header" style="margin-top: 40px; margin-bottom: 15px">
-          <div class="section-title" style="border: none; margin: 0; font-size: 12px">
-            Option B: Managed WordPress Architecture
-          </div>
-          <span class="badge">Alternative</span>
-        </div>
-        <p style="margin-bottom: 15px; font-size: 13px; color: #666666; line-height: 1.5">
-          Traditional WordPress solution with managed hosting (WP Engine/GoDaddy). Familiar interface and extensive
-          plugin ecosystem, suitable for teams comfortable with WordPress.
-        </p>
-        <table class="items-table" style="margin-bottom: 0">
-          <thead>
-            <tr>
-              <th class="col-desc">Service</th>
-              <th class="col-qty">Provider</th>
-              <th class="col-total">Annual</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="col-desc">
-                <span class="item-title">Managed WordPress Hosting</span>
-              </td>
-              <td class="col-qty">GoDaddy</td>
-              <td class="col-total">$600</td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="totals-section">
+    <div class="totals-table">
+      <div class="totals-row rate-info">
+        <span>Hourly Rate</span>
+        <span>$125/hr</span>
       </div>
 
-      <div class="optional-section">
-        <div class="optional-header">
-          <div class="section-title" style="border: none; margin: 0">Maintenance / Retainer</div>
-          <span class="badge">Optional</span>
-        </div>
-        <p style="margin-bottom: 15px; font-size: 13px; color: #666666; line-height: 1.5">
-          A monthly maintenance and support package with a reserved block of hours at a bundled rate, designed to keep
-          your website secure, up to date, and running smoothly. Any unused hours expire at the end of each month. Work
-          required beyond the selected package is billed at the standard rate of $125/hr. Maintenance tasks may include
-          content updates, minor design or layout adjustments, performance improvements, security updates, and general
-          website upkeep.
-        </p>
-        <table class="items-table" style="margin-bottom: 0">
-          <tbody>
-            <tr>
-              <td class="col-desc">
-                <span class="item-title">Essential</span>
-              </td>
-              <td class="col-qty">5 hrs/mo</td>
-              <td class="col-total">$450.00/mo</td>
-            </tr>
-            <tr>
-              <td class="col-desc">
-                <span class="item-title">Growth</span>
-              </td>
-              <td class="col-qty">10 hrs/mo</td>
-              <td class="col-total">$750.00/mo</td>
-            </tr>
-            <tr>
-              <td class="col-desc">
-                <span class="item-title">Scale</span>
-              </td>
-              <td class="col-qty">20 hrs/mo</td>
-              <td class="col-total">$1,250.00/mo</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Core Development Only -->
+      <div class="totals-row section-header" style="margin-top: 15px; font-weight: 600">
+        <span>Core Website Development</span>
+        <span></span>
       </div>
-
-      <div class="totals-section">
-        <div class="totals-table">
-          <div class="totals-row rate-info">
-            <span>Hourly Rate</span>
-            <span>$125/hr</span>
-          </div>
-
-          <!-- Core Development Only -->
-          <div class="totals-row section-header" style="margin-top: 15px; font-weight: 600">
-            <span>Core Website Development</span>
-            <span></span>
-          </div>
-          <div class="totals-row">
-            <span>Subtotal (234 hours)</span>
-            <span>$29,250.00</span>
-          </div>
-          <div class="totals-row">
-            <span>HST (13%)</span>
-            <span>$3,802.50</span>
-          </div>
-          <div class="totals-row final">
-            <span>Total (CAD)</span>
-            <span>$33,052.50</span>
-          </div>
-        </div>
+      <div class="totals-row">
+        <span>Subtotal (234 hours)</span>
+        <span>$29,250.00</span>
       </div>
-      <EstimateFooter />
+      <div class="totals-row">
+        <span>HST (13%)</span>
+        <span>$3,802.50</span>
+      </div>
+      <div class="totals-row final">
+        <span>Total (CAD)</span>
+        <span>$33,052.50</span>
+      </div>
     </div>
   </div>
-  <div class="no-print my-8 text-center">
-    <button
-      onclick="window.print()"
-      class="cursor-pointer rounded border-none bg-black px-5 py-2.5 font-semibold text-white transition-colors hover:bg-gray-800"
-    >
-      Download PDF
-    </button>
-  </div>
-</EstimateLayout>
+</NoFollow>
