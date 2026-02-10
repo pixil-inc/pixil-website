@@ -1,3 +1,12 @@
+## [1.2.21](https://github.com/pixil-inc/pixil-website/compare/v1.2.20...v1.2.21) (2026-02-10)
+
+### Bug Fixes
+
+- added strategies ([f74f12f](https://github.com/pixil-inc/pixil-website/commit/f74f12f9a0f73d4fea21fb72a3c818694006b8dd))
+- added strategy ([a91dfa5](https://github.com/pixil-inc/pixil-website/commit/a91dfa532ef75612af3bfa02421581ef64f887e1))
+- optimize estimates ([89fc00a](https://github.com/pixil-inc/pixil-website/commit/89fc00a0ba109a5a53164570bdae951e9f44609f))
+- resolve build ([629930e](https://github.com/pixil-inc/pixil-website/commit/629930ecaede87d095ecaa6acb06aa1d3aa8d7b1))
+
 ## [1.2.20](https://github.com/pixil-inc/pixil-website/compare/v1.2.19...v1.2.20) (2026-02-07)
 
 ### Bug Fixes
