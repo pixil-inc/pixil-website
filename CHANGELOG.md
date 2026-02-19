@@ -1,3 +1,10 @@
+## [1.2.22](https://github.com/pixil-inc/pixil-website/compare/v1.2.21...v1.2.22) (2026-02-19)
+
+### Bug Fixes
+
+- bottom margin ([5c295f9](https://github.com/pixil-inc/pixil-website/commit/5c295f91948557dce99f235ec78a5db6b076ce0f))
+- text size ([bd7dd21](https://github.com/pixil-inc/pixil-website/commit/bd7dd21a38269e752f9f161a4e55a59a06570eb5))
+
 ## [1.2.21](https://github.com/pixil-inc/pixil-website/compare/v1.2.20...v1.2.21) (2026-02-10)
 
 ### Bug Fixes
