@@ -1,3 +1,9 @@
+## [1.2.23](https://github.com/pixil-inc/pixil-website/compare/v1.2.22...v1.2.23) (2026-02-26)
+
+### Bug Fixes
+
+- updated estimates ([46fa5e2](https://github.com/pixil-inc/pixil-website/commit/46fa5e24bd5f2d30d7792a846ea8fd5c40bc597e))
+
 ## [1.2.22](https://github.com/pixil-inc/pixil-website/compare/v1.2.21...v1.2.22) (2026-02-19)
 
 ### Bug Fixes
