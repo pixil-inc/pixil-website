@@ -1,0 +1,185 @@
+---
+import NoFollow from '@/layouts/NoFollow.astro';
+import clientData from '@/data/clients/initi-group.json';
+---
+
+<NoFollow client={clientData} date="February 26, 2026">
+  <div class="section-title">Core Development Scope</div>
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th class="col-desc">Milestone / Deliverable</th>
+        <th class="col-qty">Hours</th>
+        <th class="col-total">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <span class="item-title">Design & Strategy</span>
+          <span class="item-sub"
+            >Research, wireframing, and high-fidelity mockups for 4 core pages (Home, About, Services, Contact).</span
+          >
+        </td>
+        <td class="col-qty">10</td>
+        <td class="col-total">$1,250</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-title">Architecture & Setup (Next.js/Vercel)</span>
+          <span class="item-sub"
+            >Repository initialization, CI/CD pipeline setup (Vercel), SEO foundation, and Global Component Library
+            (Nav, Footer, Typography).</span
+          >
+        </td>
+        <td class="col-qty">8</td>
+        <td class="col-total">$1,000</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-title">Core Page Development</span>
+          <span class="item-sub"
+            >Frontend coding of Home, About, Services, and Contact pages. Includes responsive logic for Mobile/Tablet.</span
+          >
+        </td>
+        <td class="col-qty">32</td>
+        <td class="col-total">$4,000</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-title">Feature: Projects/Portfolio Section</span>
+          <span class="item-sub"
+            >Development of a filtered project index page and a reusable single project detail layout.</span
+          >
+        </td>
+        <td class="col-qty">10</td>
+        <td class="col-total">$1,250</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-title">QA & Deployment</span>
+          <span class="item-sub"
+            >Cross-browser testing, accessibility audit, performance optimization, and final launch.</span
+          >
+        </td>
+        <td class="col-qty">8</td>
+        <td class="col-total">$1,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="optional-section">
+    <div class="optional-header">
+      <div class="section-title" style="border: none; margin: 0">Annual Recurring Infrastructure Costs</div>
+    </div>
+
+    <div class="optional-header" style="margin-bottom: 15px">
+      <div class="section-title" style="border: none; margin: 0; font-size: 12px">Headless CMS Architecture</div>
+      <span class="badge">Recommended</span>
+    </div>
+    <p style="margin-bottom: 15px; font-size: 13px; color: #666666; line-height: 1.5">
+      Modern, scalable architecture with a headless CMS (Next.js/Astro <strike>+ Contentful</strike>) for easy content
+      management. Offers better performance, security, and flexibility for future growth.
+    </p>
+    <table class="items-table" style="margin-bottom: 0px">
+      <thead>
+        <tr>
+          <th class="col-desc">Service</th>
+          <th class="col-qty">Provider</th>
+          <th class="col-total">Annual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">Hosting (Vercel Pro)</span>
+          </td>
+          <td class="col-qty">Vercel</td>
+          <td class="col-total">$550</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="optional-section">
+    <div class="optional-header">
+      <div class="section-title" style="border: none; margin: 0">Maintenance / Retainer</div>
+      <span class="badge">Optional</span>
+    </div>
+    <p style="margin-bottom: 15px; font-size: 13px; color: #666666; line-height: 1.5">
+      A monthly maintenance and support package with a reserved block of hours at a bundled rate, designed to keep your
+      website secure, up to date, and running smoothly. Any unused hours expire at the end of each month. Work required
+      beyond the selected package is billed at the standard rate of $125/hr. Maintenance tasks may include content
+      updates, minor design or layout adjustments, performance improvements, security updates, and general website
+      upkeep.
+    </p>
+    <table class="items-table" style="margin-bottom: 0">
+      <tbody>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">Essential</span>
+          </td>
+          <td class="col-qty">5 hrs/mo</td>
+          <td class="col-total">$450.00/mo</td>
+        </tr>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">Growth</span>
+          </td>
+          <td class="col-qty">10 hrs/mo</td>
+          <td class="col-total">$750.00/mo</td>
+        </tr>
+        <tr>
+          <td class="col-desc">
+            <span class="item-title">Scale</span>
+          </td>
+          <td class="col-qty">20 hrs/mo</td>
+          <td class="col-total">$1,250.00/mo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="totals-section">
+    <div class="totals-table">
+      <div class="totals-row rate-info">
+        <span>Hourly Rate</span>
+        <span>$125/hr</span>
+      </div>
+
+      <div class="totals-row section-header" style="margin-top: 15px; font-weight: 600">
+        <span>Core Website Development</span>
+        <span></span>
+      </div>
+      <div class="totals-row">
+        <span>Subtotal (68 hours)</span>
+        <span>$8,500.00</span>
+      </div>
+      <div class="totals-row">
+        <span>HST (13%)</span>
+        <span>$1,105.00</span>
+      </div>
+      <div class="totals-row final">
+        <span>Total (CAD)</span>
+        <span>$9,605.00</span>
+      </div>
+
+      <div class="totals-row section-header" style="margin-top: 15px; font-weight: 600">
+        <span>Annual Infrastructure Costs</span>
+        <span></span>
+      </div>
+      <div class="totals-row">
+        <span>Vercel Hosting</span>
+        <span>$550.00</span>
+      </div>
+      <div class="totals-row">
+        <span>HST (13%)</span>
+        <span>$71.50</span>
+      </div>
+      <div class="totals-row final">
+        <span>Total (CAD)</span>
+        <span>$621.50</span>
+      </div>
+    </div>
+  </div>
+</NoFollow>
