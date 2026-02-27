@@ -6,10 +6,11 @@ import Logo from '@/components/shared/Logo.astro';
 interface Props {
   date: string;
   client: Client;
+  subClient?: string;
   strategyType?: string;
 }
 
-const { date, client, strategyType = 'Project Estimate' } = Astro.props;
+const { date, client, subClient, strategyType = 'Project Estimate' } = Astro.props;
 ---
 
 <!doctype html>
@@ -36,7 +37,9 @@ const { date, client, strategyType = 'Project Estimate' } = Astro.props;
             <Logo />
           </div>
           <div class="estimate-meta">
-            <div class="estimate-client">{client.name}</div>
+            <div class="estimate-client">
+              {client.name}{subClient ? <span class="text-xs">{` | ${subClient}`}</span> : ''}
+            </div>
             <div class="estimate-date">{date}</div>
             <span class="estimate-type">{strategyType}</span>
           </div>
