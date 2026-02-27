@@ -1,3 +1,9 @@
+## [1.2.24](https://github.com/pixil-inc/pixil-website/compare/v1.2.23...v1.2.24) (2026-02-27)
+
+### Bug Fixes
+
+- add estimate subclient ([5a101ca](https://github.com/pixil-inc/pixil-website/commit/5a101cadaa1b94bbabe128dc5c8110b89a9b5f19))
+
 ## [1.2.23](https://github.com/pixil-inc/pixil-website/compare/v1.2.22...v1.2.23) (2026-02-26)
 
 ### Bug Fixes
