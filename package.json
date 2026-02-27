@@ -1,7 +1,7 @@
 {
   "name": "pixil-website",
   "type": "module",
-  "version": "1.2.23",
+  "version": "1.2.24",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
