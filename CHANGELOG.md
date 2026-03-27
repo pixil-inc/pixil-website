@@ -1,3 +1,10 @@
+## [1.2.25](https://github.com/pixil-inc/pixil-website/compare/v1.2.24...v1.2.25) (2026-03-27)
+
+### Bug Fixes
+
+- add hidden logo ([69ca3e3](https://github.com/pixil-inc/pixil-website/commit/69ca3e35fd851745f238fc0e9286bce7c697e4b2))
+- add specified workmark ([f5e839e](https://github.com/pixil-inc/pixil-website/commit/f5e839ec4b5007c87add351d47f735861ae16c36))
+
 ## [1.2.24](https://github.com/pixil-inc/pixil-website/compare/v1.2.23...v1.2.24) (2026-02-27)
 
 ### Bug Fixes
