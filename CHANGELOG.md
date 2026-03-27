@@ -1,3 +1,9 @@
+## [1.2.27](https://github.com/pixil-inc/pixil-website/compare/v1.2.26...v1.2.27) (2026-03-27)
+
+### Bug Fixes
+
+- added primary elogo ([e2af958](https://github.com/pixil-inc/pixil-website/commit/e2af958847be91147503a6b256e1a1e9bc6bbc45))
+
 ## [1.2.26](https://github.com/pixil-inc/pixil-website/compare/v1.2.25...v1.2.26) (2026-03-27)
 
 ### Bug Fixes
