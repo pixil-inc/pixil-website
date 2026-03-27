@@ -1,3 +1,9 @@
+## [1.2.26](https://github.com/pixil-inc/pixil-website/compare/v1.2.25...v1.2.26) (2026-03-27)
+
+### Bug Fixes
+
+- revise specifed wordmark ([909a375](https://github.com/pixil-inc/pixil-website/commit/909a375c5d1d7f4aa543d41f2fec21b5ddc40250))
+
 ## [1.2.25](https://github.com/pixil-inc/pixil-website/compare/v1.2.24...v1.2.25) (2026-03-27)
 
 ### Bug Fixes
